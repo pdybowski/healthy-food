@@ -1,11 +1,12 @@
 import React from "react";
 import ProfileNavigation from "../../components/userProfile/ProfileNavigation";
+import ProfileInformation from "../../components/userProfile/ProfileInformation";
 
 function UserProfile() {
     return (
         <>
             <ProfileNavigation/>
-            <h2>Hej</h2>
+            <ProfileInformation/>
         </>
     )
 }
