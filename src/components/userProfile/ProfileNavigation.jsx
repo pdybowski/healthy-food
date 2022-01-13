@@ -8,9 +8,9 @@ function ProfileNavigation() {
         <Navbar bg="primary" variant="dark">
             <Container>
                 <Nav className="me-auto">
-                    <LinkContainer to="/"><Nav.Link>Your recipes</Nav.Link></LinkContainer>
-                    <LinkContainer to="/"><Nav.Link>Your menus</Nav.Link></LinkContainer>
-                    <LinkContainer to="/"><Nav.Link>Favorites</Nav.Link></LinkContainer>
+                    <LinkContainer to="/user-recipes"><Nav.Link>Your recipes</Nav.Link></LinkContainer>
+                    <LinkContainer to="/user-menus"><Nav.Link>Your menus</Nav.Link></LinkContainer>
+                    <LinkContainer to="/user-favorites"><Nav.Link>Favorites</Nav.Link></LinkContainer>
                 </Nav>
             </Container>
         </Navbar>
