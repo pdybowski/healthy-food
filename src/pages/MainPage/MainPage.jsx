@@ -1,5 +1,5 @@
 import "./style.css";
 
 export const MainPage = () => {
-  return <main></main>;
+  return <main><h1></h1></main>;
 };
