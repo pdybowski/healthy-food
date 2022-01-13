@@ -4,7 +4,7 @@
         "plugin:import/errors",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended",
-        "plugin:jsx-runtime",
+        "plugin:storybook/recommended",
         "prettier"
     ],
     "rules": {
@@ -29,5 +29,15 @@
         "react": {
             "version": "detect"
         }
-    }
+    },
+    "overrides": [
+        {
+          "files": [
+            "**/*.stories.*"
+          ],
+          "rules": {
+            "import/no-anonymous-default-export": "off"
+          }
+        }
+      ]
 }
