@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 
-import logo from "../../assets/images/logo.svg"
+import logo from "../../../assets/images/logo.png"
 
 function Navigation() {
     return (
@@ -10,8 +10,8 @@ function Navigation() {
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
-                        width="300"
-                        height="30"
+                        width="209"
+                        height="44"
                         className="d-inline-block align-top"
                         alt="Healthy App logo"
                     />
@@ -23,8 +23,8 @@ function Navigation() {
                         <Nav.Link href="/recipes">Recipies</Nav.Link>
                         <Nav.Link href="/recommended">Recommended</Nav.Link>
                         <Nav.Link href="/menu">Menu</Nav.Link>
-                        <Nav.Link href="#contact">Contact</Nav.Link>
-                        <Nav.Link href="#about">About</Nav.Link>
+                        <Nav.Link href="/contact">Contact</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
 
                         {/*<NavDropdown title="Dropdown" id="basic-nav-dropdown">*/}
                         {/*    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>*/}
