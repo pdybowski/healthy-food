@@ -58,17 +58,5 @@
         "prettier": "^2.5.1",
         "storybook": "^6.4.12",
         "webpack": "^5.66.0"
-    },
-    "eslintConfig": {
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
     }
 }
