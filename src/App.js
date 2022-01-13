@@ -4,7 +4,6 @@ import { routes } from "./routes";
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
         <Routes>
           {routes.map((route) => (
@@ -12,7 +11,7 @@ function App() {
           ))}
         </Routes>
       </BrowserRouter>
-      <Footer />
+      {/*<Footer />*/}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import UserProfile from "./pages/UserProfile/UserProfile";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import {MainPage} from "./pages";
 
 export const routes = [

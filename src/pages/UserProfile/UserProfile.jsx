@@ -1,8 +1,12 @@
 import React from "react";
+import ProfileNavigation from "../../components/userProfile/ProfileNavigation";
 
-function UserProfile () {
+function UserProfile() {
     return (
-        <h2>Hej</h2>
+        <>
+            <ProfileNavigation/>
+            <h2>Hej</h2>
+        </>
     )
 }
 
