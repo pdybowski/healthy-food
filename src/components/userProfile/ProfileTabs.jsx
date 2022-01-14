@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
 import UserRecipes from './UserRecipes';
 
-function ProfileTabs() {
-    const [key, setKey] = useState('user-recipes');
+function ProfileTabs(props) {
+    const [key, setKey] = useState(props.tab);
 
     return (
         <Container>
@@ -11,6 +11,7 @@ function ProfileTabs() {
                 <Tab eventKey="user-recipes" title="Your recipes">
                     <UserRecipes />
                 </Tab>
+
                 <Tab eventKey="user-menus" title="Your menus">
                     Menus
                 </Tab>

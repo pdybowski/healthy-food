@@ -77,13 +77,13 @@ function Navigation() {
                         <LinkContainer to="/user-profile">
                             <NavDropdown.Item>Your profile</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile">
+                        <LinkContainer to="/user-profile/recipes">
                             <NavDropdown.Item>Your recipes</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile">
+                        <LinkContainer to="/user-profile/menus">
                             <NavDropdown.Item>Your menus</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile">
+                        <LinkContainer to="/user-profile/favorites">
                             <NavDropdown.Item>Favorites</NavDropdown.Item>
                         </LinkContainer>
                         <NavDropdown.Divider className="navigation__element--mobilescreen-show" />
