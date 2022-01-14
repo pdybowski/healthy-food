@@ -21,7 +21,7 @@ function Navigation() {
                         />
                     </Navbar.Brand>
                 </LinkContainer>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse>
                     <Nav className="me-auto">
                         <LinkContainer to="/recipes">
@@ -44,7 +44,7 @@ function Navigation() {
                 <Navbar.Collapse className="justify-content-end">
                     <NavDropdown
                         title={<img src={plus} height="24" alt="Plus Icon" />}
-                        className="mobile-hide"
+                        className="navigation__element--largescreen-show"
                     >
                         <LinkContainer to="/user-recipes-new">
                             <NavDropdown.Item>Add recipe</NavDropdown.Item>
@@ -61,7 +61,10 @@ function Navigation() {
                         }
                     >
                         <div>
-                            <LinkContainer to="/user-profile" className="mobile-hide">
+                            <LinkContainer
+                                to="/user-profile"
+                                className="navigation__element--largescreen-show"
+                            >
                                 <NavDropdown.Item>
                                     Signed in as:<span className="fw-bold"> Jakub Nowak</span>
                                 </NavDropdown.Item>
@@ -79,14 +82,14 @@ function Navigation() {
                         <LinkContainer to="/user-favorites">
                             <NavDropdown.Item>Favorites</NavDropdown.Item>
                         </LinkContainer>
-                        <NavDropdown.Divider className="not-mobile-hide" />
-                        <div className="not-mobile-hide">
+                        <NavDropdown.Divider className="navigation__element--mobilescreen-show" />
+                        <div className="navigation__element--mobilescreen-show">
                             <LinkContainer to="/user-recipes-new">
                                 <NavDropdown.Item>Add recipe</NavDropdown.Item>
                             </LinkContainer>
                         </div>
-                        <div className="not-mobile-hide">
-                            <LinkContainer className="not-mobile-hide" to="/user-menu-new">
+                        <div className="navigation__element--mobilescreen-show">
+                            <LinkContainer to="/user-menu-new">
                                 <NavDropdown.Item>Add menu</NavDropdown.Item>
                             </LinkContainer>
                         </div>

@@ -1,5 +1,5 @@
+import UserProfile from './pages/UserProfile/UserProfile.jsx';
 import { MainPage } from './pages';
-import UserProfile from './pages/UserProfile/UserProfile';
 
 export const routes = [
     {
