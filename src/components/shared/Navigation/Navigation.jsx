@@ -21,7 +21,7 @@ function Navigation() {
                         />
                     </Navbar.Brand>
                 </LinkContainer>
-                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse>
                     <Nav className="me-auto">
                         <LinkContainer to="/recipes">
@@ -54,9 +54,13 @@ function Navigation() {
                         </LinkContainer>
                     </NavDropdown>
                     <NavDropdown
+                        className="nav-link"
                         title={
                             <>
                                 <img src={user} height="24" alt="User Icon" />
+                                <span className="navigation__element--mobilescreen-show ms-3 navbar-text navbar-light">
+                                    Signed in as:<span className="fw-bold"> Jakub Nowak</span>
+                                </span>
                             </>
                         }
                     >
