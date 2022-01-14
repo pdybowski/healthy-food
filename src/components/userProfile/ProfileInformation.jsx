@@ -16,6 +16,7 @@ function ProfileInformation() {
                 </div>
                 <div className="ms-auto">
                     <Button variant="outline-primary">
+                        <i className="fas fa-edit" />
                         <img src={edit} height="14" alt="Edit Icon" />
                         Edit profile
                     </Button>
