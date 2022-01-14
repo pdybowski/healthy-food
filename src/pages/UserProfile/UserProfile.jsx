@@ -1,11 +1,11 @@
 import React from 'react';
 import ProfileTabs from '../../components/userProfile/ProfileTabs';
+import ProfileInformation from '../../components/userProfile/ProfileInformation';
 
 function UserProfile() {
     return (
         <>
-            {/*<ProfileNavigation />*/}
-            {/*<ProfileInformation />*/}
+            <ProfileInformation />
             <ProfileTabs />
         </>
     );

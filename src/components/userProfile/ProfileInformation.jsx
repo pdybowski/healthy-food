@@ -1,18 +1,27 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import user from '../../assets/images/user-circle-solid.png';
 import edit from '../../assets/images/edit-solid.png';
 
 function ProfileInformation() {
     return (
-        <div className="d-flex m-5">
-            <img src={user} height="16" alt="User Icon" />
-            <h2>Jakub Nowak</h2>
-            <Button variant="primary">
-                <img src={edit} height="16" alt="Edit Icon" />
-                Edit profile
-            </Button>
-        </div>
+        <Container>
+            <div className="d-flex m-5 align-items-center">
+                <div className="me-3">
+                    <img src={user} height="44" alt="User Icon" />
+                </div>
+                <div className="d-flex flex-column">
+                    <h3>Jakub Nowak</h3>
+                    <div>Information about you:</div>
+                </div>
+                <div className="ms-auto">
+                    <Button variant="outline-primary">
+                        <img src={edit} height="14" alt="Edit Icon" />
+                        Edit profile
+                    </Button>
+                </div>
+            </div>
+        </Container>
     );
 }
 
