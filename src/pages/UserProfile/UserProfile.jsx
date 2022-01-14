@@ -1,13 +1,12 @@
 import React from 'react';
-import ProfileInformation from '../../components/userProfile/ProfileInformation';
-import ProfileSubNavigation from '../../components/userProfile/ProfileSubNavigation';
+import ProfileTabs from '../../components/userProfile/ProfileTabs';
 
 function UserProfile() {
     return (
         <>
             {/*<ProfileNavigation />*/}
-            <ProfileInformation />
-            <ProfileSubNavigation />
+            {/*<ProfileInformation />*/}
+            <ProfileTabs />
         </>
     );
 }
