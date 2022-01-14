@@ -1,0 +1,22 @@
+.banner-container {
+    height: 95vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-slogan {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.banner-card {
+    width: 24.5%;
+    text-align: center;
+}
+
+.banner-description {
+    top: 60%;
+    margin-top: 30px;
+}
