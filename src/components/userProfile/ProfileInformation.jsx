@@ -18,7 +18,7 @@ function ProfileInformation() {
                 <div className="ms-auto">
                     <Button variant="outline-primary">
                         <FontAwesomeIcon icon={faEdit} />
-                        Edit profile
+                        <span className="ms-1">Edit profile</span>
                     </Button>
                 </div>
             </div>
