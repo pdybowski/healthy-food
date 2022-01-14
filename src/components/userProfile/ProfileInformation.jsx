@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Container } from 'react-bootstrap';
 import user from '../../assets/images/user-circle-solid.png';
-import edit from '../../assets/images/edit-solid.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileInformation() {
     return (
@@ -16,8 +17,8 @@ function ProfileInformation() {
                 </div>
                 <div className="ms-auto">
                     <Button variant="outline-primary">
-                        <i className="fas fa-edit" />
-                        <img src={edit} height="14" alt="Edit Icon" />
+                        <FontAwesomeIcon icon={faEdit} />
+                        {/*<img src={edit} height="14" alt="Edit Icon" />*/}
                         Edit profile
                     </Button>
                 </div>
