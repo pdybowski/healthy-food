@@ -5,12 +5,20 @@ import ProfileInformation from '../../components/userProfile/ProfileInformation'
 import ProfileSubNavigation from '../../components/userProfile/ProfileSubNavigation';
 
 function UserProfile() {
+    const [isSettingOpen, setIsSettingOpen] = React.useState(false);
+
     return (
         <>
             <ProfileNavigation />
-            <ProfileInformation />
             <ProfileSubNavigation />
-            <ProfileSettings />
+            {isSettingOpen 
+            ?
+            <ProfileSettings 
+            handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)} />
+            :
+            <ProfileInformation 
+            handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)} />
+            }
         </>
     );
 }

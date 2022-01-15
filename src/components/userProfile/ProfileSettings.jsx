@@ -5,13 +5,14 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCog } from '@fortawesome/free-solid-svg-icons';
 
-function ProfileSettings() {
+function ProfileSettings({handleSettingsClick}) {
     return (
         <div className='m-5'>
             <h2 className='text-center'>
                 <span>Settings </span>
                 <FontAwesomeIcon icon={faUserCog} />
             </h2>
+            <span className='text-center' onClick={handleSettingsClick}>Move back to your profile</span>
             <Form className="needs-validation">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
