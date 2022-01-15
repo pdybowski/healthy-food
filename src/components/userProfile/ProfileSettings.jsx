@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { faUserCog, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileSettings({handleSettingsClick}) {
     return (
@@ -12,7 +12,10 @@ function ProfileSettings({handleSettingsClick}) {
                 <span>Settings </span>
                 <FontAwesomeIcon icon={faUserCog} />
             </h2>
-            <span className='text-center' onClick={handleSettingsClick}>Move back to your profile</span>
+            <button className='d-block mx-auto border-0 bg-white' onClick={handleSettingsClick}>
+                <span><FontAwesomeIcon icon={faLongArrowAltLeft} /> </span>
+                Move back to your profile
+            </button>
             <Form className="needs-validation">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
