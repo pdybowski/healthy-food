@@ -1,31 +1,48 @@
 import UserProfile from './pages/UserProfile/UserProfile.jsx';
 import { MainPage } from './pages';
+import { PROFILE_TABS } from './components/userProfile/ProfileTabs';
+
+export const ROUTES_PATHS = {
+    MAIN_PAGE: '/',
+    RECIPES: '/recipes',
+    RECOMMENDED: '/recommended',
+    MENU: '/menu',
+    CONTACT: '/contact',
+    ABOUT: '/about',
+    LOGOUT: '/',
+    USER_PROFILE: '/user-profile',
+    USER_RECIPES: '/user-profile/recipes',
+    USER_RECIPES_ADD: '/user-profile/recipes/new',
+    USER_MENUS: '/user-profile/menus',
+    USER_MENUS_ADD: '/user-profile/menus/new',
+    USER_FAVORITES: '/user-profile/favorites',
+};
 
 export const routes = [
     {
-        path: '/',
+        path: ROUTES_PATHS.MAIN_PAGE,
         element: <MainPage />,
         key: 'main-page',
     },
 
     {
-        path: '/user-profile',
-        element: <UserProfile tab={'user-recipes'} />,
+        path: ROUTES_PATHS.USER_PROFILE,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_RECIPES} />,
         key: 'user-profile',
     },
     {
-        path: '/user-profile/recipes',
-        element: <UserProfile tab={'user-recipes'} />,
-        key: 'user-profile-recipes',
+        path: ROUTES_PATHS.USER_RECIPES,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_RECIPES} />,
+        key: PROFILE_TABS.PROFILE_RECIPES,
     },
     {
-        path: '/user-profile/menus',
-        element: <UserProfile tab={'user-menus'} />,
-        key: 'user-profile-menus',
+        path: ROUTES_PATHS.USER_MENUS,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_MENUS} />,
+        key: PROFILE_TABS.PROFILE_MENUS,
     },
     {
-        path: '/user-profile/favorites',
-        element: <UserProfile tab={'user-favorites'} />,
-        key: 'user-profile-favorites',
+        path: ROUTES_PATHS.USER_FAVORITES,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVORITES} />,
+        key: PROFILE_TABS.PROFILE_FAVORITES,
     },
 ];

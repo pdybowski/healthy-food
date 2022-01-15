@@ -6,12 +6,13 @@ import { LinkContainer } from 'react-router-bootstrap';
 import logo from '../../../assets/images/logo.png';
 import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
+import { ROUTES_PATHS } from '../../../routes';
 
 function Navigation() {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                <LinkContainer to="/">
+                <LinkContainer to={ROUTES_PATHS.MAIN_PAGE}>
                     <Navbar.Brand>
                         <img
                             src={logo}
@@ -24,19 +25,19 @@ function Navigation() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse>
                     <Nav className="me-auto">
-                        <LinkContainer to="/recipes">
+                        <LinkContainer to={ROUTES_PATHS.RECIPES}>
                             <Nav.Link>Recipes</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/recommended">
+                        <LinkContainer to={ROUTES_PATHS.RECOMMENDED}>
                             <Nav.Link>Recommended</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/menu">
+                        <LinkContainer to={ROUTES_PATHS.MENU}>
                             <Nav.Link>Menu</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/contact">
+                        <LinkContainer to={ROUTES_PATHS.CONTACT}>
                             <Nav.Link>Contact</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to="/about">
+                        <LinkContainer to={ROUTES_PATHS.ABOUT}>
                             <Nav.Link>About</Nav.Link>
                         </LinkContainer>
                     </Nav>
@@ -46,10 +47,10 @@ function Navigation() {
                         title={<img src={plus} height="24" alt="Plus Icon" />}
                         className="navigation__element--largescreen-show"
                     >
-                        <LinkContainer to="/user-recipes-new">
+                        <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
                             <NavDropdown.Item>Add recipe</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-menu-new">
+                        <LinkContainer to={ROUTES_PATHS.USER_MENUS_ADD}>
                             <NavDropdown.Item>Add menu</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
@@ -74,31 +75,31 @@ function Navigation() {
                                 </NavDropdown.Item>
                             </LinkContainer>
                         </div>
-                        <LinkContainer to="/user-profile">
+                        <LinkContainer to={ROUTES_PATHS.USER_PROFILE}>
                             <NavDropdown.Item>Your profile</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile/recipes">
+                        <LinkContainer to={ROUTES_PATHS.USER_RECIPES}>
                             <NavDropdown.Item>Your recipes</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile/menus">
+                        <LinkContainer to={ROUTES_PATHS.USER_MENUS}>
                             <NavDropdown.Item>Your menus</NavDropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to="/user-profile/favorites">
+                        <LinkContainer to={ROUTES_PATHS.USER_FAVORITES}>
                             <NavDropdown.Item>Favorites</NavDropdown.Item>
                         </LinkContainer>
                         <NavDropdown.Divider className="navigation__element--mobilescreen-show" />
                         <div className="navigation__element--mobilescreen-show">
-                            <LinkContainer to="/user-recipes-new">
+                            <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
                                 <NavDropdown.Item>Add recipe</NavDropdown.Item>
                             </LinkContainer>
                         </div>
                         <div className="navigation__element--mobilescreen-show">
-                            <LinkContainer to="/user-menu-new">
+                            <LinkContainer to={ROUTES_PATHS.USER_MENUS_ADD}>
                                 <NavDropdown.Item>Add menu</NavDropdown.Item>
                             </LinkContainer>
                         </div>
                         <NavDropdown.Divider />
-                        <LinkContainer to="/">
+                        <LinkContainer to={ROUTES_PATHS.LOGOUT}>
                             <NavDropdown.Item>Log Out</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
