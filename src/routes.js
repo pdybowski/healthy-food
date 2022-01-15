@@ -1,6 +1,6 @@
 import UserProfile from './pages/UserProfile/UserProfile.jsx';
 import { MainPage } from './pages';
-import { PROFILE_TABS } from './components/userProfile/ProfileTabs';
+import { PROFILE_TABS } from './components/userProfile/profileTabs/ProfileTabs.jsx';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
-import UserRecipes from './UserRecipes.jsx';
+import UserRecipes from '../userRecipes/UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../../routes';
+import { routes } from '../../../routes';
 
 function ProfileTabs(props) {
     const [key, setKey] = useState(props.tab);

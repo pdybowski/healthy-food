@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import NewRecipeTile from './NewRecipeTile.jsx';
-import RecipeTile from './RecipeTile.jsx';
+import NewRecipeTile from '../newRecipeTile/NewRecipeTile.jsx';
+import RecipeTile from '../recipeTile/RecipeTile.jsx';
 
 function UserRecipes() {
     return (

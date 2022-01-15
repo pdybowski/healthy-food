@@ -10,21 +10,21 @@ import { ROUTES_PATHS } from '../../../routes';
 
 function Navigation() {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg='light' expand='lg'>
             <Container>
                 <LinkContainer to={ROUTES_PATHS.MAIN_PAGE}>
                     <Navbar.Brand>
                         <img
                             src={logo}
-                            height="44"
-                            className="d-inline-block align-top"
-                            alt="Healthy App logo"
+                            height='44'
+                            className='d-inline-block align-top'
+                            alt='Healthy App logo'
                         />
                     </Navbar.Brand>
                 </LinkContainer>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls='basic-navbar-nav' />
                 <Navbar.Collapse>
-                    <Nav className="me-auto">
+                    <Nav className='me-auto'>
                         <LinkContainer to={ROUTES_PATHS.RECIPES}>
                             <Nav.Link>Recipes</Nav.Link>
                         </LinkContainer>
@@ -42,10 +42,10 @@ function Navigation() {
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
-                <Navbar.Collapse className="justify-content-end">
+                <Navbar.Collapse className='justify-content-end'>
                     <NavDropdown
-                        title={<img src={plus} height="24" alt="Plus Icon" />}
-                        className="navigation__element--largescreen-show"
+                        title={<img src={plus} height='24' alt='Plus Icon' />}
+                        className='navigation__element--largescreen-show'
                     >
                         <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
                             <NavDropdown.Item>Add recipe</NavDropdown.Item>
@@ -55,23 +55,23 @@ function Navigation() {
                         </LinkContainer>
                     </NavDropdown>
                     <NavDropdown
-                        className="nav-link"
+                        className='nav-link'
                         title={
                             <>
-                                <img src={user} height="24" alt="User Icon" />
-                                <span className="navigation__element--mobilescreen-show ms-3 navbar-text navbar-light">
-                                    Signed in as:<span className="fw-bold"> Jakub Nowak</span>
+                                <img src={user} height='24' alt='User Icon' />
+                                <span className='navigation__element--mobilescreen-show ms-3 navbar-text navbar-light'>
+                                    Signed in as:<span className='fw-bold'> Jakub Nowak</span>
                                 </span>
                             </>
                         }
                     >
                         <div>
                             <LinkContainer
-                                to="/user-profile"
-                                className="navigation__element--largescreen-show"
+                                to={ROUTES_PATHS.USER_PROFILE}
+                                className='navigation__element--largescreen-show'
                             >
                                 <NavDropdown.Item>
-                                    Signed in as:<span className="fw-bold"> Jakub Nowak</span>
+                                    Signed in as:<span className='fw-bold'> Jakub Nowak</span>
                                 </NavDropdown.Item>
                             </LinkContainer>
                         </div>
@@ -87,13 +87,13 @@ function Navigation() {
                         <LinkContainer to={ROUTES_PATHS.USER_FAVORITES}>
                             <NavDropdown.Item>Favorites</NavDropdown.Item>
                         </LinkContainer>
-                        <NavDropdown.Divider className="navigation__element--mobilescreen-show" />
-                        <div className="navigation__element--mobilescreen-show">
+                        <NavDropdown.Divider className='navigation__element--mobilescreen-show' />
+                        <div className='navigation__element--mobilescreen-show'>
                             <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
                                 <NavDropdown.Item>Add recipe</NavDropdown.Item>
                             </LinkContainer>
                         </div>
-                        <div className="navigation__element--mobilescreen-show">
+                        <div className='navigation__element--mobilescreen-show'>
                             <LinkContainer to={ROUTES_PATHS.USER_MENUS_ADD}>
                                 <NavDropdown.Item>Add menu</NavDropdown.Item>
                             </LinkContainer>
