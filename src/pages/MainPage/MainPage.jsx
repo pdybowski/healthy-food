@@ -1,5 +1,10 @@
-import "./style.css";
+import Contact from '../../components/mainPage/Contact/Contact.jsx';
+import './style.css';
 
 export const MainPage = () => {
-  return <main><h1></h1></main>;
+    return (
+        <main>
+            <Contact />
+        </main>
+    );
 };
