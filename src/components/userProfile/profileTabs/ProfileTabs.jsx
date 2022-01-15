@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
-import UserRecipes from '../userRecipes/UserRecipes.jsx';
+import UserRecipes from './userRecipes/UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../../routes';
+import UserMenus from './userMenus/UserMenus.jsx';
+import Favourites from './favorites/Favourites.jsx';
 
 function ProfileTabs(props) {
     const [key, setKey] = useState(props.tab);
@@ -23,10 +25,10 @@ function ProfileTabs(props) {
                 </Tab>
 
                 <Tab eventKey={PROFILE_TABS.PROFILE_MENUS} title='Your menus'>
-                    Menus
+                    <UserMenus />
                 </Tab>
-                <Tab eventKey={PROFILE_TABS.PROFILE_FAVORITES} title='Favorites'>
-                    Favorites
+                <Tab eventKey={PROFILE_TABS.PROFILE_FAVOURITES} title='Favourites'>
+                    <Favourites />
                 </Tab>
             </Tabs>
         </Container>
@@ -40,7 +42,7 @@ function getRouteFromKey(key) {
 export const PROFILE_TABS = {
     PROFILE_RECIPES: 'user-recipes',
     PROFILE_MENUS: 'user-menus',
-    PROFILE_FAVORITES: 'user-favorites',
+    PROFILE_FAVOURITES: 'user-favourites',
 };
 
 export default ProfileTabs;

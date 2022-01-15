@@ -1,6 +1,5 @@
-import UserProfile from './pages/UserProfile/UserProfile.jsx';
-import { MainPage } from './pages';
-import { PROFILE_TABS } from './components/userProfile/profileTabs/ProfileTabs.jsx';
+import { MainPage, UserProfile } from './pages';
+import { PROFILE_TABS } from './components';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -15,7 +14,7 @@ export const ROUTES_PATHS = {
     USER_RECIPES_ADD: '/user-profile/recipes/new',
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
-    USER_FAVORITES: '/user-profile/favorites',
+    USER_FAVORITES: '/user-profile/favourites',
 };
 
 export const routes = [
@@ -42,7 +41,7 @@ export const routes = [
     },
     {
         path: ROUTES_PATHS.USER_FAVORITES,
-        element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVORITES} />,
-        key: PROFILE_TABS.PROFILE_FAVORITES,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVOURITES} />,
+        key: PROFILE_TABS.PROFILE_FAVOURITES,
     },
 ];

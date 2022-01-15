@@ -8,9 +8,9 @@ function UserRecipes() {
         <Container className='my-4'>
             <Row xs={1} md={2} xxl={4} className='g-4'>
                 <NewRecipeTile />
-                <RecipeTile />
-                <RecipeTile />
-                <RecipeTile />
+                <RecipeTile isFavourite={false} />
+                <RecipeTile isFavourite={false} />
+                <RecipeTile isFavourite={false} />
             </Row>
         </Container>
     );

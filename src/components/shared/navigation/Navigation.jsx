@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-function Navigation() {
+export function Navigation() {
     return (
         <Navbar bg='light' expand='lg'>
             <Container>
@@ -85,7 +85,7 @@ function Navigation() {
                             <NavDropdown.Item>Your menus</NavDropdown.Item>
                         </LinkContainer>
                         <LinkContainer to={ROUTES_PATHS.USER_FAVORITES}>
-                            <NavDropdown.Item>Favorites</NavDropdown.Item>
+                            <NavDropdown.Item>Favourites</NavDropdown.Item>
                         </LinkContainer>
                         <NavDropdown.Divider className='navigation__element--mobilescreen-show' />
                         <div className='navigation__element--mobilescreen-show'>
@@ -108,5 +108,3 @@ function Navigation() {
         </Navbar>
     );
 }
-
-export default Navigation;

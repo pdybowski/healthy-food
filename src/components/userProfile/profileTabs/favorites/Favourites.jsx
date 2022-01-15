@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import RecipeTile from '../recipeTile/RecipeTile.jsx';
 
-function Favorites() {
+function Favourites() {
     return (
         <Container className='my-4'>
             <Row xs={1} md={2} xxl={4} className='g-4'>
@@ -14,4 +14,4 @@ function Favorites() {
     );
 }
 
-export default Favorites;
+export default Favourites;

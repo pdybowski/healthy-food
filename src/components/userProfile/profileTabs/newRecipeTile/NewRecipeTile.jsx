@@ -1,5 +1,5 @@
 import { Button, Card, Col } from 'react-bootstrap';
-import utensils from '../../../assets/images/utensils-solid.png';
+import utensils from '../../../../assets/images/utensils-solid.png';
 import React from 'react';
 
 function NewRecipeTile() {
