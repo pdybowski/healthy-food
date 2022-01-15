@@ -1,11 +1,17 @@
 import { Button, Card, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus, faClock, faEdit, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faEdit, faHeart, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function RecipeTile() {
+function RecipeTile(props) {
     const [heartIcon, setHeartIcon] = useState(regularHeart);
+
+    useEffect(() => {
+        if (props.isFavourite === true) {
+            setHeartIcon(faHeart);
+        }
+    }, [props.isFavourite]);
 
     function handleHeartClick() {
         heartIcon === regularHeart ? setHeartIcon(faHeart) : setHeartIcon(regularHeart);
@@ -63,7 +69,7 @@ function RecipeTile() {
                             <FontAwesomeIcon icon={faTrash} />
                         </Button>
                         <Button variant='outline-primary'>
-                            <FontAwesomeIcon icon={faCartPlus} />
+                            <FontAwesomeIcon icon={faList} />
                         </Button>
                     </div>
                 </Card.Body>
