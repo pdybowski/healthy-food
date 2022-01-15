@@ -1,6 +1,6 @@
 import React from 'react';
-import ProfileTabs from '../../components/userProfile/ProfileTabs';
-import ProfileInformation from '../../components/userProfile/ProfileInformation';
+import ProfileTabs from '../../components/userProfile/ProfileTabs.jsx';
+import ProfileInformation from '../../components/userProfile/ProfileInformation.jsx';
 
 function UserProfile(props) {
     return (

@@ -1,26 +1,43 @@
 import { Button, Card, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus, faClock, faEdit, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import React, { useState } from 'react';
 
 function RecipeTile() {
+    const [heartIcon, setHeartIcon] = useState(regularHeart);
+
+    function handleHeartClick() {
+        heartIcon === regularHeart ? setHeartIcon(faHeart) : setHeartIcon(regularHeart);
+    }
+
     return (
-        <Col className="d-flex justify-content-center">
-            <Card border="light" style={{ width: '18rem', minHeight: '532px' }}>
-                <Card.Img variant="top" src="https://via.placeholder.com/100" />
-                <FontAwesomeIcon
-                    icon={faHeart}
-                    className="text-danger"
+        <Col className='d-flex justify-content-center'>
+            <Card border='light' style={{ width: '18rem', minHeight: '532px' }}>
+                <Card.Img variant='top' src='https://via.placeholder.com/100' />
+                <button
+                    type={'button'}
                     style={{
                         position: 'absolute',
                         top: '1rem',
                         right: '1rem',
-                        fontSize: '1.75rem',
+                        padding: 0,
+                        background: 'transparent',
+                        border: 'none',
                     }}
-                />
+                    onClick={handleHeartClick}
+                >
+                    <FontAwesomeIcon
+                        icon={heartIcon}
+                        className={'text-danger'}
+                        style={{
+                            fontSize: '1.75rem',
+                        }}
+                    />
+                </button>
                 <Card.Body>
                     <Card.Title>Recipe Title</Card.Title>
-                    <ListGroup className="list-group-flush">
+                    <ListGroup className='list-group-flush'>
                         <ListGroupItem>
                             <span
                                 style={{
@@ -33,19 +50,19 @@ function RecipeTile() {
                             </span>
                         </ListGroupItem>
                         <ListGroupItem>
-                            <FontAwesomeIcon icon={faClock} className="text-info" />
-                            <span className="ms-1">Time</span>
+                            <FontAwesomeIcon icon={faClock} className='text-info' />
+                            <span className='ms-1'>Time</span>
                         </ListGroupItem>
                         <ListGroupItem>Type</ListGroupItem>
                     </ListGroup>
-                    <div className="d-flex justify-content-around mt-1">
-                        <Button variant="outline-info">
+                    <div className='d-flex justify-content-around mt-1'>
+                        <Button variant='outline-info'>
                             <FontAwesomeIcon icon={faEdit} />
                         </Button>
-                        <Button variant="outline-danger">
+                        <Button variant='outline-danger'>
                             <FontAwesomeIcon icon={faTrash} />
                         </Button>
-                        <Button variant="outline-primary">
+                        <Button variant='outline-primary'>
                             <FontAwesomeIcon icon={faCartPlus} />
                         </Button>
                     </div>

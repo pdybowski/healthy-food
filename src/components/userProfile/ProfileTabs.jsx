@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
-import UserRecipes from './UserRecipes';
+import UserRecipes from './UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../../routes';
 
@@ -18,14 +18,14 @@ function ProfileTabs(props) {
                     setKey(eventKey);
                 }}
             >
-                <Tab eventKey={PROFILE_TABS.PROFILE_RECIPES} title="Your recipes">
+                <Tab eventKey={PROFILE_TABS.PROFILE_RECIPES} title='Your recipes'>
                     <UserRecipes />
                 </Tab>
 
-                <Tab eventKey={PROFILE_TABS.PROFILE_MENUS} title="Your menus">
+                <Tab eventKey={PROFILE_TABS.PROFILE_MENUS} title='Your menus'>
                     Menus
                 </Tab>
-                <Tab eventKey={PROFILE_TABS.PROFILE_FAVORITES} title="Favorites">
+                <Tab eventKey={PROFILE_TABS.PROFILE_FAVORITES} title='Favorites'>
                     Favorites
                 </Tab>
             </Tabs>
