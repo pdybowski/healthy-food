@@ -6,35 +6,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileSettings() {
-
-    const validateForm = () => {
-
-    }
-
-    const handleSubmit = () => {
-        validateForm() 
-
-        
-    }
-
     return (
         <div className='m-5'>
             <h2 className='text-center'>
                 <span>Settings </span>
                 <FontAwesomeIcon icon={faUserCog} />
             </h2>
-            <Form className="needs-validation" onSubmit={() => handleSubmit()}>
+            <Form className="needs-validation">
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Your Name" />
+                    <Form.Control 
+                    type="text"
+                    placeholder="Your Name"
+                    />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicSurname">
                     <Form.Label>Surname</Form.Label>
                     <Form.Control type="text" placeholder="Your Surname" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicUserName">
-                    <Form.Label>User Name:</Form.Label>
-                    <Form.Control type="text" placeholder="New User Name" />
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" placeholder="New Username" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
