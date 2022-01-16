@@ -1,15 +1,7 @@
-.contact-container {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.contact-details {
-    margin: 0;
-}
-
 @media (max-width: 575px) {
     .contact-button-container {
         display: flex;
         justify-content: center;
+        margin-bottom: 15px;
     }
 }
