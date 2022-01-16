@@ -9,7 +9,7 @@ function App() {
                 <Navigation />
                 <Routes>
                     {routes.map((route) => (
-                        <Route key={routes.key} {...route} />
+                        <Route {...route} />
                     ))}
                 </Routes>
             </BrowserRouter>
