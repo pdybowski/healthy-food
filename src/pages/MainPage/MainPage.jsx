@@ -1,5 +1,12 @@
-import "./style.css";
+import Banner from '../../components/mainPage/Banner/Banner.jsx';
+import Contact from '../../components/mainPage/Contact/Contact.jsx';
+import './style.css';
 
 export const MainPage = () => {
-  return <main><h1></h1></main>;
+    return (
+        <main>
+            <Banner />
+            <Contact />
+        </main>
+    );
 };
