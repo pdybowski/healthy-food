@@ -74,7 +74,7 @@ function ProfileSettings({ handleSettingsClick }) {
                         onChange={(e) => setField('username', e.target.value)}
                     />
                         <Form.Control.Feedback type='invalid'>
-                            { errors.username }
+                            {/* { errors.username } */}
                         </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -85,7 +85,7 @@ function ProfileSettings({ handleSettingsClick }) {
                         onChange={(e) => setField('password', e.target.value)}
                     />
                         <Form.Control.Feedback type='invalid'>
-                            { errors.password }
+                            {/* { errors.password } */}
                         </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -96,7 +96,7 @@ function ProfileSettings({ handleSettingsClick }) {
                         onChange={(e) => setField('email', e.target.value)}
                     />
                         <Form.Control.Feedback type='invalid'>
-                            { errors.email }
+                            {/* { errors.email } */}
                         </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPhone">
