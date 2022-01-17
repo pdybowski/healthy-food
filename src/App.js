@@ -9,7 +9,7 @@ function App() {
                 <Navigation />
                 <Routes>
                     {routes.map((route) => (
-                        <Route {...route} />
+                        <Route {...route} /> //eslint-disable-line
                     ))}
                 </Routes>
             </BrowserRouter>
