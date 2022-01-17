@@ -4,7 +4,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-function ProfileInformation() {
+function ProfileInformation({ handleSettingsClick }) {
     return (
         <Container>
             <div className='d-flex m-5 align-items-center'>
@@ -16,7 +16,7 @@ function ProfileInformation() {
                     <div>Information about you:</div>
                 </div>
                 <div className='ms-auto'>
-                    <Button variant='outline-primary'>
+                    <Button variant='outline-primary' onClick={handleSettingsClick}>
                         <FontAwesomeIcon icon={faEdit} />
                         <span className='ms-1'>Edit profile</span>
                     </Button>

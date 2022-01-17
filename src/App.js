@@ -9,8 +9,7 @@ function App() {
                 <Navigation />
                 <Routes>
                     {routes.map((route) => (
-                        // eslint-disable-next-line react/jsx-key
-                        <Route {...route} />
+                        <Route {...route} /> // eslint-disable-line react/jsx-key
                     ))}
                 </Routes>
             </BrowserRouter>
