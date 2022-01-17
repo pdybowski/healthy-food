@@ -7,7 +7,7 @@ import { faUserCog, faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons
 
 function ProfileSettings({ handleSettingsClick }) {
     const [form, setForm] = React.useState({});
-    const [errors, setErrors] = React.useState({});
+    // const [errors, setErrors] = React.useState({});
 
     const setField = (field, value) => {
         setForm({
@@ -16,32 +16,24 @@ function ProfileSettings({ handleSettingsClick }) {
         });
     };
 
-    const findFormErrors = () => {
-        const { username, password, email } = form;
-        const specialChars = `/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;`
-        const newErrors = {}
+    // const findFormErrors = () => {
+    //     const { username, password, email } = form;
+    //     const specialChars = `/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;`
+    //     const newErrors = {}
         
-        // username
-        if (username.length > 15) newErrors.username = 'Your username can not contain more than 15 characters';
-        // password
-        if (specialChars.split('').some(char => 
-            password.includes(char))){ 
-                return newErrors.password = 'Password does not include any special character (eg. !, @, %, $)';
-            };
-        // email
-        if(!email.includes('@'))  return newErrors.email = 'Invalid e-mail address';
-    };
+    //     // username
+    //     if (username.length > 15) newErrors.username = 'Your username can not contain more than 15 characters';
+    //     // password
+    //     if (specialChars.split('').some(char => 
+    //         password.includes(char))){ 
+    //             return newErrors.password = 'Password does not include any special character (eg. !, @, %, $)';
+    //         };
+    //     // email
+    //     if(!email.includes('@'))  return newErrors.email = 'Invalid e-mail address';
+    // };
 
     const handleSubmit = e => {
-        e.preventDefault;
-        handleSettingsClick;
-        const newErrors = findFormErrors()
-
-        if ( Object.keys(newErrors).length > 0 ) {
-            setErrors(newErrors);
-          } else {
-            alert('Settings were changed');
-          }
+        e.preventDefault();
         }
     
 
@@ -57,7 +49,7 @@ function ProfileSettings({ handleSettingsClick }) {
                 </span>
                 Move back to your profile
             </button>
-            <Form className="needs-validation">
+            <Form className="needs-validation" onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -124,7 +116,6 @@ function ProfileSettings({ handleSettingsClick }) {
                 <Button
                     variant="primary"
                     type="submit"
-                    onSubmit={handleSubmit}
                 >
                     Submit
                 </Button>
