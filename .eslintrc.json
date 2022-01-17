@@ -14,6 +14,10 @@
     "plugins": ["react", "import"],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
+        "requireConfigFile": "false",
+        "babelOptions": {
+            "configFile": "./.babelrc"
+        },
         "ecmaVersion": 2021,
         "sourceType": "module",
         "ecmaFeatures": {
