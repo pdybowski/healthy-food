@@ -1,25 +1,38 @@
 import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
+import './modal.css';
 
 export const CustomModal = (props) => {
+    const {
+        size, // one of: sm, md, lg, xl, xxl (md is default)
+        isCentered,
+        title,
+        children,
+        styleBottomCloseButton, // style left button, possible variants:
+        // primary, secondary, success, warning, danger, info, light, dark, link
+        styleActionButton, // style right button, same variants as above
+        buttonDismissText,
+        buttonActionCopy,
+        handleSave,
+    } = props;
     const [show, setShow] = useState(true);
     const handleClose = () => setShow(false);
-    console.log(props);
+
     return (
         <>
-            <Modal show={show} centered={props.isCentered}>
+            <Modal show={show} size={size} centered={isCentered}>
                 <Modal.Header closeButton onHide={handleClose}>
-                    <Modal.Title>{props.title}</Modal.Title>
+                    <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>{<p>{props.body}</p>}</Modal.Body>
+                <Modal.Body>{children}</Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        {props.buttondismisstext}
+                    <Button variant={styleBottomCloseButton} onClick={handleClose}>
+                        {buttonDismissText}
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        {props.buttonapprovetext}
+                    <Button variant={styleActionButton} onClick={handleSave}>
+                        {buttonActionCopy}
                     </Button>
                 </Modal.Footer>
             </Modal>
