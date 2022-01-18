@@ -15,7 +15,7 @@ export const CustomModal = (props) => {
         buttonActionCopy,
         handleSave,
     } = props;
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
     return (
