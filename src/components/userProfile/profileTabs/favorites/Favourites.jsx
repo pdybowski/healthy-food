@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import RecipeTile from '../../../shared/recipeTile/RecipeTile.jsx';
+import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
 
 function Favourites() {
     return (

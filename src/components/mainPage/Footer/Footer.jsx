@@ -1,8 +1,8 @@
 export const Footer = () => {
     return (
         <>
-            <footer className="py-2 my-2">
-                <p className="text-center text-muted">(c) Healty Food 2022</p>
+            <footer className='bg-light'>
+                <p className='text-center text-muted py-3'>(c) Healthy Food 2022</p>
             </footer>
         </>
     );

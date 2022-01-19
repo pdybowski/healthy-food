@@ -10,7 +10,7 @@ import { ROUTES_PATHS } from '../../../routes';
 
 export function Navigation() {
     return (
-        <Navbar bg='light' expand='lg'>
+        <Navbar bg='light' expand='lg' sticky='top'>
             <Container>
                 <LinkContainer to={ROUTES_PATHS.MAIN_PAGE}>
                     <Navbar.Brand>
