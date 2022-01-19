@@ -844,5 +844,31 @@
                 ]
             }
         }
+    ],
+    "users": [
+        {
+            "id": 111,
+            "name": "Test",
+            "surname": "Test1",
+            "nick": "Test",
+            "email": "Test@test.pl",
+            "password": "test123"
+        },
+        {
+            "id": 112,
+            "name": "Test2",
+            "surname": "Test2",
+            "nick": "Test2",
+            "email": "Test2@test.pl",
+            "password": "test123"
+        },
+        {
+            "id": 113,
+            "name": "Test3",
+            "surname": "Test3",
+            "nick": "Test3",
+            "email": "Test3@test.pl",
+            "password": "test123"
+        }
     ]
 }
