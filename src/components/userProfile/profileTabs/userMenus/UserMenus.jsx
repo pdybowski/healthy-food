@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import MenuTile from '../menuTile/MenuTile.jsx';
+import MenuTile from '../../../shared/menuTile/MenuTile.jsx';
 
 function UserMenus() {
     return (

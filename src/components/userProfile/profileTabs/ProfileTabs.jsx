@@ -6,11 +6,10 @@ import { routes } from '../../../routes';
 import UserMenus from './userMenus/UserMenus.jsx';
 import Favourites from './favorites/Favourites.jsx';
 
-function ProfileTabs(props) {
-    const [key, setKey] = useState(props.tab);
+function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
+    const [key, setKey] = useState(tab);
 
     const navigate = useNavigate();
-
     return (
         <Container>
             <Tabs

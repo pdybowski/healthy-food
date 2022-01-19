@@ -3,7 +3,7 @@ import ProfileTabs from '../../components/userProfile/profileTabs/ProfileTabs.js
 import ProfileInformation from '../../components/userProfile/profileInformation/ProfileInformation.jsx';
 import ProfileSettings from '../../components/userProfile/profileSettings/ProfileSettings.jsx';
 
-export function UserProfile(props) {
+export function UserProfile({ tab }) {
     const [isSettingOpen, setIsSettingOpen] = React.useState(false);
     return (
         <>
@@ -12,7 +12,7 @@ export function UserProfile(props) {
             ) : (
                 <ProfileInformation handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)} />
             )}
-            <ProfileTabs tab={props.tab} />
+            <ProfileTabs tab={tab} />
         </>
     );
 }
