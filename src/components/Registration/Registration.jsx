@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
+import SignIn from './SignIn/SignIn';
 
 const Registration = ({ props }) => {
     const [isNewUser, setIsNewUser] = React.useState(false);
@@ -19,7 +20,9 @@ const Registration = ({ props }) => {
                 {isNewUser ? (
                     <Container>
                         <Row>
-                            <Col>1 of 2</Col>
+                            <Col>
+                                <SignIn header={'Sign in'} />
+                            </Col>
                             <Col>
                                 <WelcomeMessage
                                     title={'Hello, Friend!'}
