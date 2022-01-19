@@ -9,39 +9,39 @@ import './style.css';
 
 function Banner() {
     return (
-        <main className="banner-container">
+        <main className='banner-container'>
             <Container>
                 <Row>
-                    <Col xs={12} className="d-flex justify-content-center">
-                        <FontAwesomeIcon icon={faUtensils} size="3x" color="#f2a22c" />
+                    <Col xs={12} className='d-flex justify-content-center'>
+                        <FontAwesomeIcon icon={faUtensils} size='3x' color='#f2a22c' />
                     </Col>
                     <Col
                         xs={12}
-                        className="text-light d-flex justify-content-center text-uppercase"
+                        className='text-light d-flex justify-content-center text-uppercase'
                     >
-                        <h1 className="banner-title ">Healthy Food</h1>
+                        <h1 className='banner-title '>Healthy Food</h1>
                     </Col>
                 </Row>
-                <Row className="banner">
-                    <Col xs={12} md={4}></Col>
+                <Row className='banner'>
+                    <Col xs={12} md={4} />
                     <Col
                         xs={12}
                         md={4}
-                        className="text-light d-flex justify-content-center banner-slogan-container bg-primary text-uppercase font-weight-bold"
+                        className='text-light d-flex justify-content-center banner-slogan-container bg-primary text-uppercase font-weight-bold'
                     >
-                        <p className="banner-slogan">Your place to plan meals</p>
+                        <p className='banner-slogan'>Your place to plan meals</p>
                     </Col>
-                    <Col xs={12} md={4}></Col>
+                    <Col xs={12} md={4} />
                 </Row>
                 <Row>
-                    <Col className="text-light d-flex justify-content-center">
-                        <h4 className="banner-description">How it works?</h4>
+                    <Col className='text-light d-flex justify-content-center'>
+                        <h4 className='banner-description'>How it works?</h4>
                     </Col>
                 </Row>
-                <Row className="d-flex justify-content-between">
-                    <Col xs={12} md={3} className="banner-card">
+                <Row className='d-flex justify-content-between'>
+                    <Col xs={12} md={3} className='banner-card'>
                         <Accordion>
-                            <Accordion.Item eventKey="0">
+                            <Accordion.Item eventKey='0'>
                                 <Accordion.Header>Search for recipes</Accordion.Header>
                                 <Accordion.Body>
                                     Search for healthy and tasty recipes of different cuisiness and
@@ -50,9 +50,9 @@ function Banner() {
                             </Accordion.Item>
                         </Accordion>
                     </Col>
-                    <Col xs={12} md={3} className="banner-card">
+                    <Col xs={12} md={3} className='banner-card'>
                         <Accordion>
-                            <Accordion.Item eventKey="0">
+                            <Accordion.Item eventKey='0'>
                                 <Accordion.Header>Add your recipes</Accordion.Header>
                                 <Accordion.Body>
                                     Add your favorite recipes to always have them in one place and
@@ -61,9 +61,9 @@ function Banner() {
                             </Accordion.Item>
                         </Accordion>
                     </Col>
-                    <Col xs={12} md={3} className="banner-card">
+                    <Col xs={12} md={3} className='banner-card'>
                         <Accordion>
-                            <Accordion.Item eventKey="0">
+                            <Accordion.Item eventKey='0'>
                                 <Accordion.Header>Plan your meals</Accordion.Header>
                                 <Accordion.Body>
                                     Choose your favorite recipes, save them and create your personal
@@ -72,9 +72,9 @@ function Banner() {
                             </Accordion.Item>
                         </Accordion>
                     </Col>
-                    <Col xs={12} md={3} className="banner-card">
+                    <Col xs={12} md={3} className='banner-card'>
                         <Accordion>
-                            <Accordion.Item eventKey="0">
+                            <Accordion.Item eventKey='0'>
                                 <Accordion.Header>Generate shopping list</Accordion.Header>
                                 <Accordion.Body>
                                     Easily generate a shopping list of all necessary products
