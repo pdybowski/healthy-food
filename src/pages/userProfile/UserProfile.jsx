@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileTabs from '../../components/userProfile/profileTabs/ProfileTabs.jsx';
 import ProfileInformation from '../../components/userProfile/profileInformation/ProfileInformation.jsx';
 import ProfileSettings from '../../components/userProfile/profileSettings/ProfileSettings.jsx';
 
 export function UserProfile({ tab }) {
-    const [isSettingOpen, setIsSettingOpen] = React.useState(false);
+    const [isSettingOpen, setIsSettingOpen] = useState(false);
     return (
         <>
             {isSettingOpen ? (

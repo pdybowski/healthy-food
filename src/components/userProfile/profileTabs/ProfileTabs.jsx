@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
 import UserRecipes from './userRecipes/UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,8 @@ import Favourites from './favorites/Favourites.jsx';
 
 function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
     const [key, setKey] = useState(tab);
+
+    useEffect(() => setKey(tab), [tab]);
 
     const navigate = useNavigate();
     return (
