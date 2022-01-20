@@ -28,11 +28,11 @@ export function Navigation() {
                         <LinkContainer to={ROUTES_PATHS.RECIPES}>
                             <Nav.Link>Recipes</Nav.Link>
                         </LinkContainer>
+                        <LinkContainer to={ROUTES_PATHS.MENUS}>
+                            <Nav.Link>Menus</Nav.Link>
+                        </LinkContainer>
                         <LinkContainer to={ROUTES_PATHS.RECOMMENDED}>
                             <Nav.Link>Recommended</Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to={ROUTES_PATHS.MENU}>
-                            <Nav.Link>Menu</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to={ROUTES_PATHS.CONTACT}>
                             <Nav.Link>Contact</Nav.Link>
