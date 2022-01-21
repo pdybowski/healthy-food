@@ -47,6 +47,11 @@ export const routes = [
         element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVOURITES} />,
         key: PROFILE_TABS.PROFILE_FAVOURITES,
     },
+    {
+        path: ROUTES_PATHS.USER_SETTINGS,
+        element: <UserProfile tab={PROFILE_TABS.USER_SETTINGS} />,
+        key: PROFILE_TABS.USER_SETTINGS,
+    },
 
     {
         path: ROUTES_PATHS.RECIPES,
