@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { routes } from './routes';
 import { Navigation } from './components/shared';
+import { Footer } from './components/mainPage/Footer/Footer';
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                     ))}
                 </Routes>
             </BrowserRouter>
-            {/*<Footer />*/}
+            <Footer />
         </>
     );
 }
