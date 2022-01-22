@@ -17,7 +17,7 @@ export const ROUTES_PATHS = {
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
     USER_FAVORITES: '/user-profile/favourites',
-    USER_SETTINGS: '/user-profile/settings',
+    USER_SETTINGS: '/settings',
 };
 
 export const routes = [
