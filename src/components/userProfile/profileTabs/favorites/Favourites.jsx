@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
+import MenuTile from '../../../shared/tiles/menuTile/MenuTile.jsx';
+import data from '../../../../assets/db.json';
 
 function Favourites() {
-    const [isFavRecipes, setIsFavRecipes] = React.useState(false);
+    const [isFavRecipes, setIsFavRecipes] = React.useState(true);
     const [isFavMenu, setIsFavMenu] = React.useState(false);
 
     const recipesHandlerButton = () => {
@@ -24,11 +26,38 @@ function Favourites() {
             <Button variant='outline-info' className='mb-3' onClick={menuHandlerButton}>
                 Menus
             </Button>
-            <Row xs={1} md={2} xxl={4} className='g-4'>
-                <RecipeTile isFavourite={true} isLoggedIn={true} isOwner={false} />
-                <RecipeTile isFavourite={true} isLoggedIn={true} isOwner={true} />
-                <RecipeTile isFavourite={true} isLoggedIn={true} isOwner={false} />
-            </Row>
+            {isFavRecipes === true && isFavMenu === false ? (
+                <Row xs={1} md={2} xxl={4} className='g-4'>
+                    {data.recipes.map((recipe) => {
+                        return (
+                            <RecipeTile
+                                title={recipe.title}
+                                itemTags={recipe.tags}
+                                time={recipe.timeToPrepare}
+                                mealType={recipe.mealType}
+                                key={recipe.id}
+                                isFavourite={true}
+                                isLoggedIn={true}
+                                isOwner={false}
+                            />
+                        );
+                    })}
+                </Row>
+            ) : isFavRecipes === false && isFavMenu === true ? (
+                <Row xs={1} md={2} xxl={4} className='g-4'>
+                    {data.menus.map((recipe) => {
+                        return (
+                            <MenuTile
+                                itemTags={recipe.tags}
+                                key={recipe.id}
+                                isFavourite={true}
+                                isLoggedIn={true}
+                                isOwner={false}
+                            />
+                        );
+                    })}
+                </Row>
+            ) : null}
         </Container>
     );
 }
