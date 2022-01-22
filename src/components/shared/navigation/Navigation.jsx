@@ -47,7 +47,7 @@ export function Navigation() {
                         title={<img src={plus} height='24' alt='Plus Icon' />}
                         className='navigation__element--largescreen-show'
                     >
-                        <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
+                        <LinkContainer to={ROUTES_PATHS.USER_RECIPES_EDIT}>
                             <NavDropdown.Item>Add recipe</NavDropdown.Item>
                         </LinkContainer>
                         <LinkContainer to={ROUTES_PATHS.USER_MENUS_ADD}>
@@ -89,7 +89,7 @@ export function Navigation() {
                         </LinkContainer>
                         <NavDropdown.Divider className='navigation__element--mobilescreen-show' />
                         <div className='navigation__element--mobilescreen-show'>
-                            <LinkContainer to={ROUTES_PATHS.USER_RECIPES_ADD}>
+                            <LinkContainer to={ROUTES_PATHS.USER_RECIPES_EDIT}>
                                 <NavDropdown.Item>Add recipe</NavDropdown.Item>
                             </LinkContainer>
                         </div>

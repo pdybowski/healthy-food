@@ -2,6 +2,7 @@ import { MainPage, UserProfile } from './pages';
 import { PROFILE_TABS } from './components';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
+import EditRecipe from './pages/editRecipe/EditRecipe';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -13,7 +14,7 @@ export const ROUTES_PATHS = {
     LOGOUT: '/',
     USER_PROFILE: '/user-profile',
     USER_RECIPES: '/user-profile/recipes',
-    USER_RECIPES_ADD: '/user-profile/recipes/new',
+    USER_RECIPES_EDIT: '/user-profile/recipes/edit',
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
     USER_FAVORITES: '/user-profile/favourites',
@@ -56,5 +57,11 @@ export const routes = [
         path: ROUTES_PATHS.MENUS,
         element: <Menus />,
         key: 'menus',
+    },
+
+    {
+        path: ROUTES_PATHS.USER_RECIPES_EDIT,
+        element: <EditRecipe />,
+        key: 'edit-recipe',
     },
 ];
