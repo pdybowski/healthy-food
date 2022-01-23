@@ -1,24 +1,24 @@
 import API from './api';
 
 class APIQuery {
-    getData(endpoint) {
+    get(endpoint) {
         return API.get(`/${endpoint}`);
     }
 
-    createData(endpoint, item) {
+    post(endpoint, item) {
         return API.post(`/${endpoint}`, item);
     }
 
-    updateData(endpoint, itemId, item) {
-        return API.put(`/${endpoint}/${itemId}`, item);
+    put(endpoint, item) {
+        return API.put(`/${endpoint}`, item);
     }
 
-    updateDataElement(endpoint, itemId, item) {
-        return API.patch(`/${endpoint}/${itemId}`, item);
+    patch(endpoint, item) {
+        return API.patch(`/${endpoint}`, item);
     }
 
-    deleteData(endpoint, itemId) {
-        return API.delete(`/${endpoint}/${itemId}`);
+    delete(endpoint) {
+        return API.delete(`/${endpoint}`);
     }
 }
 
