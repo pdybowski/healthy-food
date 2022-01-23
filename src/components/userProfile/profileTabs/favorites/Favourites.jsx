@@ -48,7 +48,9 @@ function Favourites() {
                     {data.menus.map((recipe) => {
                         return (
                             <MenuTile
+                                title={recipe.title}
                                 itemTags={recipe.tags}
+                                fullMenuData={recipe.menu}
                                 key={recipe.id}
                                 isFavourite={true}
                                 isLoggedIn={true}
