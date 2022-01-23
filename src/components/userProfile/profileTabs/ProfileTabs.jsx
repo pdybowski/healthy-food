@@ -38,8 +38,6 @@ function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
 }
 
 function getRouteFromKey(key) {
-    console.log(Object.keys(Views).find((route) => route.key === key).path);
-    // return routes.find((route) => route.key === key).path;
     return Object.keys(Views).find((route) => route.key === key).path;
 }
 
