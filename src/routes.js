@@ -18,6 +18,12 @@ export const ROUTES_PATHS = {
     USER_FAVORITES: '/user-profile/favourites',
 };
 
+export const PROFILE_TABS = {
+    PROFILE_RECIPES: 'user-recipes',
+    PROFILE_MENUS: 'user-menus',
+    PROFILE_FAVOURITES: 'user-favourites',
+};
+
 export const routes = [
     {
         path: ROUTES_PATHS.MAIN_PAGE,
@@ -59,9 +65,3 @@ export const protectedRoutes = [
         key: PROFILE_TABS.PROFILE_FAVOURITES,
     },
 ];
-
-export const PROFILE_TABS = {
-    PROFILE_RECIPES: 'user-recipes',
-    PROFILE_MENUS: 'user-menus',
-    PROFILE_FAVOURITES: 'user-favourites',
-};
