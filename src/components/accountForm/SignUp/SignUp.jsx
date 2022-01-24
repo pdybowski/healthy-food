@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const SignUp = ({ header, onSubmit }) => {
+const SignUp = ({ header, onSubmit, newUserHandler }) => {
     return (
         <div className='flex flex-column justify-content-around align-items-center'>
             <h2>{header}</h2>
@@ -41,6 +41,14 @@ const SignUp = ({ header, onSubmit }) => {
                     Sign Un
                 </Button>
             </form>
+            <div className='d-flex flex-column'>
+                <Button type='button' className='btn btn-outline-light'>
+                    Forget your password?
+                </Button>
+                <Button type='button' className='btn btn-outline-light' onClick={newUserHandler}>
+                    {`You have already created an account`}
+                </Button>
+            </div>
         </div>
     );
 };

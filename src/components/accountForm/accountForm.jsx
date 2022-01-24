@@ -13,7 +13,7 @@ const AccountForm = (props) => {
             <Modal.Header closeButton></Modal.Header>
             <Modal.Body className='d-flex flex-column justify-content-around align-items-center'>
                 {isNewUser ? (
-                    <SignUp header={'Sign Up'} />
+                    <SignUp header={'Sign Up'} newUserHandler={() => SetIsNewUser(false)} />
                 ) : (
                     <SignIn header={'Sign In'} newUserHandler={() => SetIsNewUser(true)} />
                 )}
