@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
 import MenuTile from '../../../shared/tiles/menuTile/MenuTile.jsx';
-import data from '../../../../assets/db.json';
+import ApiQuery from '../../../shared/api/ApiQuery';
 
 function Favourites() {
-    const [isFavRecipes, setIsFavRecipes] = React.useState(true);
-    const [isFavMenu, setIsFavMenu] = React.useState(false);
+    const [isFavRecipes, setIsFavRecipes] = useState(true);
+    const [isFavMenu, setIsFavMenu] = useState(false);
+
+    const [recipes, setRecipes] = useState([]);
+    const [menus, setMenus] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            setRecipes((await ApiQuery.get('recipes')).data);
+            setMenus((await ApiQuery.get('menus')).data);
+        }
+
+        fetchData();
+    }, []);
 
     const recipesHandlerButton = () => {
         setIsFavRecipes(true);
-        isFavMenu === false ? null : setIsFavMenu(false);
+        setIsFavMenu(false);
     };
 
     const menuHandlerButton = () => {
+        setIsFavRecipes(false);
         setIsFavMenu(true);
-        isFavRecipes === false ? null : setIsFavRecipes(false);
     };
 
     return (
@@ -28,7 +40,7 @@ function Favourites() {
             </Button>
             {isFavRecipes === true && isFavMenu === false ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {data.recipes.map((recipe) => {
+                    {recipes.map((recipe) => {
                         return (
                             <RecipeTile
                                 title={recipe.title}
@@ -45,13 +57,13 @@ function Favourites() {
                 </Row>
             ) : isFavRecipes === false && isFavMenu === true ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {data.menus.map((recipe) => {
+                    {menus.map((menu) => {
                         return (
                             <MenuTile
-                                title={recipe.title}
-                                itemTags={recipe.tags}
-                                fullMenuData={recipe.menu}
-                                key={recipe.id}
+                                title={menu.title}
+                                itemTags={menu.tags}
+                                fullMenuData={menu.menu}
+                                key={menu.id}
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
