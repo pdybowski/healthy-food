@@ -1,15 +1,17 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
+import '../accountForm.css';
+
 const SignUp = ({ header, onSubmit, newUserHandler }) => {
     return (
         <div className='d-flex flex-column justify-content-around align-items-center'>
-            <h2 className='text-center'>{header}</h2>
+            <h2 className='text-center my-4'>{header}</h2>
             <form
                 className='d-flex flex-column justify-content-around align-items-center'
                 onSubmit={onSubmit}
             >
-                <div className='form-group'>
+                <div className='form-group py-2'>
                     <label htmlFor='name'>
                         <input
                             type='text'
@@ -19,7 +21,7 @@ const SignUp = ({ header, onSubmit, newUserHandler }) => {
                         />
                     </label>
                 </div>
-                <div className='form-group'>
+                <div className='form-group py-2'>
                     <label htmlFor='email'>
                         <input
                             type='email'
@@ -30,7 +32,7 @@ const SignUp = ({ header, onSubmit, newUserHandler }) => {
                         />
                     </label>
                 </div>
-                <div className='form-group'>
+                <div className='form-group py-2'>
                     <label htmlFor='password'>
                         <input
                             type='password'
@@ -40,12 +42,12 @@ const SignUp = ({ header, onSubmit, newUserHandler }) => {
                         />
                     </label>
                 </div>
-                <Button type='submit' className='btn btn-primary'>
+                <Button type='submit' className='btn btn-primary my-1'>
                     Sign Un
                 </Button>
             </form>
-            <div className='d-flex flex-column'>
-                <Button type='button' className='btn btn-outline-light' onClick={newUserHandler}>
+            <div className='d-flex flex-column my-4'>
+                <Button type='button' className='btn button-action' onClick={newUserHandler}>
                     {`You have already created an account`}
                 </Button>
             </div>

@@ -20,7 +20,7 @@ const AccountForm = (props) => {
                 ) : (
                     <SignIn header={'Sign In'} newUserHandler={() => SetIsNewUser(true)} />
                 )}
-                <Button type='button' className='btn btn-outline-light' onClick={props.onHide}>
+                <Button type='button' className='btn button-action' onClick={props.onHide}>
                     <FontAwesomeIcon icon={faLongArrowAltLeft} />
                     {' Go back'}
                 </Button>
