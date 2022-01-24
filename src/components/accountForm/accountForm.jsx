@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 
-const accountForm = (props) => {
+const AccountForm = (props) => {
     return (
         <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
             <Modal.Header closeButton>
@@ -23,4 +23,4 @@ const accountForm = (props) => {
     );
 };
 
-export default accountForm;
+export default AccountForm;

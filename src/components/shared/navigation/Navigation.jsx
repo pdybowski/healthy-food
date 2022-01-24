@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation() {
+export function Navigation({ onClickRegForm }) {
     return (
         <Navbar bg='light' expand='lg' sticky='top'>
             <Container>
@@ -100,7 +100,7 @@ export function Navigation() {
                         </div>
                         <NavDropdown.Divider />
                         <LinkContainer to={ROUTES_PATHS.LOGOUT}>
-                            <NavDropdown.Item>Log Out</NavDropdown.Item>
+                            <NavDropdown.Item onClick={onClickRegForm}>Log Out</NavDropdown.Item>
                         </LinkContainer>
                     </NavDropdown>
                 </Navbar.Collapse>
