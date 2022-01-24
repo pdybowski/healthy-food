@@ -7,25 +7,21 @@ import { FavouriteIcon } from '../../favouriteIcon/FavouriteIcon';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 
-function RecipeTile({
-    isFavourite,
-    isLoggedIn,
-    isOwner,
-    tags = ['Default tag 1', 'Default dsdsdsdsdsdsdtag 1', 'Default tag 2', 'd 1', 'tag 2'],
-}) {
+function RecipeTile({ isFavourite, isLoggedIn, isOwner, title, itemTags, time, mealType }) {
     return (
         <Tile>
             <Card.Img variant='top' src='https://via.placeholder.com/100' />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
-                <Card.Title>Recipe Title</Card.Title>
+                <Card.Title>{title}</Card.Title>
                 <ListGroup className='list-group-flush'>
-                    <ListGroupItem>{tags && <Tags tagList={tags} />}</ListGroupItem>
+                    <ListGroupItem>{itemTags && <Tags tagList={itemTags} />}</ListGroupItem>
                     <ListGroupItem>
                         <FontAwesomeIcon icon={faClock} className='text-info' />
-                        <span className='ms-1'>Time</span>
+                        <span className='ms-1'>{`Time: ${time}min`}</span>
                     </ListGroupItem>
-                    <ListGroupItem>Type</ListGroupItem>
+                    <ListGroupItem>{`Type: ${mealType !== undefined ? mealType.join(', ') : ''}`}
+                    </ListGroupItem>
                 </ListGroup>
                 <EditControls isLoggedIn={isLoggedIn} isOwner={isOwner} />
             </Card.Body>
