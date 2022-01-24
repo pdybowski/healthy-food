@@ -3,9 +3,12 @@ import Button from 'react-bootstrap/Button';
 
 const SignUp = ({ header, onSubmit, newUserHandler }) => {
     return (
-        <div className='flex flex-column justify-content-around align-items-center'>
-            <h2>{header}</h2>
-            <form onSubmit={onSubmit}>
+        <div className='d-flex flex-column justify-content-around align-items-center'>
+            <h2 className='text-center'>{header}</h2>
+            <form
+                className='d-flex flex-column justify-content-around align-items-center'
+                onSubmit={onSubmit}
+            >
                 <div className='form-group'>
                     <label htmlFor='name'>
                         <input
