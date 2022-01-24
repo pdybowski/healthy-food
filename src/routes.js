@@ -16,6 +16,7 @@ export const ROUTES_PATHS = {
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
     USER_FAVORITES: '/user-profile/favourites',
+    USER_SETTINGS: '/settings',
 };
 
 export const PROFILE_TABS = {
@@ -63,5 +64,10 @@ export const protectedRoutes = [
         path: ROUTES_PATHS.USER_FAVORITES,
         element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVOURITES} />,
         key: PROFILE_TABS.PROFILE_FAVOURITES,
+    },
+    {
+        path: ROUTES_PATHS.USER_SETTINGS,
+        element: <UserProfile tab={PROFILE_TABS.USER_SETTINGS} />,
+        key: PROFILE_TABS.USER_SETTINGS,
     },
 ];

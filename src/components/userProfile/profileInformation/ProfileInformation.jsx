@@ -1,4 +1,6 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { ROUTES_PATHS } from '../../../routes';
 import { Button, Container } from 'react-bootstrap';
 import user from '../../../assets/images/user-circle-solid.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,10 +18,12 @@ function ProfileInformation({ handleSettingsClick }) {
                     <div>Information about you:</div>
                 </div>
                 <div className='ms-auto'>
-                    <Button variant='outline-primary' onClick={handleSettingsClick}>
-                        <FontAwesomeIcon icon={faEdit} />
-                        <span className='ms-1'>Edit profile</span>
-                    </Button>
+                    <LinkContainer to={ROUTES_PATHS.USER_SETTINGS}>
+                        <Button variant='outline-primary' onClick={handleSettingsClick}>
+                            <FontAwesomeIcon icon={faEdit} />
+                            <span className='ms-1'>Edit profile</span>
+                        </Button>
+                    </LinkContainer>
                 </div>
             </div>
         </Container>
