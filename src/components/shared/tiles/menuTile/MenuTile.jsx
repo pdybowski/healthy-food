@@ -7,18 +7,25 @@ import { EditControls } from '../../editControls/EditControls';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 
-function MenuTile({ isFavourite, isLoggedIn, isOwner, tags = ['Default tag 1'] }) {
+function MenuTile({
+    isFavourite,
+    isLoggedIn,
+    isOwner,
+    title,
+    tags = ['Default tag 1'],
+}) {
+
     return (
         <Tile>
             <Card.Img variant='top' src='https://via.placeholder.com/100' />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
-                <Card.Title>Menu Title</Card.Title>
+                <Card.Title>{title}</Card.Title>
                 <ListGroup className='list-group-flush'>
                     <ListGroupItem>{tags && <Tags tagList={tags} />}</ListGroupItem>
                     <ListGroupItem>
                         <FontAwesomeIcon icon={faClock} className='text-info' />
-                        <span className='ms-1'>Time avg/day</span>
+                        <span className='ms-1'>{`Time avg/day: ${'a'}`}</span>
                     </ListGroupItem>
                 </ListGroup>
                 <EditControls isLoggedIn={isLoggedIn} isOwner={isOwner} />

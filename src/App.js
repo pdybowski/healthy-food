@@ -1,18 +1,14 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes } from './routes';
+import { BrowserRouter } from 'react-router-dom';
 import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/Footer/Footer';
+import Views from './Views';
 
 function App() {
     return (
         <>
             <BrowserRouter>
                 <Navigation />
-                <Routes>
-                    {routes.map((route) => (
-                        <Route {...route} /> // eslint-disable-line react/jsx-key
-                    ))}
-                </Routes>
+                <Views />
             </BrowserRouter>
             <Footer />
         </>
