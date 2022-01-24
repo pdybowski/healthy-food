@@ -10,7 +10,7 @@ const AccountForm = (props) => {
             <Modal.Header closeButton></Modal.Header>
             <Modal.Body className='d-flex flex-column justify-content-around align-items-center'>
                 <SignIn header={'Sign In'} />
-                <Button type='submit' className='btn btn-outline-light' onClick={props.onHide}>
+                <Button type='button' className='btn btn-outline-light' onClick={props.onHide}>
                     Go back
                 </Button>
             </Modal.Body>
