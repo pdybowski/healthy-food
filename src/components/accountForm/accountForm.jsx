@@ -5,6 +5,9 @@ import SignUp from './SignUp/SignUp';
 import Button from 'react-bootstrap/Button';
 import './accountForm.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
+
 const AccountForm = (props) => {
     const [isNewUser, SetIsNewUser] = React.useState(false);
 
@@ -18,7 +21,8 @@ const AccountForm = (props) => {
                     <SignIn header={'Sign In'} newUserHandler={() => SetIsNewUser(true)} />
                 )}
                 <Button type='button' className='btn btn-outline-light' onClick={props.onHide}>
-                    Go back
+                    <FontAwesomeIcon icon={faLongArrowAltLeft} />
+                    {' Go back'}
                 </Button>
             </Modal.Body>
         </Modal>

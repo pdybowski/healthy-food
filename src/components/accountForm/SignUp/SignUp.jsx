@@ -45,9 +45,6 @@ const SignUp = ({ header, onSubmit, newUserHandler }) => {
                 </Button>
             </form>
             <div className='d-flex flex-column'>
-                <Button type='button' className='btn btn-outline-light'>
-                    Forget your password?
-                </Button>
                 <Button type='button' className='btn btn-outline-light' onClick={newUserHandler}>
                     {`You have already created an account`}
                 </Button>
