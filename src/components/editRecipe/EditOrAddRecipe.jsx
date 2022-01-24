@@ -4,12 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { TagsEdit } from '../shared/tags/TagsEdit';
 
 function EditRecipe() {
     const [recipe, setRecipe] = useState('');
     const [description, setDescription] = useState('');
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
+    const [tags, setTags] = useState([]);
+
+    const handleDelete = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
+    };
+
+    const handleAddition = (tag) => {
+        setTags([...tags, tag]);
+    };
 
     const setField = (field, value) => {
         setForm({
@@ -57,16 +67,13 @@ function EditRecipe() {
             </Form.Group>
             <Form.Group className='mb-3'>
                 <Form.Label>Tags</Form.Label>
-                <div className='d-flex flex-row'>
-                    <Form.Control
-                        className='me-3'
-                        type='text'
-                        placeholder='Enter tag'
-                        onChange={(e) => setField('tags', e.target.value)}
+                <div>
+                    <TagsEdit
+                        tags={tags}
+                        handleDelete={handleDelete}
+                        handleAddition={handleAddition}
+                        inputFieldPosition='bottom'
                     />
-                    <Button variant='primary'>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </Button>
                 </div>
             </Form.Group>
             <Form.Group className='mb-3'>
