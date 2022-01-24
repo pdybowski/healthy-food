@@ -1,13 +1,14 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { Button, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { ROUTES_PATHS } from '../../../routes';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 function ProfileSettings({ handleSettingsClick }) {
     const [form, setForm] = React.useState({});
-    // const [errors, setErrors] = React.useState({});
 
     const setField = (field, value) => {
         setForm({
@@ -15,22 +16,6 @@ function ProfileSettings({ handleSettingsClick }) {
             [field]: value,
         });
     };
-
-    // const findFormErrors = () => {
-    //     const { username, password, email } = form;
-    //     const specialChars = `/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;`
-    //     const newErrors = {}
-
-    //     // username
-    //     if (username.length > 15) newErrors.username = 'Your username can not contain more than 15 characters';
-    //     // password
-    //     if (specialChars.split('').some(char =>
-    //         password.includes(char))){
-    //             return newErrors.password = 'Password does not include any special character (eg. !, @, %, $)';
-    //         };
-    //     // email
-    //     if(!email.includes('@'))  return newErrors.email = 'Invalid e-mail address';
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,12 +27,14 @@ function ProfileSettings({ handleSettingsClick }) {
                 <span>Settings </span>
                 <FontAwesomeIcon icon={faUserCog} />
             </h2>
-            <button className='d-block mx-auto border-0 bg-white' onClick={handleSettingsClick}>
-                <span>
-                    <FontAwesomeIcon icon={faLongArrowAltLeft} />{' '}
-                </span>
-                Move back to your profile
-            </button>
+            <LinkContainer to={ROUTES_PATHS.USER_PROFILE}>
+                <button className='d-block mx-auto border-0 bg-white' onClick={handleSettingsClick}>
+                    <span>
+                        <FontAwesomeIcon icon={faLongArrowAltLeft} />{' '}
+                    </span>
+                    Move back to your profile
+                </button>
+            </LinkContainer>
             <Form className='needs-validation' onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group className='mb-3' controlId='formBasicName'>
                     <Form.Label>Name</Form.Label>
