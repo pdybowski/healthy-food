@@ -1,5 +1,4 @@
 import { MainPage, UserProfile } from './pages';
-import { PROFILE_TABS } from './components';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
 
@@ -19,6 +18,12 @@ export const ROUTES_PATHS = {
     USER_FAVORITES: '/user-profile/favourites',
 };
 
+export const PROFILE_TABS = {
+    PROFILE_RECIPES: 'user-recipes',
+    PROFILE_MENUS: 'user-menus',
+    PROFILE_FAVOURITES: 'user-favourites',
+};
+
 export const routes = [
     {
         path: ROUTES_PATHS.MAIN_PAGE,
@@ -26,6 +31,19 @@ export const routes = [
         key: 'main-page',
     },
 
+    {
+        path: ROUTES_PATHS.RECIPES,
+        element: <Recipes />,
+        key: 'recipes',
+    },
+    {
+        path: ROUTES_PATHS.MENUS,
+        element: <Menus />,
+        key: 'menus',
+    },
+];
+
+export const protectedRoutes = [
     {
         path: ROUTES_PATHS.USER_PROFILE,
         element: <UserProfile tab={PROFILE_TABS.PROFILE_RECIPES} />,
@@ -45,16 +63,5 @@ export const routes = [
         path: ROUTES_PATHS.USER_FAVORITES,
         element: <UserProfile tab={PROFILE_TABS.PROFILE_FAVOURITES} />,
         key: PROFILE_TABS.PROFILE_FAVOURITES,
-    },
-
-    {
-        path: ROUTES_PATHS.RECIPES,
-        element: <Recipes />,
-        key: 'recipes',
-    },
-    {
-        path: ROUTES_PATHS.MENUS,
-        element: <Menus />,
-        key: 'menus',
     },
 ];
