@@ -12,6 +12,7 @@ export function TagsEdit(props) {
                 tag: 'badge bg-primary my-1 me-1',
                 remove: 'ms-1',
             }}
+            autofocus={false}
             allowDragDrop={false}
             removeComponent={RemoveButton}
         />
