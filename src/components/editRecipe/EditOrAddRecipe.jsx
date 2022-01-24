@@ -3,7 +3,7 @@ import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+
 import { TagsEdit } from '../shared/tags/TagsEdit';
 
 function EditRecipe() {

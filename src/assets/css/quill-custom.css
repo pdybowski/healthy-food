@@ -1,0 +1,11 @@
+@import 'react-quill/dist/quill.snow.css';
+
+.ql-toolbar {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.ql-container {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
