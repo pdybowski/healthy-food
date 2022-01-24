@@ -20,7 +20,8 @@ function RecipeTile({ isFavourite, isLoggedIn, isOwner, title, itemTags, time, m
                         <FontAwesomeIcon icon={faClock} className='text-info' />
                         <span className='ms-1'>{`Time: ${time}min`}</span>
                     </ListGroupItem>
-                    <ListGroupItem>{`Type: ${mealType !== undefined ? mealType.join(', ') : ''}`}
+                    <ListGroupItem>
+                        {`Type: ${mealType !== undefined ? mealType.join(', ') : ''}`}
                     </ListGroupItem>
                 </ListGroup>
                 <EditControls isLoggedIn={isLoggedIn} isOwner={isOwner} />

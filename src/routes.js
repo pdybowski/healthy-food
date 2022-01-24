@@ -1,7 +1,7 @@
 import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
-import EditRecipe from './pages/editRecipe/EditRecipe';
+import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -68,8 +68,8 @@ export const protectedRoutes = [
     },
     {
         path: ROUTES_PATHS.USER_RECIPES_EDIT,
-        element: <EditRecipe />,
-        key: 'edit-recipe',
+        element: <UpsertRecipe />,
+        key: 'upsert-recipe',
     },
     {
         path: ROUTES_PATHS.USER_SETTINGS,

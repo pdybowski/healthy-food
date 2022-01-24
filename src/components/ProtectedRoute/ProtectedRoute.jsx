@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const useAuth = () => {
     // temp logic for route protection applied to all user paths
-    const user = { loggedIn: false };
+    const user = { loggedIn: true };
     return user && user.loggedIn;
 };
 
