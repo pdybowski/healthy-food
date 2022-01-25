@@ -8,10 +8,7 @@ function UserRecipes() {
     return (
         <Container className='my-4'>
             <Row xs={1} md={2} xxl={4} className='g-4'>
-                <NewItemTile
-                    buttonLabel={'Add new recipe'}
-                    route={ROUTES_PATHS.USER_RECIPES_EDIT}
-                />
+                <NewItemTile buttonLabel={'Add new recipe'} route={ROUTES_PATHS.USER_RECIPES_ADD} />
                 <RecipeTile isFavourite={false} isLoggedIn={true} isOwner={true} />
                 <RecipeTile isFavourite={false} isLoggedIn={true} isOwner={true} />
                 <RecipeTile isFavourite={true} isLoggedIn={true} isOwner={true} />

@@ -22,24 +22,24 @@ function UpsertRecipe() {
         setTags([...tags, tag]);
     };
 
-    const setField = (field, value) => {
+    const setField = ({ target: { name, value } }) => {
         setForm({
             ...form,
-            [field]: value,
+            [name]: value,
         });
-        if (errors[field])
+        if (errors[name])
             setErrors({
                 ...errors,
-                [field]: null,
+                [name]: null,
             });
     };
 
     const findFormErrors = () => {
         const { title, time } = form;
         const newErrors = {};
-        if (!title || title === '') newErrors.title = 'Cannot be blank!';
+        if (!title || title === '') newErrors.title = 'Title is required!';
         else if (title.length > 60) newErrors.title = 'Title is too long!';
-        if (!time || time === '') newErrors.time = 'Cannot be blank!';
+        if (!time || time === '') newErrors.time = 'Time is required!';
         return newErrors;
     };
 
@@ -60,9 +60,10 @@ function UpsertRecipe() {
                 <Form.Group className='mb-3'>
                     <Form.Label>Title</Form.Label>
                     <Form.Control
+                        name='title'
                         type='text'
                         placeholder='Enter recipe title'
-                        onChange={(e) => setField('title', e.target.value)}
+                        onChange={setField}
                         isInvalid={!!errors.title}
                     />
                     <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
@@ -81,8 +82,9 @@ function UpsertRecipe() {
                 <Form.Group className='mb-3'>
                     <Form.Label>Time to prepare [min]</Form.Label>
                     <Form.Control
+                        name='time'
                         type='number'
-                        onChange={(e) => setField('time', e.target.value)}
+                        onChange={setField}
                         isInvalid={!!errors.time}
                     />
                     <Form.Control.Feedback type='invalid'>{errors.time}</Form.Control.Feedback>
@@ -98,16 +100,18 @@ function UpsertRecipe() {
                     <div className='d-flex flex-row'>
                         <FloatingLabel label='Name' className='me-3'>
                             <Form.Control
+                                name='ingredient-name'
                                 type='text'
                                 placeholder='Name'
-                                onChange={(e) => setField('ingredient-name', e.target.value)}
+                                onChange={setField}
                             />
                         </FloatingLabel>
                         <FloatingLabel label='Quantity' className='me-3'>
                             <Form.Control
+                                name='ingredients-number'
                                 type='number'
                                 placeholder='Quantity'
-                                onChange={(e) => setField('ingredients-number', e.target.value)}
+                                onChange={setField}
                             />
                         </FloatingLabel>
                         <Form.Select aria-label='pcs' className='me-3'>
@@ -122,11 +126,16 @@ function UpsertRecipe() {
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Description</Form.Label>
-                    <ReactQuill theme='snow' value={description} onChange={setDescription} />
+                    <ReactQuill
+                        name='description'
+                        theme='snow'
+                        value={description}
+                        onChange={setDescription}
+                    />
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Recipe</Form.Label>
-                    <ReactQuill theme='snow' value={recipe} onChange={setRecipe} />
+                    <ReactQuill name='recipe' theme='snow' value={recipe} onChange={setRecipe} />
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label htmlFor='formFile' className='form-label'>
@@ -136,10 +145,7 @@ function UpsertRecipe() {
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>People number</Form.Label>
-                    <Form.Control
-                        type='number'
-                        onChange={(e) => setField('people-number', e.target.value)}
-                    />
+                    <Form.Control name='people-number' type='number' onChange={setField} />
                 </Form.Group>
                 <Button variant='primary' type='submit' onClick={handleSubmit}>
                     Submit

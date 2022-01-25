@@ -13,6 +13,7 @@ export const ROUTES_PATHS = {
     LOGOUT: '/',
     USER_PROFILE: '/user-profile',
     USER_RECIPES: '/user-profile/recipes',
+    USER_RECIPES_ADD: '/user-profile/recipes/new',
     USER_RECIPES_EDIT: '/user-profile/recipes/edit',
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
@@ -67,7 +68,7 @@ export const protectedRoutes = [
         key: PROFILE_TABS.PROFILE_FAVOURITES,
     },
     {
-        path: ROUTES_PATHS.USER_RECIPES_EDIT,
+        path: ROUTES_PATHS.USER_RECIPES_ADD,
         element: <UpsertRecipe />,
         key: 'upsert-recipe',
     },
