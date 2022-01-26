@@ -8,11 +8,18 @@ export function UserProfile({ tab }) {
     return (
         <>
             {isSettingOpen ? (
-                <ProfileSettings handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)} />
+                <ProfileSettings
+                    handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)}
+                    currentState={isSettingOpen}
+                />
             ) : (
-                <ProfileInformation handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)} />
+                <>
+                    <ProfileInformation
+                        handleSettingsClick={() => setIsSettingOpen(!isSettingOpen)}
+                    />
+                    <ProfileTabs tab={tab} />
+                </>
             )}
-            <ProfileTabs tab={tab} />
         </>
     );
 }
