@@ -3,12 +3,14 @@ import Button from 'react-bootstrap/Button';
 
 import '../accountForm.css';
 
-const SignIn = ({ header, onSubmit, newUserHandler }) => {
+const SignIn = ({ header, newUserHandler, onFormSubmit }) => {
+    // const [formData, setFormData] = React.useState();
+
     return (
         <div className='d-flex flex-column justify-content-around align-items-center'>
             <h2 className='text-center my-4'>{header}</h2>
             <form
-                onSubmit={onSubmit}
+                onSubmit={(evt) => onFormSubmit(evt)}
                 className='d-flex flex-column justify-content-around align-items-center'
             >
                 <div className='form-group py-2'>

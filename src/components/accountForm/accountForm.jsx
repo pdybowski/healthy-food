@@ -9,16 +9,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 const AccountForm = (props) => {
-    const [isNewUser, SetIsNewUser] = React.useState(false);
+    const [isNewUser, setIsNewUser] = React.useState(false);
+
+    const onSignInHandler = (e) => {
+        setIsNewUser(false);
+        e.preventDefault();
+
+        console.log(e.target);
+    };
 
     return (
         <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
             <Modal.Header closeButton></Modal.Header>
             <Modal.Body className='d-flex flex-column justify-content-around align-items-center'>
                 {isNewUser ? (
-                    <SignUp header={'Sign Up'} newUserHandler={() => SetIsNewUser(false)} />
+                    <SignUp header={'Sign Up'} newUserHandler={() => setIsNewUser(false)} />
                 ) : (
-                    <SignIn header={'Sign In'} newUserHandler={() => SetIsNewUser(true)} />
+                    <SignIn
+                        header={'Sign In'}
+                        newUserHandler={() => setIsNewUser(true)}
+                        onFormSubmit={onSignInHandler}
+                    />
                 )}
                 <Button type='button' className='btn button-action' onClick={props.onHide}>
                     <FontAwesomeIcon icon={faLongArrowAltLeft} />
