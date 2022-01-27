@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation({ isLoggedIn = false }) {
+export function Navigation({ isLoggedIn = true }) {
     const [active, setActive] = useState('');
 
     const NAV_ELEMENTS = {
@@ -227,7 +227,9 @@ export function Navigation({ isLoggedIn = false }) {
                                 setActive('');
                             }}
                         >
-                            <Nav.Link className='border border-primary rounded'>Sign In</Nav.Link>
+                            <Nav.Link className='me-2 border border-primary rounded bg-primary text-dark'>
+                                Register
+                            </Nav.Link>
                         </LinkContainer>
                         <LinkContainer
                             to={ROUTES_PATHS.MAIN_PAGE}
@@ -235,9 +237,7 @@ export function Navigation({ isLoggedIn = false }) {
                                 setActive('');
                             }}
                         >
-                            <Nav.Link className='ms-2 border border-primary rounded bg-primary text-dark'>
-                                Register
-                            </Nav.Link>
+                            <Nav.Link className='border border-primary rounded'>Sign In</Nav.Link>
                         </LinkContainer>
                     </div>
                 )}

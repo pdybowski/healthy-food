@@ -83,7 +83,7 @@ function UpsertRecipe({
         if (mealType.length === 0) {
             newErrors.mealType = 'At least one meal type is required!';
         }
-        if (recipe === '') {
+        if (recipe === '' || recipe === '<p><br></p>') {
             newErrors.recipe = 'Recipe is required!';
         }
 
@@ -125,7 +125,11 @@ function UpsertRecipe({
             quantity: { number: parseInt(ingredientQuantity, 10), unit: ingredientUnit },
         };
 
-        if (formState.ingredients.filter((i) => i.title === ingredient.title).length > 0) {
+        if (
+            formState.ingredients.filter(
+                (i) => i.title.toLowerCase() === ingredient.title.toLowerCase()
+            ).length > 0
+        ) {
             setIngredientError('This ingredient already exist!');
         } else {
             formState.ingredients.push(ingredient);
