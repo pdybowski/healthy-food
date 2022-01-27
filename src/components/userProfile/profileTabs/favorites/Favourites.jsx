@@ -20,22 +20,34 @@ function Favourites() {
         fetchData();
     }, []);
 
+    const [activeButton, setActiveButton] = useState('recipes');
+
     const recipesHandlerButton = () => {
         setIsFavRecipes(true);
         setIsFavMenu(false);
+        setActiveButton('recipes');
     };
 
     const menuHandlerButton = () => {
         setIsFavRecipes(false);
         setIsFavMenu(true);
+        setActiveButton('menus');
     };
 
     return (
         <Container className='my-4'>
-            <Button variant='outline-info' className='me-3 mb-3' onClick={recipesHandlerButton}>
+            <Button
+                variant='outline-info'
+                className={activeButton === 'recipes' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                onClick={recipesHandlerButton}
+            >
                 Recipes
             </Button>
-            <Button variant='outline-info' className='mb-3' onClick={menuHandlerButton}>
+            <Button
+                variant='outline-info'
+                className={activeButton === 'menus' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                onClick={menuHandlerButton}
+            >
                 Menus
             </Button>
             {isFavRecipes === true && isFavMenu === false ? (
@@ -51,6 +63,7 @@ function Favourites() {
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
+                                image={recipe.image}
                             />
                         );
                     })}
