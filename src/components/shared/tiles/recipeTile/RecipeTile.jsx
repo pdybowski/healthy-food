@@ -6,6 +6,7 @@ import { EditControls } from '../../editControls/EditControls';
 import { FavouriteIcon } from '../../favouriteIcon/FavouriteIcon';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
+import { ROUTES_PATHS } from '../../../../routes';
 
 function RecipeTile({ isFavourite, isLoggedIn, isOwner, title, itemTags, time, mealType }) {
     return (
@@ -24,7 +25,11 @@ function RecipeTile({ isFavourite, isLoggedIn, isOwner, title, itemTags, time, m
                         {`Type: ${mealType !== undefined ? mealType.join(', ') : ''}`}
                     </ListGroupItem>
                 </ListGroup>
-                <EditControls isLoggedIn={isLoggedIn} isOwner={isOwner} />
+                <EditControls
+                    isLoggedIn={isLoggedIn}
+                    isOwner={isOwner}
+                    url={ROUTES_PATHS.USER_RECIPES_ADD}
+                />
             </Card.Body>
         </Tile>
     );
