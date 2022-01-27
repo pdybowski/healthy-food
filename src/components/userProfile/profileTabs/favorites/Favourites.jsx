@@ -63,6 +63,7 @@ function Favourites() {
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
+                                image={recipe.image}
                             />
                         );
                     })}

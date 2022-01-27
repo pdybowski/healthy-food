@@ -8,10 +8,19 @@ import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 import { ROUTES_PATHS } from '../../../../routes';
 
-function RecipeTile({ isFavourite, isLoggedIn, isOwner, title, itemTags, time, mealType }) {
+function RecipeTile({
+    isFavourite,
+    isLoggedIn,
+    isOwner,
+    title,
+    itemTags,
+    time,
+    mealType,
+    image = 'https://via.placeholder.com/100',
+}) {
     return (
         <Tile>
-            <Card.Img variant='top' src='https://via.placeholder.com/100' />
+            <Card.Img variant='top' src={image} />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>

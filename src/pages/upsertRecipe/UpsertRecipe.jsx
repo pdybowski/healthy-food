@@ -5,6 +5,9 @@ import { TagsEdit } from '../../components/shared/tags/TagsEdit';
 import Container from 'react-bootstrap/Container';
 import ReactQuill from 'react-quill';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import ApiQuery from '../../components/shared/api/ApiQuery';
+import { ROUTES_PATHS } from '../../routes';
+import { useNavigate } from 'react-router-dom';
 
 function UpsertRecipe({
     title = '',
@@ -90,13 +93,20 @@ function UpsertRecipe({
         return newErrors;
     };
 
+    async function postForm(form) {
+        await ApiQuery.post('recipes', form);
+    }
+
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = findFormErrors();
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
-            alert('Success!');
+            postForm(form);
+            navigate(ROUTES_PATHS.USER_RECIPES);
         }
     };
 
@@ -369,6 +379,10 @@ const INGREDIENT_UNIT = {
     KG: 'kg',
     ML: 'ml',
     PCS: 'pcs',
+    TABLESPOON: 'tablespoon',
+    CUP: 'cup',
+    PINCH: 'pinch',
+    SLICE: 'slice',
 };
 
 export default UpsertRecipe;
