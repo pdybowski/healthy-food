@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../components/shared/tiles/recipeTile/RecipeTile';
 import Search from '../../components/shared/search/Search';
-import ApiQuery from '../../components/shared/ApiClass/ApiClass';
+import ApiQuery from '../../components/shared/api/ApiQuery';
 
 function Recipes() {
     const [recipes, setRecipes] = useState([]);
