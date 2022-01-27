@@ -8,20 +8,21 @@ function Menus() {
     const [menus, setMenus] = useState([]);
     const [input, setInput] = useState('');
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setMenus((await ApiQuery.get('menus')).data);
-            } catch (err) {
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else {
-                    console.log(`Error: ${err.message}`);
-                }
+    const fetchData = async () => {
+        try {
+            setMenus((await ApiQuery.get('menus')).data);
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            } else {
+                console.log(`Error: ${err.message}`);
             }
-        };
+        }
+    };
+
+    useEffect(() => {
         fetchData();
     }, []);
 
