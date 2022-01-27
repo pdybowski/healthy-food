@@ -53,6 +53,7 @@ function Recipes() {
                                 isFavourite={false}
                                 isLoggedIn={false}
                                 isOwner={false}
+                                image={recipe.image}
                             />
                         );
                     })}
