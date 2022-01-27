@@ -2,6 +2,7 @@ import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
+import UpsertMenu from './pages/upsertMenu/upsertMenu';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -71,6 +72,11 @@ export const protectedRoutes = [
         path: ROUTES_PATHS.USER_RECIPES_ADD,
         element: <UpsertRecipe />,
         key: 'upsert-recipe',
+    },
+    {
+        path: ROUTES_PATHS.USER_MENUS_ADD,
+        element: <UpsertMenu />,
+        key: 'upsert-menu',
     },
     {
         path: ROUTES_PATHS.USER_SETTINGS,
