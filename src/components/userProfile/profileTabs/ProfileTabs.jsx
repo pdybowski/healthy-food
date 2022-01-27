@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Tab, Tabs } from 'react-bootstrap';
 import UserRecipes from './userRecipes/UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
-import { PROFILE_TABS } from '../../../routes';
+import { PROFILE_TABS, protectedRoutes } from '../../../routes';
 import UserMenus from './userMenus/UserMenus.jsx';
 import Favourites from './favorites/Favourites.jsx';
-import Views from '../../../Views.js';
 
 function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
     const [key, setKey] = useState(tab);
@@ -38,7 +37,7 @@ function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
 }
 
 function getRouteFromKey(key) {
-    return Object.keys(Views).find((route) => route.key === key).path;
+    return protectedRoutes.find((route) => route.key === key).path;
 }
 
 export default ProfileTabs;

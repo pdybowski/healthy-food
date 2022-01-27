@@ -1,6 +1,7 @@
 import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
+import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -13,10 +14,11 @@ export const ROUTES_PATHS = {
     USER_PROFILE: '/user-profile',
     USER_RECIPES: '/user-profile/recipes',
     USER_RECIPES_ADD: '/user-profile/recipes/new',
+    USER_RECIPES_EDIT: '/user-profile/recipes/edit',
     USER_MENUS: '/user-profile/menus',
     USER_MENUS_ADD: '/user-profile/menus/new',
     USER_FAVORITES: '/user-profile/favourites',
-    USER_SETTINGS: '/settings',
+    USER_SETTINGS: '/user-profile/settings',
 };
 
 export const PROFILE_TABS = {
@@ -66,8 +68,13 @@ export const protectedRoutes = [
         key: PROFILE_TABS.PROFILE_FAVOURITES,
     },
     {
+        path: ROUTES_PATHS.USER_RECIPES_ADD,
+        element: <UpsertRecipe />,
+        key: 'upsert-recipe',
+    },
+    {
         path: ROUTES_PATHS.USER_SETTINGS,
-        element: <UserProfile tab={PROFILE_TABS.USER_SETTINGS} />,
-        key: PROFILE_TABS.USER_SETTINGS,
+        element: <UserProfile />,
+        key: 'user-settings',
     },
 ];

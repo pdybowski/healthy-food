@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation({ isLoggedIn = false }) {
+export function Navigation({ isLoggedIn = true }) {
     return (
         <Navbar bg='light' expand='lg' sticky='top'>
             <Container>
