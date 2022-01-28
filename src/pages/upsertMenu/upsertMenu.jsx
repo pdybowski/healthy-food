@@ -52,15 +52,11 @@ function UpsertRecipe() {
                         />
                     </div>
                 </Form.Group>
-                <Carousel variant='dark'>
+                <Carousel variant='dark' interval={null}>
                     {days.map((day, index) => {
                         return (
-                            <Carousel.Item key={index} indicators='false'>
+                            <Carousel.Item key={index} indicators='false' interval={null}>
                                 <h2 className={'text-center'}>{day}</h2>
-                                <Form.Group className='mb-3'>
-                                    <Form.Label>Title</Form.Label>
-                                    <Form.Control placeholder='Enter recipe title' />
-                                </Form.Group>
                                 {menus > 0 ? <ul></ul> : null}
                                 <Form>
                                     <Form.Group className='mb-3'>
@@ -82,7 +78,7 @@ function UpsertRecipe() {
                                             <Form.Select aria-label='meal' className='me-3'>
                                                 {typeOfMeal !== '' ? (
                                                     recipes.map((recipe) => {
-                                                        recipe.mealType.filter()
+                                                        recipe.mealType.filter();
                                                     })
                                                 ) : (
                                                     <option value='no-meal'>
@@ -91,7 +87,11 @@ function UpsertRecipe() {
                                                 )}
                                             </Form.Select>
                                         </div>
-                                        <Button variant='primary' type='submit' className='mx-auto'>
+                                        <Button
+                                            variant='primary'
+                                            type='submit'
+                                            className='w-25 my-3 button-custom'
+                                        >
                                             Add meal to my menu
                                         </Button>
                                     </Form.Group>
@@ -100,7 +100,7 @@ function UpsertRecipe() {
                         );
                     })}
                 </Carousel>
-                <Button variant='primary' type='submit'>
+                <Button variant='light' type='submit' className='my-5 w-100'>
                     Submit
                 </Button>
             </Form>
