@@ -1,5 +1,5 @@
-import Banner from '../../components/mainPage/banner/Banner.jsx';
-import Contact from '../../components/mainPage/contact/Contact.jsx';
+import Banner from '../../components/mainPage/Banner/Banner.jsx';
+import Contact from '../../components/mainPage/Contact/Contact.jsx';
 import './style.css';
 
 export const MainPage = () => {
