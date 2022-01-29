@@ -1,6 +1,4 @@
 import { Button, Modal } from 'react-bootstrap';
-import { useState } from 'react';
-import './modal.css';
 
 export const CustomModal = (props) => {
     const {
@@ -13,25 +11,24 @@ export const CustomModal = (props) => {
         styleActionButton, // style right button, same variants as above
         buttonDismissText,
         buttonActionCopy,
-        handleSave,
+        handleClick,
+        downloadTxtFile,
     } = props;
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
 
     return (
         <>
-            <Modal show={show} size={size} centered={isCentered}>
-                <Modal.Header closeButton onHide={handleClose}>
+            <Modal show={true} size={size} centered={isCentered}>
+                <Modal.Header closeButton onHide={handleClick}>
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>{children}</Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant={styleBottomCloseButton} onClick={handleClose}>
+                    <Button variant={styleBottomCloseButton} onClick={handleClick}>
                         {buttonDismissText}
                     </Button>
-                    <Button variant={styleActionButton} onClick={handleSave}>
+                    <Button variant={styleActionButton} onClick={downloadTxtFile}>
                         {buttonActionCopy}
                     </Button>
                 </Modal.Footer>

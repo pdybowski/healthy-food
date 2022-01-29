@@ -11,17 +11,19 @@ import { useNavigate } from 'react-router-dom';
 import './recipeTile.css';
 import TimeFormatted from '../../timeFormatted/TimeFormatted';
 
-function RecipeTile({
-    data,
-    isFavourite,
-    isLoggedIn,
-    isOwner,
-    title,
-    itemTags,
-    time,
-    mealType,
-    image = 'https://via.placeholder.com/100',
-}) {
+function RecipeTile(props) {
+    const {
+	data,
+        isFavourite,
+        isLoggedIn,
+        isOwner,
+        title,
+        itemTags,
+        time,
+        mealType,
+        image = 'https://via.placeholder.com/100',
+        id,
+    } = props;
     const navigate = useNavigate();
 
     function handleShowRecipe() {
@@ -57,6 +59,8 @@ function RecipeTile({
                     isLoggedIn={isLoggedIn}
                     isOwner={isOwner}
                     url={ROUTES_PATHS.USER_RECIPES_ADD}
+                    endpoint={'recipes'}
+                    id={id}
                 />
             </Card.Body>
         </Tile>

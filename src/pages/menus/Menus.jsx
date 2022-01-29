@@ -52,6 +52,7 @@ function Menus() {
                                 isFavourite={false}
                                 isLoggedIn={false}
                                 isOwner={false}
+                                id={menu.id}
                             />
                         );
                     })}
