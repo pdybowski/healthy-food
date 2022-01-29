@@ -7,14 +7,7 @@ import { EditControls } from '../../editControls/EditControls';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 
-function MenuTile({
-    isFavourite,
-    isLoggedIn,
-    isOwner,
-    title,
-    tags = ['Default tag 1'],
-}) {
-
+function MenuTile({ isFavourite, isLoggedIn, isOwner, title, tags = ['Default tag 1'] }) {
     return (
         <Tile>
             <Card.Img variant='top' src='https://via.placeholder.com/100' />

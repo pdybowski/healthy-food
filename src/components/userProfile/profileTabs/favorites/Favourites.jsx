@@ -1,34 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
 import MenuTile from '../../../shared/tiles/menuTile/MenuTile.jsx';
-import data from '../../../../assets/db.json';
+import ApiQuery from '../../../shared/api/ApiQuery';
 
 function Favourites() {
-    const [isFavRecipes, setIsFavRecipes] = React.useState(true);
-    const [isFavMenu, setIsFavMenu] = React.useState(false);
+    const [isFavRecipes, setIsFavRecipes] = useState(true);
+    const [isFavMenu, setIsFavMenu] = useState(false);
+
+    const [recipes, setRecipes] = useState([]);
+    const [menus, setMenus] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            setRecipes((await ApiQuery.get('recipes')).data);
+            setMenus((await ApiQuery.get('menus')).data);
+        }
+
+        fetchData();
+    }, []);
+
+    const [activeButton, setActiveButton] = useState('recipes');
 
     const recipesHandlerButton = () => {
         setIsFavRecipes(true);
-        isFavMenu === false ? null : setIsFavMenu(false);
+        setIsFavMenu(false);
+        setActiveButton('recipes');
     };
 
     const menuHandlerButton = () => {
+        setIsFavRecipes(false);
         setIsFavMenu(true);
-        isFavRecipes === false ? null : setIsFavRecipes(false);
+        setActiveButton('menus');
     };
 
     return (
         <Container className='my-4'>
-            <Button variant='outline-info' className='me-3 mb-3' onClick={recipesHandlerButton}>
+            <Button
+                variant='outline-info'
+                className={activeButton === 'recipes' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                onClick={recipesHandlerButton}
+            >
                 Recipes
             </Button>
-            <Button variant='outline-info' className='mb-3' onClick={menuHandlerButton}>
+            <Button
+                variant='outline-info'
+                className={activeButton === 'menus' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                onClick={menuHandlerButton}
+            >
                 Menus
             </Button>
             {isFavRecipes === true && isFavMenu === false ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {data.recipes.map((recipe) => {
+                    {recipes.map((recipe) => {
                         return (
                             <RecipeTile
                                 title={recipe.title}
@@ -39,19 +63,20 @@ function Favourites() {
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
+                                image={recipe.image}
                             />
                         );
                     })}
                 </Row>
             ) : isFavRecipes === false && isFavMenu === true ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {data.menus.map((recipe) => {
+                    {menus.map((menu) => {
                         return (
                             <MenuTile
-                                title={recipe.title}
-                                itemTags={recipe.tags}
-                                fullMenuData={recipe.menu}
-                                key={recipe.id}
+                                title={menu.title}
+                                itemTags={menu.tags}
+                                fullMenuData={menu.menu}
+                                key={menu.id}
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
