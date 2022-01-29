@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation({ isLoggedIn = true }) {
+export function Navigation({ isLoggedIn, onRegister, onSignIn }) {
     const [active, setActive] = useState('');
 
     const NAV_ELEMENTS = {
@@ -227,7 +227,11 @@ export function Navigation({ isLoggedIn = true }) {
                                 setActive('');
                             }}
                         >
-                            <Nav.Link className='me-2 border border-primary rounded bg-primary text-dark'>
+                            <Nav.Link
+                                className='me-2 border border-primary rounded bg-primary text-dark'
+                                // onClick={showModalHandler}
+                                onClick={onRegister}
+                            >
                                 Register
                             </Nav.Link>
                         </LinkContainer>
@@ -237,7 +241,9 @@ export function Navigation({ isLoggedIn = true }) {
                                 setActive('');
                             }}
                         >
-                            <Nav.Link className='border border-primary rounded'>Sign In</Nav.Link>
+                            <Nav.Link className='border border-primary rounded' onClick={onSignIn}>
+                                Sign In
+                            </Nav.Link>
                         </LinkContainer>
                     </div>
                 )}
