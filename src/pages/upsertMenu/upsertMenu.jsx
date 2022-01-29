@@ -77,9 +77,9 @@ function UpsertMenu() {
                                             aria-label='type-of-meal'
                                             className='me-3'
                                             onChange={(e) => {
-                                                e.preventDefault;
                                                 setTypeOfMeal(e.target.value);
                                             }}
+                                            value={typeOfMeal}
                                         >
                                             <option value=''>-- Select one --</option>
                                             {mealType.map((meal, index) => {
@@ -121,12 +121,14 @@ function UpsertMenu() {
                                         variant='primary'
                                         type='button'
                                         className='w-25 my-3 button-custom'
-                                        onClick={() =>
+                                        onClick={() => {
                                             setListOfMeal([
                                                 ...listOfMeal,
                                                 { type: typeOfMeal, recipe: chosenRecipe },
-                                            ])
-                                        }
+                                            ]);
+                                            setTypeOfMeal('');
+                                            setChosenRecipe('');
+                                        }}
                                     >
                                         Add meal to my menu
                                     </Button>
