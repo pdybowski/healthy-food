@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation({ isLoggedIn, onRegister, onSignIn }) {
+export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
     const [active, setActive] = useState('');
 
     const NAV_ELEMENTS = {
@@ -214,7 +214,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn }) {
                                     setActive('');
                                 }}
                             >
-                                <NavDropdown.Item>Log Out</NavDropdown.Item>
+                                <NavDropdown.Item onClick={onLogOut}>Log Out</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                     </Navbar.Collapse>

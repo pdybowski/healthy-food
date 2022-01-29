@@ -23,7 +23,16 @@ function App() {
     const onSignInClick = () => {
         setModalShow(!modalShow);
         setIsNewUser(false);
-    }
+    };
+
+    const onPositiveLogIn = () => {
+        setIsLoggin(true);
+        setModalShow(!modalShow);
+    };
+
+    const onLogOut = () => {
+        setIsLoggin(false);
+    };
 
     return (
         <>
@@ -32,6 +41,7 @@ function App() {
                     isLoggedIn={isLoggedIn}
                     onRegister={onRegisterClick}
                     onSignIn={onSignInClick}
+                    onLogOut={onLogOut}
                 />
                 <AccountForm
                     show={modalShow}
@@ -39,6 +49,7 @@ function App() {
                     newUserHandler={() => setIsNewUser(!isNewUser)}
                     onFormSubmit={onSignInHandler}
                     isNewUser={isNewUser}
+                    onLogIn={onPositiveLogIn}
                 />
                 <Views />
             </BrowserRouter>

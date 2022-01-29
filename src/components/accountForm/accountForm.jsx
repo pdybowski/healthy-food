@@ -20,6 +20,7 @@ const AccountForm = (props) => {
                         header={'Sign In'}
                         newUserHandler={props.newUserHandler}
                         onFormSubmit={props.onFormSubmit}
+                        onLogIn={props.onLogIn}
                     />
                 )}
                 <Button type='button' className='btn button-action' onClick={props.onHide}>

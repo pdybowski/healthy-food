@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 
 import '../accountForm.css';
 
-const SignIn = ({ header, newUserHandler, onFormSubmit }) => {
+const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
     // const [formData, setFormData] = React.useState();
 
     return (
@@ -34,7 +34,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit }) => {
                         />
                     </label>
                 </div>
-                <Button type='submit' className='btn btn-primary my-1'>
+                <Button type='submit' className='btn btn-primary my-1' onClick={onLogIn}>
                     Sign In
                 </Button>
             </form>
