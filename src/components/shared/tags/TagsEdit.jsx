@@ -14,6 +14,7 @@ export function TagsEdit(props) {
             }}
             autofocus={false}
             allowDragDrop={false}
+            allowDeleteFromEmptyInput={false}
             removeComponent={RemoveButton}
         />
     );

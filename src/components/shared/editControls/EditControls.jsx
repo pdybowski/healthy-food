@@ -2,8 +2,15 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function EditControls({ isLoggedIn, isOwner }) {
+export function EditControls({ isLoggedIn, isOwner, url, data }) {
+    const navigate = useNavigate();
+
+    function handleEdit() {
+        navigate(url, data);
+    }
+
     return (
         <div
             className={`d-flex ${
@@ -11,7 +18,7 @@ export function EditControls({ isLoggedIn, isOwner }) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info'>
+                <Button variant='outline-info' onClick={handleEdit}>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
