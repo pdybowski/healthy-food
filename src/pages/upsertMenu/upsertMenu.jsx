@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 import Container from 'react-bootstrap/Container';
 import { TagsEdit } from '../../components/shared/tags/TagsEdit';
+import { MEAL_TYPE } from '../upsertRecipe/UpsertRecipe';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 
 import './upsertMenu.css';
@@ -13,9 +14,10 @@ function UpsertMenu() {
     const [chosenRecipe, setChosenRecipe] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
     const [listOfMeal, setListOfMeal] = useState([]);
+    console.log(MEAL_TYPE);
 
     const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
-    const mealType = ['Breakfast', 'Dinner', 'Supper', 'Snacks'];
+    // const mealType = ['Breakfast', 'Dinner', 'Supper', 'Snacks'];
 
     React.useEffect(() => {
         async function fetchData() {
@@ -82,13 +84,22 @@ function UpsertMenu() {
                                             value={typeOfMeal}
                                         >
                                             <option value=''>-- Select one --</option>
-                                            {mealType.map((meal, index) => {
+                                            <option value={MEAL_TYPE.BREAKFAST}>
+                                                {MEAL_TYPE.BREAKFAST}
+                                            </option>
+                                            <option value={MEAL_TYPE.LUNCH}>
+                                                {MEAL_TYPE.LUNCH}
+                                            </option>
+                                            <option value={MEAL_TYPE.DINNER}>
+                                                {MEAL_TYPE.DINNER}
+                                            </option>
+                                            {/* {mealType.map((meal, index) => {
                                                 return (
                                                     <option value={meal} key={index}>
                                                         {meal}
                                                     </option>
                                                 );
-                                            })}
+                                            })} */}
                                         </Form.Select>
                                         <Form.Select
                                             aria-label='meal'
