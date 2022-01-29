@@ -7,11 +7,11 @@ import ApiQuery from '../../components/shared/api/ApiQuery';
 
 import './upsertMenu.css';
 
-function UpsertRecipe() {
+function UpsertMenu() {
     const [tags, setTags] = useState([]);
     const [recipes, setRecipes] = useState([]);
     const [chosenRecipe, setChosenRecipe] = useState('');
-    const [typeOfMeal, setTypeOfMeal] = useState('Breakfast');
+    const [typeOfMeal, setTypeOfMeal] = useState('');
     const [listOfMeal, setListOfMeal] = useState([]);
 
     const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
@@ -81,6 +81,7 @@ function UpsertRecipe() {
                                                 setTypeOfMeal(e.target.value);
                                             }}
                                         >
+                                            <option value=''>-- Select one --</option>
                                             {mealType.map((meal, index) => {
                                                 return (
                                                     <option value={meal} key={index}>
@@ -97,6 +98,7 @@ function UpsertRecipe() {
                                             }}
                                             value={chosenRecipe}
                                         >
+                                            <option value=''>-- Select one --</option>
                                             {recipes.map((recipe) => {
                                                 if (
                                                     recipe.mealType.includes(
@@ -141,4 +143,4 @@ function UpsertRecipe() {
     );
 }
 
-export default UpsertRecipe;
+export default UpsertMenu;
