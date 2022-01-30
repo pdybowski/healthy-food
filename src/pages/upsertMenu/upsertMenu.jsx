@@ -36,7 +36,6 @@ function UpsertMenu() {
         setTags([...tags, tag]);
     };
 
-    console.log(listOfMeal);
     return (
         <Container className='my-4'>
             <h1>Create new menu</h1>
@@ -133,6 +132,8 @@ function UpsertMenu() {
                                         type='button'
                                         className='w-25 my-3 button-custom'
                                         onClick={() => {
+                                            if(typeOfMeal === '' || chosenRecipe === '') return null
+                                            
                                             setListOfMeal([
                                                 ...listOfMeal,
                                                 { type: typeOfMeal, recipe: chosenRecipe },
