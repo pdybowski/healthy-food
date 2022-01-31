@@ -1,22 +1,22 @@
-import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
 
 export function EditControls(props) {
     const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [items, setItems] = useState([]);
 
     const navigate = useNavigate();
 
     function handleEdit() {
         navigate(url, data);
     }
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [items, setItems] = useState([]);
 
     const fetchData = async (endpoint, id) => {
         try {
@@ -38,11 +38,11 @@ export function EditControls(props) {
         fetchData(endpoint, id);
     }, [endpoint, id]);
 
-    function handleClick() {
+    function onClick() {
         setIsModalOpen(!isModalOpen);
     }
 
-    const downloadTxtFile = () => {
+    const downloadTextFile = () => {
         const element = document.createElement('a');
         const file = new Blob([document.getElementById('shoppingList').innerText], {
             type: 'text/plain',
@@ -52,6 +52,10 @@ export function EditControls(props) {
         document.body.appendChild(element);
         element.click();
     };
+
+    function onSave() {
+        downloadTextFile();
+    }
 
     return (
         <div
@@ -64,7 +68,7 @@ export function EditControls(props) {
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
-            <Button variant='outline-primary' onClick={handleClick}>
+            <Button variant='outline-primary' onClick={onClick}>
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
@@ -74,11 +78,11 @@ export function EditControls(props) {
             )}
             {isModalOpen && (
                 <CustomModal
-                    handleClick={handleClick}
                     title={'Shopping list'}
                     buttonDismissText={'Close'}
                     buttonActionCopy={'Save'}
-                    downloadTxtFile={downloadTxtFile}
+                    onClick={onClick}
+                    onSave={onSave}
                 >
                     <ul id='shoppingList'>
                         {items.map((item, itemIndex) => {

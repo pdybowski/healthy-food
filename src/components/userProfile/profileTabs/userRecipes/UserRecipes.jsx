@@ -60,6 +60,7 @@ function UserRecipes() {
                                 isLoggedIn={true}
                                 isOwner={true}
                                 image={recipe.image}
+                                id={recipe.id}
                             />
                         );
                     })}
