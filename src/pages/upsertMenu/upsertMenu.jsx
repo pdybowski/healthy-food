@@ -119,6 +119,7 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
                                             aria-label='type-of-meal'
                                             className='me-3'
                                             onChange={(e) => setTypeOfMeal(e.target.value)}
+                                            value={typeOfMeal}
                                         >
                                             <option value=''>-- Select one --</option>
                                             <option value={MEAL_TYPE.BREAKFAST}>
@@ -160,6 +161,9 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
                                         type='button'
                                         className='w-25 my-3 button-custom'
                                         onClick={() => {
+                                            if (typeOfMeal === '') return false
+                                            if (chosenRecipe === '') return false 
+
                                             handleAdditionRecipe(currentDay);
                                             setTypeOfMeal('');
                                             setChosenRecipe('');
