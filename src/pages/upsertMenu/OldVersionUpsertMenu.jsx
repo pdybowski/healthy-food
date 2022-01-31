@@ -8,12 +8,16 @@ import ApiQuery from '../../components/shared/api/ApiQuery';
 
 import './upsertMenu.css';
 
-function UpsertMenu({ menu = { day1: [], day2: [] } }) {
+function UpsertMenu() {
+    const [tags, setTags] = useState([]);
     const [recipes, setRecipes] = useState([]);
-    const [tagList, setTagList] = useState({ tags: [] });
-
     const [chosenRecipe, setChosenRecipe] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
+    const [listOfMeal, setListOfMeal] = useState([]);
+    console.log(MEAL_TYPE);
+
+    const days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
+    // const mealType = ['Breakfast', 'Dinner', 'Supper', 'Snacks'];
 
     React.useEffect(() => {
         async function fetchData() {
@@ -23,48 +27,13 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
         fetchData();
     }, []);
 
-    const [form, setForm] = useState({
-        menu: {
-            ...menu,
-        },
-        tags: [],
-    });
-
-    const setField = ({ target: { name, value } }) => {
-        setForm({
-            ...form,
-            [name]: value,
-        });
+    const handleDelete = (i) => {
+        setTags(tags.filter((tag, index) => index !== i));
     };
+    console.log(recipes);
 
-    function handleAdditionRecipe(day) {
-        const formState = { ...form };
-        formState.menu[day].push({
-            mealType: typeOfMeal,
-            recipe: chosenRecipe,
-        });
-
-        setForm(formState);
-    }
-
-    const handleTagDelete = (i) => {
-        const tagListState = { ...tagList };
-        tagListState.tags = tagList.tags.filter((tag, index) => index !== i);
-        setTagList(tagListState);
-
-        const formState = { ...form };
-        formState.tags = tagListState.tags.map((tag) => tag['text']);
-        setForm(formState);
-    };
-
-    const handleTagAddition = (tag) => {
-        const tagListState = { ...tagList };
-        tagListState.tags.push(tag);
-        setTagList(tagListState);
-
-        const formState = { ...form };
-        formState.tags = [...formState.tags, tag.text];
-        setForm(formState);
+    const handleAddition = (tag) => {
+        setTags([...tags, tag]);
     };
 
     return (
@@ -72,53 +41,46 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
             <h1>Create new menu</h1>
             <Form.Group className='mb-3'>
                 <Form.Label>Title</Form.Label>
-                <Form.Control
-                    placeholder='Enter menu title'
-                    name='title'
-                    type='text'
-                    onChange={setField}
-                />
+                <Form.Control placeholder='Enter menu title' />
             </Form.Group>
             <Form.Group className='mb-3'>
                 <Form.Label>Tags</Form.Label>
                 <div>
                     <TagsEdit
-                        tags={tagList.tags}
-                        handleDelete={handleTagDelete}
-                        handleAddition={handleTagAddition}
+                        tags={tags}
+                        handleDelete={handleDelete}
+                        handleAddition={handleAddition}
                         inputFieldPosition='bottom'
                     />
                 </div>
             </Form.Group>
             <Form>
                 <Carousel variant='dark' interval={null}>
-                    {Object.keys(form.menu).map((day, id) => {
-                        const currentDay = `day${id + 1}`;
-
+                    {days.map((day, index) => {
                         return (
-                            <Carousel.Item key={id} indicators='false' interval={null}>
-                                <h2 className={'text-center'}>{`Day ${id + 1}`}</h2>
-                                {form.menu[currentDay].length > 0 && (
-                                    <div>
-                                        Menu for day {id + 1}:
-                                        <ul>
-                                            {form.menu[currentDay].map((menuElement, index) => {
-                                                return (
-                                                    <li key={index}>
-                                                        {`${menuElement.mealType}: ${menuElement.recipe}`}
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                    </div>
-                                )}
+                            <Carousel.Item key={index} indicators='false' interval={null}>
+                                <h2 className={'text-center'}>{day}</h2>
+                                {listOfMeal.length > 0 ? (
+                                    <ul>
+                                        {listOfMeal.map((menuElement, index) => {
+                                            return (
+                                                <li
+                                                    key={index}
+                                                >{`${menuElement.type}: ${menuElement.recipe}`}</li>
+                                            );
+                                        })}
+                                    </ul>
+                                ) : null}
                                 <Form.Group className='mb-3'>
                                     <Form.Label className='me-3'>Meals</Form.Label>
                                     <div className='d-flex flex-row'>
                                         <Form.Select
                                             aria-label='type-of-meal'
                                             className='me-3'
-                                            onChange={(e) => setTypeOfMeal(e.target.value)}
+                                            onChange={(e) => {
+                                                setTypeOfMeal(e.target.value);
+                                            }}
+                                            value={typeOfMeal}
                                         >
                                             <option value=''>-- Select one --</option>
                                             <option value={MEAL_TYPE.BREAKFAST}>
@@ -130,11 +92,21 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
                                             <option value={MEAL_TYPE.DINNER}>
                                                 {MEAL_TYPE.DINNER}
                                             </option>
+                                            {/* {mealType.map((meal, index) => {
+                                                return (
+                                                    <option value={meal} key={index}>
+                                                        {meal}
+                                                    </option>
+                                                );
+                                            })} */}
                                         </Form.Select>
                                         <Form.Select
                                             aria-label='meal'
                                             className='me-3'
-                                            onChange={(e) => setChosenRecipe(e.target.value)}
+                                            onChange={(e) => {
+                                                setChosenRecipe(e.target.value);
+                                            }}
+                                            value={chosenRecipe}
                                         >
                                             <option value=''>-- Select one --</option>
                                             {recipes.map((recipe) => {
@@ -160,7 +132,12 @@ function UpsertMenu({ menu = { day1: [], day2: [] } }) {
                                         type='button'
                                         className='w-25 my-3 button-custom'
                                         onClick={() => {
-                                            handleAdditionRecipe(currentDay);
+                                            if(typeOfMeal === '' || chosenRecipe === '') return null
+                                            
+                                            setListOfMeal([
+                                                ...listOfMeal,
+                                                { type: typeOfMeal, recipe: chosenRecipe },
+                                            ]);
                                             setTypeOfMeal('');
                                             setChosenRecipe('');
                                         }}
