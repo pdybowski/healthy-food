@@ -55,6 +55,7 @@ function Favourites() {
                     {recipes.map((recipe) => {
                         return (
                             <RecipeTile
+                                data={recipe}
                                 title={recipe.title}
                                 itemTags={recipe.tags}
                                 time={recipe.timeToPrepare}
