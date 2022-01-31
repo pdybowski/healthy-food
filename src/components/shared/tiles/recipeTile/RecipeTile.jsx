@@ -9,6 +9,7 @@ import { Tags } from '../../tags/Tags';
 import { ROUTES_PATHS } from '../../../../routes';
 import { useNavigate } from 'react-router-dom';
 import './recipeTile.css';
+import TimeFormatted from '../../timeFormatted/TimeFormatted';
 
 function RecipeTile({
     data,
@@ -29,17 +30,24 @@ function RecipeTile({
 
     return (
         <Tile>
-            <Card.Img variant='top' src={image} onClick={handleShowRecipe} />
+            <Card.Img
+                variant='top'
+                src={image}
+                onClick={handleShowRecipe}
+                className='pe-auto card-image'
+            />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
-                <Card.Title className='text-dark card-title' onClick={handleShowRecipe}>
+                <Card.Title className='text-dark card-title ' onClick={handleShowRecipe}>
                     {title}
                 </Card.Title>
                 <ListGroup className='list-group-flush'>
                     <ListGroupItem>{itemTags && <Tags tagList={itemTags} />}</ListGroupItem>
                     <ListGroupItem>
                         <FontAwesomeIcon icon={faClock} className='text-info' />
-                        <span className='ms-1'>{`Time: ${time}min`}</span>
+                        <span className='ms-1'>
+                            Time: <TimeFormatted minutes={time} />
+                        </span>
                     </ListGroupItem>
                     <ListGroupItem>
                         {`Type: ${mealType !== undefined ? mealType.join(', ') : ''}`}

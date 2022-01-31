@@ -2,7 +2,7 @@ import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
-import RecipePage from './pages/recipePage/recipePage';
+import RecipePage from './pages/recipePage/RecipePage';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
