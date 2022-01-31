@@ -12,24 +12,26 @@ export function EditControls({ isLoggedIn, isOwner, url, data }) {
     }
 
     return (
-        <div
-            className={`d-flex ${
-                isLoggedIn && isOwner ? 'justify-content-around' : 'justify-content-end'
-            } mt-1`}
-        >
-            {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit}>
-                    <FontAwesomeIcon icon={faEdit} />
+        <>
+            <div
+                className={`d-flex ${
+                    isLoggedIn && isOwner ? 'justify-content-around' : 'justify-content-end'
+                } mt-1`}
+            >
+                {isOwner && (
+                    <Button variant='outline-info' onClick={handleEdit}>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                )}
+                <Button variant='outline-primary'>
+                    <FontAwesomeIcon icon={faList} />
                 </Button>
-            )}
-            <Button variant='outline-primary'>
-                <FontAwesomeIcon icon={faList} />
-            </Button>
-            {isOwner && (
-                <Button variant='outline-danger'>
-                    <FontAwesomeIcon icon={faTrash} />
-                </Button>
-            )}
-        </div>
+                {isOwner && (
+                    <Button variant='outline-danger'>
+                        <FontAwesomeIcon icon={faTrash} />
+                    </Button>
+                )}
+            </div>
+        </>
     );
 }
