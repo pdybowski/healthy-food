@@ -55,6 +55,7 @@ function Recipes() {
                                 isLoggedIn={false}
                                 isOwner={false}
                                 image={recipe.image}
+                                id={recipe.id}
                             />
                         );
                     })}

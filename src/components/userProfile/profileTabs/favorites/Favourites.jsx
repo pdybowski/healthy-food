@@ -65,6 +65,7 @@ function Favourites() {
                                 isLoggedIn={true}
                                 isOwner={false}
                                 image={recipe.image}
+                                id={recipe.id}
                             />
                         );
                     })}
@@ -81,6 +82,7 @@ function Favourites() {
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
+                                id={menu.id}
                             />
                         );
                     })}
