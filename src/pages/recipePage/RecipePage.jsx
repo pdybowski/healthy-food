@@ -5,7 +5,6 @@ import { EditControls } from '../../components/shared/editControls/EditControls'
 import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faUser } from '@fortawesome/free-solid-svg-icons';
-import placeholder from '../../assets/images/utensils-solid.png';
 import TimeFormatted from '../../components/shared/timeFormatted/TimeFormatted';
 
 function RecipePage() {
@@ -47,11 +46,7 @@ function RecipePage() {
         <Container className='mt-4'>
             <h2>{title}</h2>
             <div className='row'>
-                {image ? (
-                    <img src={image} alt='recipe-image' className='col mt-3' />
-                ) : (
-                    <img src={placeholder} alt='placeholder-image' className='col mt-3' />
-                )}
+                {image && <img src={image} alt='recipe-image' className='col mt-3' />}
                 <div className='col mt-3'>
                     <div className='border border-light rounded-2 p-3'>
                         <div className='mt-2'>
@@ -95,7 +90,18 @@ function RecipePage() {
                 dangerouslySetInnerHTML={{ __html: description }}
             />
             <h3 className='mt-3 fw-bold'>Ingredients:</h3>
-            <div className='mt-2 pb-3 border-bottom'>Tu maja byc skladniki</div>
+            <div className='mt-2 pb-3 border-bottom'>
+                <ul>
+                    {ingredients &&
+                        ingredients.map((ingredient, id) => {
+                            return (
+                                <li key={id}>
+                                    {`${ingredient.title}, ${ingredient.quantity.number} ${ingredient.quantity.unit}`}
+                                </li>
+                            );
+                        })}
+                </ul>
+            </div>
             <h3 className='mt-3 fw-bold'>Directions:</h3>
             <div className='mt-2 pb-3' dangerouslySetInnerHTML={{ __html: recipe }} />
         </Container>
