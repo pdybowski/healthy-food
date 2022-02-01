@@ -62,7 +62,7 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
     };
 
     async function postForm(form) {
-        await ApiQuery.post('menu', form);
+        await ApiQuery.post('menus', form);
     }
 
     const navigate = useNavigate();
