@@ -50,6 +50,7 @@ function UserRecipes() {
                     .map((recipe) => {
                         return (
                             <RecipeTile
+                                data={recipe}
                                 title={recipe.title}
                                 itemTags={recipe.tags}
                                 time={recipe.timeToPrepare}
@@ -59,6 +60,7 @@ function UserRecipes() {
                                 isLoggedIn={true}
                                 isOwner={true}
                                 image={recipe.image}
+                                id={recipe.id}
                             />
                         );
                     })}

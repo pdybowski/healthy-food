@@ -55,6 +55,7 @@ function Favourites() {
                     {recipes.map((recipe) => {
                         return (
                             <RecipeTile
+                                data={recipe}
                                 title={recipe.title}
                                 itemTags={recipe.tags}
                                 time={recipe.timeToPrepare}
@@ -64,6 +65,7 @@ function Favourites() {
                                 isLoggedIn={true}
                                 isOwner={false}
                                 image={recipe.image}
+                                id={recipe.id}
                             />
                         );
                     })}
@@ -80,6 +82,7 @@ function Favourites() {
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
+                                id={menu.id}
                             />
                         );
                     })}

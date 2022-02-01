@@ -7,10 +7,15 @@ import { EditControls } from '../../editControls/EditControls';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 
-function MenuTile({ isFavourite, isLoggedIn, isOwner, title, tags = ['Default tag 1'] }) {
+function MenuTile(props) {
+    const { isFavourite, isLoggedIn, isOwner, title, tags = ['Default tag 1'], id } = props;
     return (
         <Tile>
-            <Card.Img variant='top' src='https://via.placeholder.com/100' />
+            <Card.Img
+                variant='top'
+                src='https://via.placeholder.com/100'
+                style={{ width: '100%', height: '90%', objectFit: 'cover' }}
+            />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
@@ -21,7 +26,12 @@ function MenuTile({ isFavourite, isLoggedIn, isOwner, title, tags = ['Default ta
                         <span className='ms-1'>{`Time avg/day: ${'a'}`}</span>
                     </ListGroupItem>
                 </ListGroup>
-                <EditControls isLoggedIn={isLoggedIn} isOwner={isOwner} />
+                <EditControls
+                    isLoggedIn={isLoggedIn}
+                    isOwner={isOwner}
+                    endpoint={'menus'}
+                    id={id}
+                />
             </Card.Body>
         </Tile>
     );

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function UpsertRecipe({
     title = '',
     tags = [],
-    timeToPrepare = '',
+    minutes = '',
     mealType = [],
     ingredients = [],
     description = '',
@@ -29,7 +29,7 @@ function UpsertRecipe({
     const [form, setForm] = useState({
         title: title,
         tags: tags,
-        timeToPrepare: timeToPrepare,
+        minutes: minutes,
         mealType: mealType,
         ingredients: ingredients,
         description: description,
@@ -73,15 +73,15 @@ function UpsertRecipe({
     };
 
     const findFormErrors = () => {
-        const { title, timeToPrepare, mealType, recipe } = form;
+        const { title, minutes, mealType, recipe } = form;
         const newErrors = {};
         if (!title || title === '') {
             newErrors.title = 'Title is required!';
         } else if (title.length > 60) {
             newErrors.title = 'Title is too long!';
         }
-        if (!timeToPrepare || timeToPrepare === '') {
-            newErrors.timeToPrepare = 'Time is required!';
+        if (!minutes || minutes === '') {
+            newErrors.minutes = 'Time is required!';
         }
         if (mealType.length === 0) {
             newErrors.mealType = 'At least one meal type is required!';
@@ -207,15 +207,13 @@ function UpsertRecipe({
                 <Form.Group className='mb-3'>
                     <Form.Label>Time to prepare [min]</Form.Label>
                     <Form.Control
-                        name='timeToPrepare'
+                        name='minutes'
                         type='number'
                         placeholder='Enter time to prepare in minutes'
                         onChange={setField}
-                        isInvalid={!!errors.timeToPrepare}
+                        isInvalid={!!errors.minutes}
                     />
-                    <Form.Control.Feedback type='invalid'>
-                        {errors.timeToPrepare}
-                    </Form.Control.Feedback>
+                    <Form.Control.Feedback type='invalid'>{errors.minutes}</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Meal type</Form.Label>

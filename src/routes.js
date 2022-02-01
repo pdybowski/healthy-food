@@ -3,6 +3,8 @@ import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
 import UpsertMenu from './pages/upsertMenu/upsertMenu';
+import RecipePage from './pages/recipePage/RecipePage';
+import Recommended from './pages/recommended/Recommended';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -20,6 +22,7 @@ export const ROUTES_PATHS = {
     USER_MENUS_ADD: '/user-profile/menus/new',
     USER_FAVORITES: '/user-profile/favourites',
     USER_SETTINGS: '/user-profile/settings',
+    RECIPE: '/recipes/:id',
 };
 
 export const PROFILE_TABS = {
@@ -44,6 +47,16 @@ export const routes = [
         path: ROUTES_PATHS.MENUS,
         element: <Menus />,
         key: 'menus',
+    },
+    {
+        path: ROUTES_PATHS.RECOMMENDED,
+        element: <Recommended />,
+        key: 'recommended',
+    },
+    {
+        path: ROUTES_PATHS.RECIPE,
+        element: <RecipePage />,
+        key: 'recipe',
     },
 ];
 
