@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { CustomModal } from '../modal/Modal';
+import { CustomModal } from '../Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';

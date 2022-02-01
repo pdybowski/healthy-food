@@ -43,7 +43,7 @@ const SignUp = ({ header, onSubmit, newUserHandler }) => {
                     </label>
                 </div>
                 <Button type='submit' className='btn btn-primary my-1'>
-                    Sign Un
+                    Sign Up
                 </Button>
             </form>
             <div className='d-flex flex-column my-4'>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'react-bootstrap/Modal';
+import { CustomModal } from '../shared/Modal/Modal';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 import Button from 'react-bootstrap/Button';
@@ -10,9 +10,8 @@ import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 const AccountForm = (props) => {
     return (
-        <Modal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
-            <Modal.Header closeButton></Modal.Header>
-            <Modal.Body className='d-flex flex-column justify-content-around align-items-center'>
+        <CustomModal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+            <div className='d-flex flex-column justify-content-around align-items-center'>
                 {props.isNewUser ? (
                     <SignUp header={'Sign Up'} newUserHandler={props.newUserHandler} />
                 ) : (
@@ -23,12 +22,12 @@ const AccountForm = (props) => {
                         onLogIn={props.onLogIn}
                     />
                 )}
-                <Button type='button' className='btn button-action' onClick={props.onHide}>
+                <Button type='button' className='btn button-action' onClick={props.onClick}>
                     <FontAwesomeIcon icon={faLongArrowAltLeft} />
                     {' Go back'}
                 </Button>
-            </Modal.Body>
-        </Modal>
+            </div>
+        </CustomModal>
     );
 };
 

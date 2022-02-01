@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom';
 import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/Footer/Footer';
-import AccountForm from './components/AccountForm/AccountForm.jsx';
+import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
 
 function App() {
@@ -44,12 +44,14 @@ function App() {
                     onLogOut={onLogOut}
                 />
                 <AccountForm
+                    isCentered={true}
                     show={modalShow}
-                    onHide={() => setModalShow(false)}
+                    onClick={() => setModalShow(false)}
                     newUserHandler={() => setIsNewUser(!isNewUser)}
                     onFormSubmit={onSignInHandler}
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
+                    modalFooterClass={'d-none'}
                 />
                 <Views />
             </BrowserRouter>
