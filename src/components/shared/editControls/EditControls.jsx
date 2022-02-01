@@ -5,12 +5,18 @@ import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
+import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalModal';
 
 export function EditControls(props) {
     const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isShoppingModalOpen, setIsShoppingModalOpen] = useState(false);
+    const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
     const [items, setItems] = useState([]);
+
+    function onRemovalModalClick() {
+        setRemovalModalOpen(!isRemovalModalOpen);
+    }
 
     const navigate = useNavigate();
 
@@ -38,8 +44,8 @@ export function EditControls(props) {
         fetchData(endpoint, id);
     }, [endpoint, id]);
 
-    function onClick() {
-        setIsModalOpen(!isModalOpen);
+    function onShoppingModalClick() {
+        setIsShoppingModalOpen(!isShoppingModalOpen);
     }
 
     const downloadTextFile = () => {
@@ -53,7 +59,7 @@ export function EditControls(props) {
         element.click();
     };
 
-    function onSave() {
+    function onShoppingModalSave() {
         downloadTextFile();
     }
 
@@ -64,25 +70,25 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit}>
+                <Button variant='outline-info' ShoppingModal={handleEdit}>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
-            <Button variant='outline-primary' onClick={onClick}>
+            <Button variant='outline-primary' onClick={onShoppingModalClick}>
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger'>
+                <Button variant='outline-danger' onClick={onRemovalModalClick}>
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}
-            {isModalOpen && (
+            {isShoppingModalOpen && (
                 <CustomModal
                     title={'Shopping list'}
                     buttonDismissText={'Close'}
                     buttonActionCopy={'Save'}
-                    onClick={onClick}
-                    onSave={onSave}
+                    onClick={onShoppingModalClick}
+                    onSave={onShoppingModalSave}
                 >
                     <ul id='shoppingList'>
                         {items.map((item, itemIndex) => {
@@ -94,6 +100,9 @@ export function EditControls(props) {
                         })}
                     </ul>
                 </CustomModal>
+            )}
+            {isRemovalModalOpen && (
+                <ConfirmRemovalModal onClick={onRemovalModalClick}></ConfirmRemovalModal>
             )}
         </div>
     );
