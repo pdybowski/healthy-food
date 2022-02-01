@@ -11,7 +11,11 @@ function MenuTile(props) {
     const { isFavourite, isLoggedIn, isOwner, title, tags = ['Default tag 1'], id } = props;
     return (
         <Tile>
-            <Card.Img variant='top' src='https://via.placeholder.com/100' />
+            <Card.Img
+                variant='top'
+                src='https://via.placeholder.com/100'
+                style={{ width: '100%', height: '90%', objectFit: 'cover' }}
+            />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>

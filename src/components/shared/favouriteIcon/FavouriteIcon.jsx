@@ -3,7 +3,7 @@ import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function FavouriteIcon({ isFavourite, isLoggedIn }) {
+export function FavouriteIcon({ isFavourite, isLoggedIn, isRecommended }) {
     const [heartIcon, setHeartIcon] = useState(regularHeart);
 
     useEffect(() => {
@@ -13,7 +13,9 @@ export function FavouriteIcon({ isFavourite, isLoggedIn }) {
     }, [isFavourite]);
 
     function handleHeartClick() {
-        heartIcon === regularHeart ? setHeartIcon(faHeart) : setHeartIcon(regularHeart);
+        if (!isRecommended) {
+            heartIcon === regularHeart ? setHeartIcon(faHeart) : setHeartIcon(regularHeart);
+        }
     }
 
     return (

@@ -7,6 +7,7 @@ import { FavouriteIcon } from '../../favouriteIcon/FavouriteIcon';
 import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 import { ROUTES_PATHS } from '../../../../routes';
+import FavouriteCounts from '../../favouriteCounts/FavouriteCounts';
 import { useNavigate } from 'react-router-dom';
 import './recipeTile.css';
 import TimeFormatted from '../../timeFormatted/TimeFormatted';
@@ -23,8 +24,10 @@ function RecipeTile(props) {
         mealType,
         image = 'https://via.placeholder.com/100',
         id,
+        isRecommended,
+        counts,
     } = props;
-    const navigate = useNavigate();
+const navigate = useNavigate();
 
     function handleShowRecipe() {
         navigate(`${ROUTES_PATHS.RECIPE.replace(':id', data.id)}`, { state: data });
@@ -32,13 +35,15 @@ function RecipeTile(props) {
 
     return (
         <Tile>
+            {isRecommended && <FavouriteCounts> {counts} </FavouriteCounts>}
             <Card.Img
                 variant='top'
                 src={image}
+                style={{ width: '100%', height: '17rem', objectFit: 'cover' }}
                 onClick={handleShowRecipe}
                 className='pe-auto card-image'
             />
-            <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
+            <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} isRecommended={true} />
             <Card.Body>
                 <Card.Title className='text-dark card-title ' onClick={handleShowRecipe}>
                     {title}

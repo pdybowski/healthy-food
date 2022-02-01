@@ -3,6 +3,7 @@ import Recipes from './pages/recipes/Recipes';
 import Menus from './pages/menus/Menus';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
 import RecipePage from './pages/recipePage/RecipePage';
+import Recommended from './pages/recommended/Recommended';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -45,6 +46,11 @@ export const routes = [
         path: ROUTES_PATHS.MENUS,
         element: <Menus />,
         key: 'menus',
+    },
+    {
+        path: ROUTES_PATHS.RECOMMENDED,
+        element: <Recommended />,
+        key: 'recommended',
     },
     {
         path: ROUTES_PATHS.RECIPE,
