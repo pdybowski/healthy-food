@@ -5,6 +5,7 @@ import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
+import './edit.css';
 
 export function EditControls(props) {
     const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
@@ -64,15 +65,15 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit}>
+                <Button variant='outline-info' onClick={handleEdit} className='food_card_btn'>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
-            <Button variant='outline-primary' onClick={onClick}>
+            <Button variant='outline-primary' onClick={onClick} className='food_card_btn'>
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger'>
+                <Button variant='outline-danger' className='food_card_btn'>
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}
