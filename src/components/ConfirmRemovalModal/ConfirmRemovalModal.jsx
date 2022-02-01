@@ -14,7 +14,6 @@ export const ConfirmRemovalModal = (props) => {
             >
                 Are you sure you want to remove the item?
             </CustomModal>
-            )
         </>
     );
 };

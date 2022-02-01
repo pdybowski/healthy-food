@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
@@ -14,7 +14,13 @@ export function EditControls(props) {
     const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
     const [items, setItems] = useState([]);
 
+    const inputEl = useRef(null);
+
     function onRemovalModalClick() {
+        setRemovalModalOpen(!isRemovalModalOpen);
+    }
+    function removeItem() {
+        inputEl.current.closest('.justify-content-center').remove();
         setRemovalModalOpen(!isRemovalModalOpen);
     }
 
@@ -70,7 +76,7 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' ShoppingModal={handleEdit}>
+                <Button variant='outline-info' onClick={handleEdit}>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
@@ -78,7 +84,7 @@ export function EditControls(props) {
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger' onClick={onRemovalModalClick}>
+                <Button variant='outline-danger' onClick={onRemovalModalClick} ref={inputEl}>
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}
@@ -102,7 +108,10 @@ export function EditControls(props) {
                 </CustomModal>
             )}
             {isRemovalModalOpen && (
-                <ConfirmRemovalModal onClick={onRemovalModalClick}></ConfirmRemovalModal>
+                <ConfirmRemovalModal
+                    onClick={onRemovalModalClick}
+                    onSave={removeItem}
+                ></ConfirmRemovalModal>
             )}
         </div>
     );
