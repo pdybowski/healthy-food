@@ -9,7 +9,11 @@ const AccountForm = (props) => {
         <CustomModal {...props} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
             <div className='d-flex flex-column justify-content-around align-items-center'>
                 {props.isNewUser ? (
-                    <SignUp header={'Sign Up'} newUserHandler={props.newUserHandler} />
+                    <SignUp
+                        header={'Sign Up'}
+                        newUserHandler={props.newUserHandler}
+                        onLogIn={props.onLogIn}
+                    />
                 ) : (
                     <SignIn
                         header={'Sign In'}

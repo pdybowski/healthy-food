@@ -11,13 +11,13 @@ function App() {
     const [isNewUser, setIsNewUser] = React.useState(false);
 
     const onSignInHandler = (e) => {
-        setIsNewUser(false);
         e.preventDefault();
+        setIsNewUser(false);
     };
 
     const onRegisterClick = () => {
         setModalShow(!modalShow);
-        setIsNewUser(true);
+        setIsNewUser(!isNewUser);
     };
 
     const onSignInClick = () => {
