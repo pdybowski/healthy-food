@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/healthy-food/static/css/main.3a32747e.css",
-    "main.js": "/healthy-food/static/js/main.1034bb7d.js",
+    "main.css": "/healthy-food/static/css/main.4111444c.css",
+    "main.js": "/healthy-food/static/js/main.7777fdc6.js",
     "static/js/787.2517711d.chunk.js": "/healthy-food/static/js/787.2517711d.chunk.js",
     "static/media/nordwood-themes-pYWrdKO5ksI-unsplash.jpg": "/healthy-food/static/media/nordwood-themes-pYWrdKO5ksI-unsplash.354de8ff2c18f03ac9ee.jpg",
+    "static/media/placeholder.png": "/healthy-food/static/media/placeholder.ea4ea5cedad4c3a482cf.png",
     "static/media/user-circle-solid.png": "/healthy-food/static/media/user-circle-solid.8bec861a839bd4f35e22.png",
     "static/media/utensils-solid.png": "/healthy-food/static/media/utensils-solid.ef5a6bb6fcbedc46e1ff.png",
     "index.html": "/healthy-food/index.html",
-    "main.3a32747e.css.map": "/healthy-food/static/css/main.3a32747e.css.map",
-    "main.1034bb7d.js.map": "/healthy-food/static/js/main.1034bb7d.js.map",
+    "main.4111444c.css.map": "/healthy-food/static/css/main.4111444c.css.map",
+    "main.7777fdc6.js.map": "/healthy-food/static/js/main.7777fdc6.js.map",
     "787.2517711d.chunk.js.map": "/healthy-food/static/js/787.2517711d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3a32747e.css",
-    "static/js/main.1034bb7d.js"
+    "static/css/main.4111444c.css",
+    "static/js/main.7777fdc6.js"
   ]
 }
