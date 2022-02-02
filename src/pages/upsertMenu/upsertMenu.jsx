@@ -10,14 +10,16 @@ import { useNavigate } from 'react-router-dom';
 
 import './upsertMenu.css';
 
-function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] } }) {
+function UpsertMenu({
+    menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
+}) {
     const [recipes, setRecipes] = useState([]);
     const [tagList, setTagList] = useState({ tags: [] });
 
     const [chosenRecipe, setChosenRecipe] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
     const [dayMenuError, setDayMenuError] = useState('');
-
+    // const [isFormNotCompleted, setIsFormNotCompleted] = useState(false);
 
     const [errors, setErrors] = useState({});
 
@@ -50,14 +52,14 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
     };
 
     const findFormErrors = () => {
-        const { title} = form;
+        const { title } = form;
         const newErrors = {};
         if (!title || title === '') {
             newErrors.title = 'Title is required!';
         } else if (title.length > 60) {
             newErrors.title = 'Title is too long!';
         }
-    
+
         return newErrors;
     };
 
@@ -70,6 +72,7 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = findFormErrors();
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
@@ -84,23 +87,25 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
         formState.menu[day].push({
             mealType: typeOfMeal,
             recipe: chosenRecipe,
-    });
+        });
         setForm(formState);
     }
 
-    function handleAdditionRecipe(day) { 
-        if(form.menu[day].length > 0){
-            form.menu[day].map(recipe => {
-                if(typeOfMeal === recipe.mealType){
-                    setDayMenuError(true) 
-                    setTimeout(() => {setDayMenuError(false)}, 3200)
+    function handleAdditionRecipe(day) {
+        if (form.menu[day].length > 0) {
+            form.menu[day].map((recipe) => {
+                if (typeOfMeal === recipe.mealType) {
+                    setDayMenuError(true);
+                    setTimeout(() => {
+                        setDayMenuError(false);
+                    }, 3200);
                 } else {
-                addMealToForm(day);
-                setDayMenuError(false)
+                    addMealToForm(day);
+                    setDayMenuError(false);
                 }
-            })
+            });
         } else {
-            addMealToForm(day)
+            addMealToForm(day);
         }
     }
 
@@ -128,28 +133,28 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
         <Container className='my-4'>
             <h1>Create new menu</h1>
             <Form>
-            <Form.Group className='mb-3'>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                    placeholder='Enter menu title'
-                    name='title'
-                    type='text'
-                    onChange={setField}
-                    isInvalid={!!errors.title}
-                />
-                <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className='mb-3'>
-                <Form.Label>Tags</Form.Label>
-                <div>
-                    <TagsEdit
-                        tags={tagList.tags}
-                        handleDelete={handleTagDelete}
-                        handleAddition={handleTagAddition}
-                        inputFieldPosition='bottom'
+                <Form.Group className='mb-3'>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control
+                        placeholder='Enter menu title'
+                        name='title'
+                        type='text'
+                        onChange={setField}
+                        isInvalid={!!errors.title}
                     />
-                </div>
-            </Form.Group>
+                    <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                    <Form.Label>Tags</Form.Label>
+                    <div>
+                        <TagsEdit
+                            tags={tagList.tags}
+                            handleDelete={handleTagDelete}
+                            handleAddition={handleTagAddition}
+                            inputFieldPosition='bottom'
+                        />
+                    </div>
+                </Form.Group>
                 <Carousel variant='dark' interval={null}>
                     {Object.keys(form.menu).map((day, id) => {
                         const currentDay = `day${id + 1}`;
@@ -220,8 +225,8 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
                                         type='button'
                                         className='w-25 my-3 button-custom'
                                         onClick={() => {
-                                            if (typeOfMeal === '') return false
-                                            if (chosenRecipe === '') return false 
+                                            if (typeOfMeal === '') return false;
+                                            if (chosenRecipe === '') return false;
 
                                             handleAdditionRecipe(currentDay);
                                             setTypeOfMeal('');
@@ -230,22 +235,21 @@ function UpsertMenu({ menu = { day1: [], day2: [], day3: [], day4: [], day5: [],
                                     >
                                         Add meal to my menu
                                     </Button>
-                                    {dayMenuError 
-                                        ? 
+                                    {dayMenuError ? (
                                         <span className='text-danger my-3 font-weight-bold text-center d-block'>
-                                            {`You have already added this type of food for Day ${id + 1}`}
+                                            {`You have already added this type of food for Day ${
+                                                id + 1
+                                            }`}
                                         </span>
-                                        :
-                                        null
-                                        }
+                                    ) : null}
                                 </Form.Group>
                             </Carousel.Item>
                         );
                     })}
                 </Carousel>
-            <Button variant='light' type='submit' className='my-5 w-100' onClick={handleSubmit}>
-                Submit
-            </Button>
+                <Button variant='light' type='submit' className='my-5 w-100' onClick={handleSubmit}>
+                    Submit
+                </Button>
             </Form>
         </Container>
     );
