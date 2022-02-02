@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomModal } from '../shared/Modal/Modal';
+import { CustomModal } from '../shared/modal/Modal';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 import Button from 'react-bootstrap/Button';
