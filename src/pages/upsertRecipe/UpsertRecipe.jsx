@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TagsEdit } from '../../components/shared/tags/TagsEdit';
@@ -7,36 +7,50 @@ import ReactQuill from 'react-quill';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 import { ROUTES_PATHS } from '../../routes';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function UpsertRecipe({
-    title = '',
-    tags = [],
-    minutes = '',
-    mealType = [],
-    ingredients = [],
-    description = '',
-    recipe = '',
-    image = '',
-    peopleNumber = '',
-}) {
+function UpsertRecipe() {
     const [ingredientName, setIngredientName] = useState('');
     const [ingredientQuantity, setIngredientQuantity] = useState('');
     const [ingredientUnit, setIngredientUnit] = useState('');
     const [ingredientError, setIngredientError] = useState('');
+
+    const location = useLocation();
+
+    const [form, setForm] = useState();
+
+    const fetchData = async () => {
+        try {
+            const formData = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
+            setForm({
+                id: formData.id,
+                title: formData.title,
+                tags: formData.tags,
+                timeToPrepare: formData.timeToPrepare,
+                mealType: formData.mealType,
+                ingredients: formData.ingredients,
+                description: formData.description,
+                recipe: formData.recipe,
+                image: formData.image,
+                peopleNumber: formData.peopleNumber,
+            });
+        } catch (err) {
+            if (err.response) {
+                console.error(err.response.data);
+                console.error(err.response.status);
+                console.error(err.response.headers);
+            } else {
+                console.error(`Error: ${err.message}`);
+            }
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const [tagList, setTagList] = useState({ tags: [] });
 
-    const [form, setForm] = useState({
-        title: title,
-        tags: tags,
-        minutes: minutes,
-        mealType: mealType,
-        ingredients: ingredients,
-        description: description,
-        recipe: recipe,
-        image: image,
-        peopleNumber: peopleNumber,
-    });
     const [errors, setErrors] = useState({});
 
     const handleTagDelete = (i) => {
@@ -207,13 +221,14 @@ function UpsertRecipe({
                 <Form.Group className='mb-3'>
                     <Form.Label>Time to prepare [min]</Form.Label>
                     <Form.Control
-                        name='minutes'
                         type='number'
                         placeholder='Enter time to prepare in minutes'
                         onChange={setField}
-                        isInvalid={!!errors.minutes}
+                        isInvalid={!!errors.timeToPrepare}
                     />
-                    <Form.Control.Feedback type='invalid'>{errors.minutes}</Form.Control.Feedback>
+                    <Form.Control.Feedback type='invalid'>
+                        {errors.timeToPrepare}
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Meal type</Form.Label>
@@ -243,7 +258,7 @@ function UpsertRecipe({
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label className='me-3'>Ingredients</Form.Label>
-                    {form.ingredients.length > 0 && (
+                    {form.ingredients && form.ingredients.length > 0 && (
                         <div>
                             <ul>
                                 {form.ingredients.map((ingredient) => {
