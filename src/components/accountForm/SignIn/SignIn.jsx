@@ -1,14 +1,34 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import ApiQuery from '../../../components/shared/api/ApiQuery';
 
 import '../accountForm.css';
 
-const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', password = '' }) => {
+const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
+    const [dataUsers, setDataUsers] = useState([]);
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({
-        email: email,
-        password: password,
+        email: '',
+        password: '',
     });
+
+    const fetchData = async () => {
+        try {
+            setDataUsers((await ApiQuery.get('users')).data);
+        } catch (err) {
+            if (err.response) {
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+            } else {
+                console.log(`Error: ${err.message}`);
+            }
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const setField = ({ target: { name, value } }) => {
         const convertedValue = isNaN(value) ? value : parseInt(value, 10);
@@ -30,8 +50,18 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
         }
+        if (dataUsers.some((user) => user.email !== email)) {
+            newErrors.email = 'E-mail is not in a database';
+        }
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
+        }
+        if (
+            dataUsers.some((user) => {
+                return user.email === email && user.password !== password;
+            })
+        ) {
+            newErrors.password = 'Password is wrong';
         }
 
         return newErrors;
@@ -40,7 +70,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = findErrors();
-        console.log(newErrors);
+
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
@@ -67,7 +97,9 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
                             onChange={setField}
                         />
                     </Form.Label>
-                    <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+                    {errors.email && errors.email !== '' ? (
+                        <span className='d-block text-danger'>{errors.email}</span>
+                    ) : null}
                 </Form.Group>
                 <Form.Group className='form-group py-2'>
                     <Form.Label htmlFor='password'>
@@ -80,7 +112,9 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
                             onChange={setField}
                         />
                     </Form.Label>
-                    <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
+                    {errors.password && errors.password !== '' ? (
+                        <span className='d-block text-danger'>{errors.password}</span>
+                    ) : null}
                 </Form.Group>
                 <Button
                     type='submit'
