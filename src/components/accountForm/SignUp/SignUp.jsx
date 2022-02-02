@@ -1,7 +1,6 @@
 import { React, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-// import { ROUTES_PATHS } from '../../../routes';
-// import { useNavigate } from 'react-router-dom';
+import ApiQuery from '../../../components/shared/api/ApiQuery';
 
 import '../accountForm.css';
 
@@ -12,6 +11,10 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
         email: email,
         password: password,
     });
+
+    async function postForm(form) {
+        await ApiQuery.post('users', form);
+    }
 
     const setField = ({ target: { name, value } }) => {
         const convertedValue = isNaN(value) ? value : parseInt(value, 10);
@@ -52,7 +55,7 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
-            console.log('works');
+            postForm(form);
         }
     };
 
@@ -74,7 +77,9 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
                             onChange={setField}
                         />
                     </Form.Label>
-                    <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
+                    {errors.name && errors.name !== '' ? (
+                        <span className='d-block text-danger'>{errors.name}</span>
+                    ) : null}
                 </Form.Group>
                 <Form.Group className='form-group py-2'>
                     <Form.Label htmlFor='email'>
@@ -88,7 +93,9 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
                             onChange={setField}
                         />
                     </Form.Label>
-                    <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+                    {errors.email && errors.email !== '' ? (
+                        <span className='d-block text-danger'>{errors.email}</span>
+                    ) : null}
                 </Form.Group>
                 <Form.Group className='form-group py-2'>
                     <Form.Label htmlFor='password'>
@@ -101,7 +108,9 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
                             onChange={setField}
                         />
                     </Form.Label>
-                    <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+                    {errors.password && errors.password !== '' ? (
+                        <span className='d-block text-danger'>{errors.password}</span>
+                    ) : null}
                 </Form.Group>
                 <Button onClick={handleSubmit} type='submit' className='btn btn-primary my-1'>
                     Sign Up

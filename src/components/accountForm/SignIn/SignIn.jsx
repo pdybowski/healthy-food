@@ -50,16 +50,18 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
         }
-        if (dataUsers.some((user) => user.email !== email)) {
+
+        if (dataUsers.filter((user) => user.email === email).length === 0) {
             newErrors.email = 'E-mail is not in a database';
         }
+
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
         }
+
         if (
-            dataUsers.some((user) => {
-                return user.email === email && user.password !== password;
-            })
+            dataUsers.filter((user) => user.email === email && user.password === password)
+                .length === 0
         ) {
             newErrors.password = 'Password is wrong';
         }

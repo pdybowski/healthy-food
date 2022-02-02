@@ -1133,6 +1133,12 @@
       "name": "test",
       "email": "test@test.pl",
       "password": "test"
+    },
+    {
+      "name": "Test2",
+      "email": "test2@test.pl",
+      "password": "testtest",
+      "id": 2
     }
   ]
 }
