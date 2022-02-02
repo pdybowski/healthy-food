@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import './Navigation.css';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -213,6 +213,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                                 onClick={() => {
                                     setActive('');
                                 }}
+                                className={'btn btn-primary'}
                             >
                                 <NavDropdown.Item onClick={onLogOut}>Log Out</NavDropdown.Item>
                             </LinkContainer>
@@ -221,30 +222,32 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                 )}
                 {!isLoggedIn && (
                     <div className='d-flex flex-row'>
-                        <LinkContainer
+                        <Button
                             to={ROUTES_PATHS.MAIN_PAGE}
                             onClick={() => {
                                 setActive('');
                             }}
+                            className={'btn btn-primary mx-3'}
                         >
                             <Nav.Link
-                                className='me-2 border border-primary rounded bg-primary text-dark'
+                                className='text-dark py-0 px-2'
                                 // onClick={showModalHandler}
                                 onClick={onRegister}
                             >
                                 Register
                             </Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer
+                        </Button>
+                        <Button
                             to={ROUTES_PATHS.MAIN_PAGE}
                             onClick={() => {
                                 setActive('');
                             }}
+                            className={'btn bg-white border border-primary rounded'}
                         >
-                            <Nav.Link className='border border-primary rounded' onClick={onSignIn}>
+                            <Nav.Link className='py-1 px-2' onClick={onSignIn}>
                                 Sign In
                             </Nav.Link>
-                        </LinkContainer>
+                        </Button>
                     </div>
                 )}
             </Container>

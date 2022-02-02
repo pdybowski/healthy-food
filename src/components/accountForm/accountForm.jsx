@@ -2,11 +2,7 @@ import React from 'react';
 import { CustomModal } from '../shared/modal/Modal';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
-import Button from 'react-bootstrap/Button';
 import './accountForm.css';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 
 const AccountForm = (props) => {
     return (
@@ -22,10 +18,6 @@ const AccountForm = (props) => {
                         onLogIn={props.onLogIn}
                     />
                 )}
-                <Button type='button' className='btn button-action' onClick={props.onClick}>
-                    <FontAwesomeIcon icon={faLongArrowAltLeft} />
-                    {' Go back'}
-                </Button>
             </div>
         </CustomModal>
     );
