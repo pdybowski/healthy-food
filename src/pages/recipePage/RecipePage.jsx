@@ -12,7 +12,6 @@ function RecipePage(props) {
     const { isLoggedIn, isOwner } = props;
 
     const location = useLocation();
-    console.log(location.state.id);
 
     const [recipeData, setRecipeData] = useState('');
 

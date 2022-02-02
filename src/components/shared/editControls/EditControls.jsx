@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,16 +8,10 @@ import ApiQuery from '../api/ApiQuery';
 import './edit.css';
 
 export function EditControls(props) {
-    const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
+    const { isLoggedIn, isOwner, url, endpoint, id } = props;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [items, setItems] = useState([]);
-
-    const navigate = useNavigate();
-
-    function handleEdit() {
-        navigate(url, data);
-    }
 
     const fetchData = async (endpoint, id) => {
         try {
@@ -65,9 +59,11 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit} className='food_card_btn'>
-                    <FontAwesomeIcon icon={faEdit} />
-                </Button>
+                <Link to={{ pathname: url }} state={{ id: id }}>
+                    <Button variant='outline-info' className='food_card_btn'>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                </Link>
             )}
             <Button variant='outline-primary' onClick={onClick} className='food_card_btn'>
                 <FontAwesomeIcon icon={faList} />
