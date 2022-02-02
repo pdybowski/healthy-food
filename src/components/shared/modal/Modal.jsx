@@ -4,7 +4,6 @@ export const CustomModal = (props) => {
     const {
         size, // one of: sm, md, lg, xl, xxl (md is default)
         isCentered,
-        show,
         title,
         children,
         styleBottomCloseButton, // style left button, possible variants:
@@ -19,7 +18,7 @@ export const CustomModal = (props) => {
 
     return (
         <>
-            <Modal show={show} size={size} centered={isCentered}>
+            <Modal show={true} size={size} centered={isCentered}>
                 <Modal.Header closeButton onClick={onClick}>
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
