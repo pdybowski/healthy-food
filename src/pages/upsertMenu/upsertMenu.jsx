@@ -9,6 +9,7 @@ import { ROUTES_PATHS } from '../../routes';
 import { useNavigate } from 'react-router-dom';
 
 import './upsertMenu.css';
+import { CustomModal } from '../../components/shared/modal/Modal';
 
 function UpsertMenu({
     menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
@@ -19,7 +20,7 @@ function UpsertMenu({
     const [chosenRecipe, setChosenRecipe] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
     const [dayMenuError, setDayMenuError] = useState('');
-    // const [isFormNotCompleted, setIsFormNotCompleted] = useState(false);
+    const [isFormFilled, setIsFormFilled] = useState(false);
 
     const [errors, setErrors] = useState({});
 
@@ -60,6 +61,12 @@ function UpsertMenu({
             newErrors.title = 'Title is too long!';
         }
 
+        Object.entries(form.menu).map(([, value]) => {
+            if (value.length < 3) {
+                setIsFormFilled(true);
+            }
+        });
+
         return newErrors;
     };
 
@@ -69,7 +76,7 @@ function UpsertMenu({
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmitWithValidation = (e) => {
         e.preventDefault();
         const newErrors = findFormErrors();
 
@@ -79,6 +86,13 @@ function UpsertMenu({
             postForm(form);
             navigate(ROUTES_PATHS.USER_MENUS);
         }
+    };
+
+    const handleSubmitWithoutValidation = (e) => {
+        e.preventDefault();
+
+        postForm(form);
+        navigate(ROUTES_PATHS.USER_MENUS);
     };
 
     function addMealToForm(day) {
@@ -247,10 +261,27 @@ function UpsertMenu({
                         );
                     })}
                 </Carousel>
-                <Button variant='light' type='submit' className='my-5 w-100' onClick={handleSubmit}>
+                <Button
+                    variant='light'
+                    type='submit'
+                    className='my-5 w-100'
+                    onClick={(e) => handleSubmitWithValidation(e)}
+                >
                     Submit
                 </Button>
             </Form>
+            {isFormFilled ? (
+                <CustomModal
+                    title={'Warning!'}
+                    isCentered={true}
+                    buttonDismissText={'Edit'}
+                    buttonActionCopy={'Save'}
+                    onClick={() => setIsFormFilled(false)}
+                    onSave={(e) => handleSubmitWithoutValidation(e)}
+                >
+                    {`Not all days on your menu have a minimum of 3 meals. Are you sure you want to add the menu to your list ?`}
+                </CustomModal>
+            ) : null}
         </Container>
     );
 }
