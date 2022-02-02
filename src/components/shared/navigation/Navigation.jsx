@@ -223,7 +223,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                 {!isLoggedIn && (
                     <div className='d-flex flex-row'>
                         <Button
-                            to={ROUTES_PATHS.MAIN_PAGE}
+                            to={ROUTES_PATHS.REGISTER}
                             onClick={() => {
                                 setActive('');
                             }}

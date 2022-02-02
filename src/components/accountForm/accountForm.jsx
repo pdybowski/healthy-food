@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CustomModal } from '../shared/modal/Modal';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
@@ -12,6 +12,7 @@ const AccountForm = (props) => {
                     <SignUp
                         header={'Sign Up'}
                         newUserHandler={props.newUserHandler}
+                        onSignInHandler={props.onSignInHandler}
                         onLogIn={props.onLogIn}
                     />
                 ) : (

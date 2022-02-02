@@ -51,7 +51,6 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = findErrors();
-        console.log(newErrors);
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {

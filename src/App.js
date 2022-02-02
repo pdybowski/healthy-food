@@ -13,6 +13,7 @@ function App() {
     const onSignInHandler = (e) => {
         e.preventDefault();
         setIsNewUser(false);
+        setModalShow(!modalShow);
     };
 
     const onRegisterClick = () => {
@@ -45,7 +46,6 @@ function App() {
                 />
                 <AccountForm
                     isCentered={true}
-                    show={modalShow}
                     onClick={() => setModalShow(false)}
                     newUserHandler={() => setIsNewUser(!isNewUser)}
                     onFormSubmit={onSignInHandler}
