@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
 import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalModal';
+import './edit.css';
 
 export function EditControls(props) {
     const { isLoggedIn, isOwner, url, data, endpoint, id, handleSave } = props;
@@ -70,15 +71,23 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit}>
+                <Button variant='outline-info' onClick={handleEdit} className='food_card_btn'>
                     <FontAwesomeIcon icon={faEdit} />
                 </Button>
             )}
-            <Button variant='outline-primary' onClick={onShoppingModalClick}>
+            <Button
+                variant='outline-primary'
+                onClick={onShoppingModalClick}
+                className='food_card_btn'
+            >
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger' onClick={onRemovalModalClick}>
+                <Button
+                    variant='outline-danger'
+                    onClick={onRemovalModalClick}
+                    className='food_card_btn'
+                >
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}

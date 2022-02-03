@@ -44,7 +44,11 @@ function RecipeTile(props) {
                 onClick={handleShowRecipe}
                 className='pe-auto card-image'
             />
-            <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} isRecommended={true} />
+            <FavouriteIcon
+                isFavourite={isFavourite}
+                isLoggedIn={isLoggedIn}
+                isRecommended={isRecommended}
+            />
             <Card.Body>
                 <Card.Title className='text-dark card-title ' onClick={handleShowRecipe}>
                     {title}

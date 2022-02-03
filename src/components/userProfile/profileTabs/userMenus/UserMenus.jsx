@@ -37,8 +37,7 @@ function UserMenus() {
             <Row xs={1} md={2} xxl={4} className='g-4'>
                 <NewItemTile buttonLabel={'Add new menu'} />
                 {menus.map((menu) => (
-                    // eslint-disable-next-line react/jsx-key
-                    <MenuTile {...menu} />
+                    <MenuTile {...menu} /> // eslint-disable-line react/jsx-key
                 ))}
             </Row>
         </Container>
