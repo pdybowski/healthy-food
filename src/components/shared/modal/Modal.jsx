@@ -11,24 +11,25 @@ export const CustomModal = (props) => {
         styleActionButton, // style right button, same variants as above
         buttonDismissText,
         buttonActionCopy,
-        onClick,
-        onSave,
+        closeModal,
+        handleSave,
+        id,
     } = props;
 
     return (
         <>
-            <Modal show={true} size={size} centered={isCentered}>
-                <Modal.Header closeButton onClick={onClick}>
+            <Modal show={true} size={size} centered={isCentered} id={id}>
+                <Modal.Header closeButton onClick={closeModal}>
                     <Modal.Title>{title}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>{children}</Modal.Body>
 
                 <Modal.Footer>
-                    <Button variant={styleBottomCloseButton} onClick={onClick}>
+                    <Button variant={styleBottomCloseButton} onClick={closeModal}>
                         {buttonDismissText}
                     </Button>
-                    <Button variant={styleActionButton} onClick={onSave}>
+                    <Button variant={styleActionButton} onClick={() => handleSave(id)} id={id}>
                         {buttonActionCopy}
                     </Button>
                 </Modal.Footer>

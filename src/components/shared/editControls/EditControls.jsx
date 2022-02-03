@@ -8,7 +8,7 @@ import ApiQuery from '../api/ApiQuery';
 import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalModal';
 
 export function EditControls(props) {
-    const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
+    const { isLoggedIn, isOwner, url, data, endpoint, id, handleSave } = props;
 
     const [isShoppingModalOpen, setIsShoppingModalOpen] = useState(false);
     const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
@@ -19,10 +19,10 @@ export function EditControls(props) {
     function onRemovalModalClick() {
         setRemovalModalOpen(!isRemovalModalOpen);
     }
-    function removeItem() {
-        inputEl.current.closest('.justify-content-center').remove();
-        setRemovalModalOpen(!isRemovalModalOpen);
-    }
+    // function removeItem() {
+    //     inputEl.current.closest('.justify-content-center').remove();
+    //     setRemovalModalOpen(!isRemovalModalOpen);
+    // }
 
     const navigate = useNavigate();
 
@@ -37,9 +37,9 @@ export function EditControls(props) {
                 : setItems((await ApiQuery.get(`${endpoint}/${id}`)).data.ingredients);
         } catch (err) {
             if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
+                // console.log(err.response.data);
+                // console.log(err.response.status);
+                // console.log(err.response.headers);
             } else {
                 console.log(`Error: ${err.message}`);
             }
@@ -90,11 +90,12 @@ export function EditControls(props) {
             )}
             {isShoppingModalOpen && (
                 <CustomModal
+                    id={id}
                     title={'Shopping list'}
                     buttonDismissText={'Close'}
                     buttonActionCopy={'Save'}
-                    onClick={onShoppingModalClick}
-                    onSave={onShoppingModalSave}
+                    closeModal={onShoppingModalClick}
+                    handleSave={onShoppingModalSave}
                 >
                     <ul id='shoppingList'>
                         {items.map((item, itemIndex) => {
@@ -109,8 +110,9 @@ export function EditControls(props) {
             )}
             {isRemovalModalOpen && (
                 <ConfirmRemovalModal
-                    onClick={onRemovalModalClick}
-                    onSave={removeItem}
+                    closeModal={onRemovalModalClick}
+                    handleSave={handleSave}
+                    id={id}
                 ></ConfirmRemovalModal>
             )}
         </div>
