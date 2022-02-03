@@ -14,7 +14,7 @@ import TimeFormatted from '../../timeFormatted/TimeFormatted';
 
 function RecipeTile(props) {
     const {
-	data,
+        data,
         isFavourite,
         isLoggedIn,
         isOwner,
@@ -26,8 +26,9 @@ function RecipeTile(props) {
         id,
         isRecommended,
         counts,
+        handleSave,
     } = props;
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function handleShowRecipe() {
         navigate(`${ROUTES_PATHS.RECIPE.replace(':id', data.id)}`, { state: data });
@@ -66,6 +67,7 @@ const navigate = useNavigate();
                     url={ROUTES_PATHS.USER_RECIPES_ADD}
                     endpoint={'recipes'}
                     id={id}
+                    handleSave={handleSave}
                 />
             </Card.Body>
         </Tile>

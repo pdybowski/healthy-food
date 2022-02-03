@@ -8,9 +8,17 @@ import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 
 function MenuTile(props) {
-    const { isFavourite, isLoggedIn, isOwner, title, tags = ['Default tag 1'], id } = props;
+    const {
+        isFavourite,
+        isLoggedIn,
+        isOwner,
+        title,
+        tags = ['Default tag 1'],
+        id,
+        handleSave,
+    } = props;
     return (
-        <Tile>
+        <Tile id={id}>
             <Card.Img
                 variant='top'
                 src='https://via.placeholder.com/100'
@@ -31,6 +39,7 @@ function MenuTile(props) {
                     isOwner={isOwner}
                     endpoint={'menus'}
                     id={id}
+                    handleSave={handleSave}
                 />
             </Card.Body>
         </Tile>
