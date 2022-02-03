@@ -17,23 +17,12 @@ function UpsertRecipe() {
 
     const location = useLocation();
 
-    const [form, setForm] = useState();
+    const [form, setForm] = useState('form');
+    let y = {};
 
     const fetchData = async () => {
         try {
-            const formData = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
-            setForm({
-                id: formData.id,
-                title: formData.title,
-                tags: formData.tags,
-                timeToPrepare: formData.timeToPrepare,
-                mealType: formData.mealType,
-                ingredients: formData.ingredients,
-                description: formData.description,
-                recipe: formData.recipe,
-                image: formData.image,
-                peopleNumber: formData.peopleNumber,
-            });
+            y = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
         } catch (err) {
             if (err.response) {
                 console.error(err.response.data);
@@ -42,6 +31,14 @@ function UpsertRecipe() {
             } else {
                 console.error(`Error: ${err.message}`);
             }
+        } finally {
+            console.log(y);
+            console.log(form);
+            setForm({
+                ...form,
+                title: y.title,
+            });
+            console.log(form);
         }
     };
 
@@ -203,6 +200,7 @@ function UpsertRecipe() {
                         type='text'
                         placeholder='Enter recipe title'
                         onChange={setField}
+                        defaultValue={form.title}
                         isInvalid={!!errors.title}
                     />
                     <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
