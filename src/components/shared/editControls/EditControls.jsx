@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
@@ -14,15 +14,9 @@ export function EditControls(props) {
     const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
     const [items, setItems] = useState([]);
 
-    const inputEl = useRef(null);
-
     function onRemovalModalClick() {
         setRemovalModalOpen(!isRemovalModalOpen);
     }
-    // function removeItem() {
-    //     inputEl.current.closest('.justify-content-center').remove();
-    //     setRemovalModalOpen(!isRemovalModalOpen);
-    // }
 
     const navigate = useNavigate();
 
@@ -37,9 +31,9 @@ export function EditControls(props) {
                 : setItems((await ApiQuery.get(`${endpoint}/${id}`)).data.ingredients);
         } catch (err) {
             if (err.response) {
-                // console.log(err.response.data);
-                // console.log(err.response.status);
-                // console.log(err.response.headers);
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
             } else {
                 console.log(`Error: ${err.message}`);
             }
@@ -84,7 +78,7 @@ export function EditControls(props) {
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger' onClick={onRemovalModalClick} ref={inputEl}>
+                <Button variant='outline-danger' onClick={onRemovalModalClick}>
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}
