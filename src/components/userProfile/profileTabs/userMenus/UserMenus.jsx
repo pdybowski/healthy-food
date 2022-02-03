@@ -10,6 +10,7 @@ function UserMenus() {
             isFavourite: false,
             isLoggedIn: true,
             isOwner: true,
+            key: '1',
             handleSave: removeMenu,
         },
         {
@@ -17,6 +18,7 @@ function UserMenus() {
             isFavourite: false,
             isLoggedIn: true,
             isOwner: true,
+            key: '2',
             handleSave: removeMenu,
         },
         {
@@ -24,6 +26,7 @@ function UserMenus() {
             isFavourite: true,
             isLoggedIn: true,
             isOwner: true,
+            key: '3',
             handleSave: removeMenu,
         },
     ];
