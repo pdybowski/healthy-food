@@ -33,7 +33,7 @@ function UpsertRecipe() {
     const fetchData = async () => {
         try {
             editedRecipe = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
-            setForm({
+            let newVar = {
                 id: editedRecipe.id,
                 title: editedRecipe.title,
                 tags: editedRecipe.tags,
@@ -44,7 +44,8 @@ function UpsertRecipe() {
                 recipe: editedRecipe.recipe,
                 image: editedRecipe.image,
                 peopleNumber: editedRecipe.peopleNumber,
-            });
+            };
+            setForm(() => ({ ...newVar }));
 
             editedRecipe.tags.forEach((tag) => {
                 const tagListState = { ...tagList };
