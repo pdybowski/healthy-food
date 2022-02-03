@@ -95,6 +95,17 @@ function UpsertMenu({
         navigate(ROUTES_PATHS.USER_MENUS);
     };
 
+    const previewFile = (e) => {
+        let files = e.target.files;
+        let reader = new FileReader();
+        reader.onload = (r) => {
+            const formState = { ...form };
+            formState.image = r.target.result;
+            setForm(formState);
+        };
+        reader.readAsDataURL(files[0]);
+    };
+
     function addMealToForm(day) {
         const formState = { ...form };
 
@@ -168,6 +179,25 @@ function UpsertMenu({
                             inputFieldPosition='bottom'
                         />
                     </div>
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                    <Form.Label htmlFor='pictureInput' className='form-label'>
+                        Image
+                    </Form.Label>
+                    <input
+                        className='form-control'
+                        type='file'
+                        id='pictureInput'
+                        onChange={previewFile}
+                    />
+                    {form.image && (
+                        <img
+                            className='mt-1'
+                            src={form.image}
+                            height='200'
+                            alt='Image preview...'
+                        />
+                    )}
                 </Form.Group>
                 <Carousel variant='dark' interval={null}>
                     {Object.keys(form.menu).map((day, id) => {
