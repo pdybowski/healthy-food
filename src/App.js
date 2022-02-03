@@ -46,6 +46,7 @@ function App() {
                 />
                 <AccountForm
                     isCentered={true}
+                    isModalShown={modalShow}
                     onClick={() => setModalShow(false)}
                     newUserHandler={() => setIsNewUser(!isNewUser)}
                     onFormSubmit={onSignInHandler}
