@@ -25,7 +25,7 @@ function ContactForm() {
                     {...register('name', { required: true, maxLength: 15 })}
                 />
                 {errors.name && (
-                    <p className='text-danger'>Please enter you name (max. 15 characters)</p>
+                    <p className='text-danger'>Please enter your name (max. 15 characters)</p>
                 )}
             </Form.Group>
             <Form.Group className='mb-3' controlId='FormControlInputEmail'>
