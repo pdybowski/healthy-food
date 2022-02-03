@@ -12,10 +12,15 @@ function UserRecipes() {
     useEffect(() => {
         async function fetchData() {
             setRecipes((await ApiQuery.get('recipes')).data);
+            // console.log(recipes);
         }
 
         fetchData();
     }, []);
+
+    function removeRecipe(recipeId) {
+        setRecipes((recipes) => recipes.filter((recipe) => recipe.id !== recipeId));
+    }
 
     return (
         <Container className='my-4'>
@@ -61,6 +66,7 @@ function UserRecipes() {
                                 isOwner={true}
                                 image={recipe.image}
                                 id={recipe.id}
+                                handleSave={removeRecipe}
                             />
                         );
                     })}

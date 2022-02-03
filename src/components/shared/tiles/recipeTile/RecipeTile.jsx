@@ -26,6 +26,7 @@ function RecipeTile(props) {
         id,
         isRecommended,
         counts,
+        handleSave,
     } = props;
     const navigate = useNavigate();
 
@@ -70,6 +71,7 @@ function RecipeTile(props) {
                     url={ROUTES_PATHS.USER_RECIPES_ADD}
                     endpoint={'recipes'}
                     id={id}
+                    handleSave={handleSave}
                 />
             </Card.Body>
         </Tile>
