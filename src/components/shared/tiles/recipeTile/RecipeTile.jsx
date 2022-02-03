@@ -14,7 +14,7 @@ import TimeFormatted from '../../timeFormatted/TimeFormatted';
 
 function RecipeTile(props) {
     const {
-	data,
+        data,
         isFavourite,
         isLoggedIn,
         isOwner,
@@ -27,7 +27,7 @@ function RecipeTile(props) {
         isRecommended,
         counts,
     } = props;
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function handleShowRecipe() {
         navigate(`${ROUTES_PATHS.RECIPE.replace(':id', data.id)}`, { state: data });
@@ -43,7 +43,11 @@ const navigate = useNavigate();
                 onClick={handleShowRecipe}
                 className='pe-auto card-image'
             />
-            <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} isRecommended={true} />
+            <FavouriteIcon
+                isFavourite={isFavourite}
+                isLoggedIn={isLoggedIn}
+                isRecommended={isRecommended}
+            />
             <Card.Body>
                 <Card.Title className='text-dark card-title ' onClick={handleShowRecipe}>
                     {title}
