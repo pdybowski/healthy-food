@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TagsEdit } from '../../components/shared/tags/TagsEdit';
@@ -7,37 +7,58 @@ import ReactQuill from 'react-quill';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 import { ROUTES_PATHS } from '../../routes';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function UpsertRecipe({
-    title = '',
-    tags = [],
-    minutes = '',
-    mealType = [],
-    ingredients = [],
-    description = '',
-    recipe = '',
-    image = '',
-    peopleNumber = '',
-}) {
+function UpsertRecipe() {
     const [ingredientName, setIngredientName] = useState('');
     const [ingredientQuantity, setIngredientQuantity] = useState('');
     const [ingredientUnit, setIngredientUnit] = useState('');
     const [ingredientError, setIngredientError] = useState('');
+
     const [tagList, setTagList] = useState({ tags: [] });
 
-    const [form, setForm] = useState({
-        title: title,
-        tags: tags,
-        minutes: minutes,
-        mealType: mealType,
-        ingredients: ingredients,
-        description: description,
-        recipe: recipe,
-        image: image,
-        peopleNumber: peopleNumber,
-    });
     const [errors, setErrors] = useState({});
+
+    const location = useLocation();
+
+    const [form, setForm] = useState({
+        title: null,
+        tags: [],
+        timeToPrepare: null,
+        mealType: [],
+        ingredients: [],
+        description: '',
+        recipe: '',
+        image: '',
+        peopleNumber: null,
+    });
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                let data = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
+                setForm(data);
+                data.tags.forEach((tag) => {
+                    const tagListState = { ...tagList };
+                    const tagElement = { id: tag, text: tag };
+                    tagListState.tags.push(tagElement);
+                    setTagList(tagListState);
+                });
+            } catch (err) {
+                if (err.response) {
+                    console.error(err.response.data);
+                    console.error(err.response.status);
+                    console.error(err.response.headers);
+                } else {
+                    console.error(`Error: ${err.message}`);
+                }
+            }
+        }
+
+        if (location.state && location.state.id) {
+            fetchData();
+        }
+    }, []);
 
     const handleTagDelete = (i) => {
         const tagListState = { ...tagList };
@@ -73,15 +94,15 @@ function UpsertRecipe({
     };
 
     const findFormErrors = () => {
-        const { title, minutes, mealType, recipe } = form;
+        const { title, timeToPrepare, mealType, recipe } = form;
         const newErrors = {};
         if (!title || title === '') {
             newErrors.title = 'Title is required!';
         } else if (title.length > 60) {
             newErrors.title = 'Title is too long!';
         }
-        if (!minutes || minutes === '') {
-            newErrors.minutes = 'Time is required!';
+        if (!timeToPrepare || timeToPrepare === '') {
+            newErrors.timeToPrepare = 'Time is required!';
         }
         if (mealType.length === 0) {
             newErrors.mealType = 'At least one meal type is required!';
@@ -94,18 +115,22 @@ function UpsertRecipe({
     };
 
     async function postForm(form) {
-        await ApiQuery.post('recipes', form);
+        if (form.id) {
+            await ApiQuery.put(`recipes/${form.id}`, form);
+        } else {
+            await ApiQuery.post('recipes', form);
+        }
     }
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = findFormErrors();
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
-            postForm(form);
+            await postForm(form);
             navigate(ROUTES_PATHS.USER_RECIPES);
         }
     };
@@ -189,6 +214,7 @@ function UpsertRecipe({
                         type='text'
                         placeholder='Enter recipe title'
                         onChange={setField}
+                        defaultValue={form.title}
                         isInvalid={!!errors.title}
                     />
                     <Form.Control.Feedback type='invalid'>{errors.title}</Form.Control.Feedback>
@@ -207,13 +233,16 @@ function UpsertRecipe({
                 <Form.Group className='mb-3'>
                     <Form.Label>Time to prepare [min]</Form.Label>
                     <Form.Control
-                        name='minutes'
                         type='number'
+                        name='timeToPrepare'
                         placeholder='Enter time to prepare in minutes'
                         onChange={setField}
-                        isInvalid={!!errors.minutes}
+                        defaultValue={form.timeToPrepare}
+                        isInvalid={!!errors.timeToPrepare}
                     />
-                    <Form.Control.Feedback type='invalid'>{errors.minutes}</Form.Control.Feedback>
+                    <Form.Control.Feedback type='invalid'>
+                        {errors.timeToPrepare}
+                    </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label>Meal type</Form.Label>
@@ -222,18 +251,21 @@ function UpsertRecipe({
                         onChange={handleCheckbox}
                         label='Breakfast'
                         value={MEAL_TYPE.BREAKFAST}
+                        checked={form.mealType.includes(MEAL_TYPE.BREAKFAST)}
                     />
                     <Form.Check
                         type='checkbox'
                         onChange={handleCheckbox}
                         label='Lunch'
                         value={MEAL_TYPE.LUNCH}
+                        checked={form.mealType.includes(MEAL_TYPE.LUNCH)}
                     />
                     <Form.Check
                         type='checkbox'
                         onChange={handleCheckbox}
                         label='Dinner'
                         value={MEAL_TYPE.DINNER}
+                        checked={form.mealType.includes(MEAL_TYPE.DINNER)}
                     />
                     {errors.mealType && (
                         <Form.Control.Feedback className='d-block' type='invalid'>
@@ -243,13 +275,13 @@ function UpsertRecipe({
                 </Form.Group>
                 <Form.Group className='mb-3'>
                     <Form.Label className='me-3'>Ingredients</Form.Label>
-                    {form.ingredients.length > 0 && (
+                    {form.ingredients && form.ingredients.length > 0 && (
                         <div>
                             <ul>
                                 {form.ingredients.map((ingredient) => {
                                     return (
                                         <li key={ingredient.title}>
-                                            {`${ingredient.title} (${ingredient.quantity.number} ${ingredient.quantity.unit})`}
+                                            {`${ingredient.title} ( ${ingredient.quantity.number} ${ingredient.quantity.unit})`}
                                             <button
                                                 className='ms-4 py-1 border-0 bg-transparent'
                                                 value={ingredient.title}
@@ -319,7 +351,6 @@ function UpsertRecipe({
                 <Form.Group className='mb-3'>
                     <Form.Label>Recipe</Form.Label>
                     <ReactQuill
-                        isDelta={true}
                         name='recipe'
                         theme='snow'
                         value={form.recipe}
@@ -356,6 +387,7 @@ function UpsertRecipe({
                         name='peopleNumber'
                         type='number'
                         onChange={setField}
+                        defaultValue={form.peopleNumber}
                         placeholder='Enter for how many people the recipe is'
                     />
                 </Form.Group>

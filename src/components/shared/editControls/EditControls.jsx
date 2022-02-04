@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +9,7 @@ import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalMod
 import './edit.css';
 
 export function EditControls(props) {
-    const { isLoggedIn, isOwner, url, data, endpoint, id, handleSave } = props;
+    const { isLoggedIn, isOwner, url, endpoint, id, handleSave } = props;
 
     const [isShoppingModalOpen, setIsShoppingModalOpen] = useState(false);
     const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
@@ -17,12 +17,6 @@ export function EditControls(props) {
 
     function onRemovalModalClick() {
         setRemovalModalOpen(!isRemovalModalOpen);
-    }
-
-    const navigate = useNavigate();
-
-    function handleEdit() {
-        navigate(url, data);
     }
 
     const fetchData = async (endpoint, id) => {
@@ -71,9 +65,11 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit} className='food_card_btn'>
-                    <FontAwesomeIcon icon={faEdit} />
-                </Button>
+                <Link to={{ pathname: url }} state={{ id: id }}>
+                    <Button variant='outline-info' className='food_card_btn'>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                </Link>
             )}
             <Button
                 variant='outline-primary'
@@ -116,7 +112,7 @@ export function EditControls(props) {
                     closeModal={onRemovalModalClick}
                     handleSave={handleSave}
                     id={id}
-                ></ConfirmRemovalModal>
+                />
             )}
         </div>
     );
