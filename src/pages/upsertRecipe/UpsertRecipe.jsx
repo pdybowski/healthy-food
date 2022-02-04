@@ -15,64 +15,50 @@ function UpsertRecipe() {
     const [ingredientUnit, setIngredientUnit] = useState('');
     const [ingredientError, setIngredientError] = useState('');
 
+    const [tagList, setTagList] = useState({ tags: [] });
+
+    const [errors, setErrors] = useState({});
+
     const location = useLocation();
 
     const [form, setForm] = useState({
-        title: '',
+        title: null,
         tags: [],
-        timeToPrepare: '',
+        timeToPrepare: null,
         mealType: [],
         ingredients: [],
         description: '',
         recipe: '',
         image: '',
-        peopleNumber: '',
+        peopleNumber: null,
     });
-    let editedRecipe = {};
-
-    const fetchData = async () => {
-        try {
-            editedRecipe = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
-            let newVar = {
-                id: editedRecipe.id,
-                title: editedRecipe.title,
-                tags: editedRecipe.tags,
-                timeToPrepare: editedRecipe.timeToPrepare,
-                mealType: editedRecipe.mealType,
-                ingredients: editedRecipe.ingredients,
-                description: editedRecipe.description,
-                recipe: editedRecipe.recipe,
-                image: editedRecipe.image,
-                peopleNumber: editedRecipe.peopleNumber,
-            };
-            setForm(() => ({ ...newVar }));
-
-            editedRecipe.tags.forEach((tag) => {
-                const tagListState = { ...tagList };
-                const tagElement = { id: tag, text: tag };
-                tagListState.tags.push(tagElement);
-                setTagList(tagListState);
-            });
-        } catch (err) {
-            if (err.response) {
-                console.error(err.response.data);
-                console.error(err.response.status);
-                console.error(err.response.headers);
-            } else {
-                console.error(`Error: ${err.message}`);
-            }
-        }
-    };
 
     useEffect(() => {
+        async function fetchData() {
+            try {
+                let data = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
+                setForm(data);
+                data.tags.forEach((tag) => {
+                    const tagListState = { ...tagList };
+                    const tagElement = { id: tag, text: tag };
+                    tagListState.tags.push(tagElement);
+                    setTagList(tagListState);
+                });
+            } catch (err) {
+                if (err.response) {
+                    console.error(err.response.data);
+                    console.error(err.response.status);
+                    console.error(err.response.headers);
+                } else {
+                    console.error(`Error: ${err.message}`);
+                }
+            }
+        }
+
         if (location.state && location.state.id) {
             fetchData();
         }
     }, []);
-
-    const [tagList, setTagList] = useState({ tags: [] });
-
-    const [errors, setErrors] = useState({});
 
     const handleTagDelete = (i) => {
         const tagListState = { ...tagList };
@@ -365,7 +351,6 @@ function UpsertRecipe() {
                 <Form.Group className='mb-3'>
                     <Form.Label>Recipe</Form.Label>
                     <ReactQuill
-                        isDelta={true}
                         name='recipe'
                         theme='snow'
                         value={form.recipe}
