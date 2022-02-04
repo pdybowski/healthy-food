@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
+import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalModal';
 import './edit.css';
 
 export function EditControls(props) {
-    const { isLoggedIn, isOwner, url, data, endpoint, id } = props;
+    const { isLoggedIn, isOwner, url, endpoint, id, handleSave } = props;
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isShoppingModalOpen, setIsShoppingModalOpen] = useState(false);
+    const [isRemovalModalOpen, setRemovalModalOpen] = useState(false);
     const [items, setItems] = useState([]);
 
-    const navigate = useNavigate();
-
-    function handleEdit() {
-        navigate(url, data);
+    function onRemovalModalClick() {
+        setRemovalModalOpen(!isRemovalModalOpen);
     }
 
     const fetchData = async (endpoint, id) => {
@@ -39,8 +39,8 @@ export function EditControls(props) {
         fetchData(endpoint, id);
     }, [endpoint, id]);
 
-    function onClick() {
-        setIsModalOpen(!isModalOpen);
+    function onShoppingModalClick() {
+        setIsShoppingModalOpen(!isShoppingModalOpen);
     }
 
     const downloadTextFile = () => {
@@ -54,7 +54,7 @@ export function EditControls(props) {
         element.click();
     };
 
-    function onSave() {
+    function onShoppingModalSave() {
         downloadTextFile();
     }
 
@@ -65,25 +65,36 @@ export function EditControls(props) {
             } mt-1`}
         >
             {isOwner && (
-                <Button variant='outline-info' onClick={handleEdit} className='food_card_btn'>
-                    <FontAwesomeIcon icon={faEdit} />
-                </Button>
+                <Link to={{ pathname: url }} state={{ id: id }}>
+                    <Button variant='outline-info' className='food_card_btn'>
+                        <FontAwesomeIcon icon={faEdit} />
+                    </Button>
+                </Link>
             )}
-            <Button variant='outline-primary' onClick={onClick} className='food_card_btn'>
+            <Button
+                variant='outline-primary'
+                onClick={onShoppingModalClick}
+                className='food_card_btn'
+            >
                 <FontAwesomeIcon icon={faList} />
             </Button>
             {isOwner && (
-                <Button variant='outline-danger' className='food_card_btn'>
+                <Button
+                    variant='outline-danger'
+                    onClick={onRemovalModalClick}
+                    className='food_card_btn'
+                >
                     <FontAwesomeIcon icon={faTrash} />
                 </Button>
             )}
-            {isModalOpen && (
+            {isShoppingModalOpen && (
                 <CustomModal
+                    id={id}
                     title={'Shopping list'}
                     buttonDismissText={'Close'}
                     buttonActionCopy={'Save'}
-                    onClick={onClick}
-                    onSave={onSave}
+                    closeModal={onShoppingModalClick}
+                    handleSave={onShoppingModalSave}
                 >
                     <ul id='shoppingList'>
                         {items.map((item, itemIndex) => {
@@ -95,6 +106,13 @@ export function EditControls(props) {
                         })}
                     </ul>
                 </CustomModal>
+            )}
+            {isRemovalModalOpen && (
+                <ConfirmRemovalModal
+                    closeModal={onRemovalModalClick}
+                    handleSave={handleSave}
+                    id={id}
+                />
             )}
         </div>
     );

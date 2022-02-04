@@ -6,10 +6,12 @@ import { Container } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faUser } from '@fortawesome/free-solid-svg-icons';
 import TimeFormatted from '../../components/shared/timeFormatted/TimeFormatted';
+import { ROUTES_PATHS } from '../../routes';
 
-function RecipePage() {
+function RecipePage(props) {
+    const { isLoggedIn, isOwner } = props;
+
     const location = useLocation();
-    console.log(location.state.id);
 
     const [recipeData, setRecipeData] = useState('');
 
@@ -81,7 +83,13 @@ function RecipePage() {
                                 );
                             })}
                         </div>
-                        <EditControls />
+                        <EditControls
+                            isLoggedIn={isLoggedIn}
+                            isOwner={isOwner}
+                            url={ROUTES_PATHS.USER_RECIPES_ADD}
+                            endpoint={'recipes'}
+                            id={location.state.id}
+                        />
                     </div>
                 </div>
             </div>

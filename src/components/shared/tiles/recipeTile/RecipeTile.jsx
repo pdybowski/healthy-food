@@ -11,6 +11,7 @@ import FavouriteCounts from '../../favouriteCounts/FavouriteCounts';
 import { useNavigate } from 'react-router-dom';
 import './recipeTile.css';
 import TimeFormatted from '../../timeFormatted/TimeFormatted';
+import placeholder from '../../../../assets/images/placeholder.png';
 
 function RecipeTile(props) {
     const {
@@ -22,10 +23,11 @@ function RecipeTile(props) {
         itemTags,
         time,
         mealType,
-        image = 'https://via.placeholder.com/100',
+        image,
         id,
         isRecommended,
         counts,
+        handleSave,
     } = props;
     const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ function RecipeTile(props) {
             {isRecommended && <FavouriteCounts> {counts} </FavouriteCounts>}
             <Card.Img
                 variant='top'
-                src={image}
+                src={image && true ? image : placeholder}
                 style={{ width: '100%', height: '17rem', objectFit: 'cover' }}
                 onClick={handleShowRecipe}
                 className='pe-auto card-image'
@@ -70,6 +72,7 @@ function RecipeTile(props) {
                     url={ROUTES_PATHS.USER_RECIPES_ADD}
                     endpoint={'recipes'}
                     id={id}
+                    handleSave={handleSave}
                 />
             </Card.Body>
         </Tile>
