@@ -10,6 +10,6 @@ body {
 
 #root {
     position: relative;
-    padding-bottom: 64px;
+    padding-bottom: 40px;
     min-height: 100vh;
 }
