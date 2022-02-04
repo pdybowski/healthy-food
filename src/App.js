@@ -47,9 +47,9 @@ function App() {
                 <AccountForm
                     isCentered={true}
                     isModalShown={modalShow}
-                    onClick={() => setModalShow(false)}
+                    closeModal={() => setModalShow(false)}
                     newUserHandler={() => setIsNewUser(!isNewUser)}
-                    onFormSubmit={onSignInHandler}
+                    handleSave={onSignInHandler}
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
                     modalFooterClass={'d-none'}
