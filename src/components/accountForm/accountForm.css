@@ -1,0 +1,8 @@
+.button-action{
+    background: none;
+    border: none;
+}
+
+.button-action:hover{
+    background: rgba(214, 214, 214, 0.767);
+}

@@ -5,6 +5,7 @@ import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
 import UpsertMenu from './pages/upsertMenu/upsertMenu';
 import RecipePage from './pages/recipePage/RecipePage';
 import Recommended from './pages/recommended/Recommended';
+import AccountForm from './components/accountForm/accountForm';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/',
@@ -23,6 +24,7 @@ export const ROUTES_PATHS = {
     USER_FAVORITES: '/user-profile/favourites',
     USER_SETTINGS: '/user-profile/settings',
     RECIPE: '/recipes/:id',
+    REGISTER: '/register',
 };
 
 export const PROFILE_TABS = {
@@ -57,6 +59,11 @@ export const routes = [
         path: ROUTES_PATHS.RECIPE,
         element: <RecipePage />,
         key: 'recipe',
+    },
+    {
+        path: ROUTES_PATHS.REGISTER,
+        element: <AccountForm.jsx />,
+        key: 'register',
     },
 ];
 

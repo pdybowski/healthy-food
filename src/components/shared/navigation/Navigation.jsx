@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import './Navigation.css';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -8,7 +8,7 @@ import user from '../../../assets/images/user-circle-solid.png';
 import plus from '../../../assets/images/plus.png';
 import { ROUTES_PATHS } from '../../../routes';
 
-export function Navigation({ isLoggedIn = true }) {
+export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
     const [active, setActive] = useState('');
 
     const NAV_ELEMENTS = {
@@ -213,32 +213,41 @@ export function Navigation({ isLoggedIn = true }) {
                                 onClick={() => {
                                     setActive('');
                                 }}
+                                className={'btn btn-primary'}
                             >
-                                <NavDropdown.Item>Log Out</NavDropdown.Item>
+                                <NavDropdown.Item onClick={onLogOut}>Log Out</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                     </Navbar.Collapse>
                 )}
                 {!isLoggedIn && (
                     <div className='d-flex flex-row'>
-                        <LinkContainer
-                            to={ROUTES_PATHS.MAIN_PAGE}
+                        <Button
+                            to={ROUTES_PATHS.REGISTER}
                             onClick={() => {
                                 setActive('');
                             }}
+                            className={'btn btn-primary mx-3'}
                         >
-                            <Nav.Link className='me-2 border border-primary rounded bg-primary text-dark'>
+                            <Nav.Link
+                                className='text-dark py-0 px-2'
+                                // onClick={showModalHandler}
+                                onClick={onRegister}
+                            >
                                 Register
                             </Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer
+                        </Button>
+                        <Button
                             to={ROUTES_PATHS.MAIN_PAGE}
                             onClick={() => {
                                 setActive('');
                             }}
+                            className={'btn bg-white border border-primary rounded'}
                         >
-                            <Nav.Link className='border border-primary rounded'>Sign In</Nav.Link>
-                        </LinkContainer>
+                            <Nav.Link className='py-1 px-2' onClick={onSignIn}>
+                                Sign In
+                            </Nav.Link>
+                        </Button>
                     </div>
                 )}
             </Container>
