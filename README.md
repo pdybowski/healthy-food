@@ -32,7 +32,7 @@ Main functionality of the app is searching for recipes, adding recipes, planning
 
 Project is created with:
 
--   [React 17.0.2](https://reactjs.org/) and React [packages](link)
+-   [React 17.0.2](https://reactjs.org/) and React [packages](https://github.com/pdybowski/healthy-food/blob/master/package.json)
 
 -   [Babel 7.16.7](https://babeljs.io/)
 
@@ -56,7 +56,7 @@ Project is created with:
 
 -   Contact form
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/main_page_2.PNG?raw=true)
 
 </details>
 
@@ -68,7 +68,7 @@ Project is created with:
 
 -   downloading shopping list for recipes and menus
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/non_logged_view.PNG?raw=true)
 
 </details>
 
@@ -80,7 +80,7 @@ Project is created with:
 
 -   checking favorite recipes and menus
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/logged_view.PNG?raw=true)
 
 </details>
 
