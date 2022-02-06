@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Healthy Food App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**[Healthy Food App](https://pdybowski.github.io/healthy-food/) is a single page application created with** **React**.
 
-## Available Scripts
+Main functionality of the app is searching for recipes, adding recipes, planning meals as well as generating shopping lists based on the recipe or menu.
 
-In the project directory, you can run:
+> Note: due to the issuess realted to the limited number of characters available in db.json file, app version published on github page does not display images. To see full version of the app, please [install](#1-installation) and display it locally.
 
-### `npm start`
+## Table of contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1.  [Installation](#1-installation)
+2.  [Stack](#2-stack)
+3.  [Features](#3-features)
+4.  [Authors](#4-authors)
+5.  [Additonal informations](#5-additional-informations)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 1. Installation
 
-### `npm test`
+1. Clone the app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`git clone https://github.com/pdybowski/healthy-food.git`
 
-### `npm run build`
+2. Install packages
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm install`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Launch development server (available on [localhost:3000](http://localhost:3000/))
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`npm run start:app-with-server`
 
-### `npm run eject`
+## 2. Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Project is created with:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   [React 17.0.2](https://reactjs.org/) and React [packages](link)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-   [Babel 7.16.7](https://babeljs.io/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-   [Webpack 5.66.0](https://webpack.js.org/)
 
-## Learn More
+-   [Prettier 2.5.1](https://prettier.io/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   [EsLint 8.6.0](https://eslint.org/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   [JSON Server 0.17.0](https://www.npmjs.com/package/json-server)
 
-### Code Splitting
+-   [gh-pages](https://pages.github.com/) - to deploy app on github pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 3. Features
 
-### Analyzing the Bundle Size
+<details><summary>Main page</summary>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-   Navigation and sign-in/sign-up panel
 
-### Making a Progressive Web App
+-   General information about the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   Contact form
 
-### Advanced Configuration
+![image](link)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+</details>
 
-### Deployment
+<details><summary>Public User Features</summary>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+-   searching for recipes and menus
 
-### `npm run build` fails to minify
+-   checking recommended recipes and menus
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   downloading shopping list for recipes and menus
+
+![image](link)
+
+</details>
+
+<details><summary>Signed-up User Features</summary>
+
+-   editing users settings
+
+-   creating, editing and deleting recipes and menus
+
+-   checking favorite recipes and menus
+
+![image](link)
+
+</details>
+
+## 4. Authors
+
+-   **Mentor:** [Piotr Dybowski](https://github.com/pdybowski)
+
+-   [Justyna Gładysz](https://github.com/jusgladysz)
+
+-   [Patrycja Starzec](https://github.com/patrycjastarzec)
+
+-   [Tomasz Prządka](https://github.com/altNameForStudying)
+
+-   [Filip Kaczmarek](https://github.com/FilipKaczmarek)
+
+## 5. Additional Informations
+
+This project was created during the CodersCamp, 2021/2022 edition. To read more, please check: [CodersCamp](https://www.coderscamp.edu.pl/), [CodersCamp Github](https://github.com/CodersCamp2021).

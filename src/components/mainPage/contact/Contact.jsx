@@ -24,8 +24,6 @@ function Contact() {
                     >
                         <Stack className='text-light d-flex justify-content-center align-items-center'>
                             <h3 className='text-uppercase'>Keep in touch!</h3>
-                            <p className='m-0'>Reach us by phone: 500 800 300</p>
-                            <p className='m-0'>...or by our contact form</p>
                         </Stack>
                     </Col>
                     <Col lg={3}></Col>
