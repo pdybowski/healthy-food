@@ -6,9 +6,10 @@ import UpsertMenu from './pages/upsertMenu/upsertMenu';
 import RecipePage from './pages/recipePage/RecipePage';
 import Recommended from './pages/recommended/Recommended';
 import AccountForm from './components/accountForm/accountForm';
+import MenuPage from './pages/menuPage/MenuPage';
 
 export const ROUTES_PATHS = {
-    MAIN_PAGE: '/',
+    MAIN_PAGE: '/healthy-food',
     RECIPES: '/recipes',
     RECOMMENDED: '/recommended',
     MENUS: '/menus',
@@ -24,6 +25,7 @@ export const ROUTES_PATHS = {
     USER_FAVORITES: '/user-profile/favourites',
     USER_SETTINGS: '/user-profile/settings',
     RECIPE: '/recipes/:id',
+    MENU: '/menus/:id',
     REGISTER: '/register',
 };
 
@@ -59,6 +61,11 @@ export const routes = [
         path: ROUTES_PATHS.RECIPE,
         element: <RecipePage />,
         key: 'recipe',
+    },
+    {
+        path: ROUTES_PATHS.MENU,
+        element: <MenuPage />,
+        key: 'menu',
     },
     {
         path: ROUTES_PATHS.REGISTER,

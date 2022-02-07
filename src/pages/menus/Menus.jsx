@@ -45,13 +45,14 @@ function Menus() {
                     .map((menu) => {
                         return (
                             <MenuTile
+                                data={menu}
                                 title={menu.title}
-                                itemTags={menu.tags}
-                                fullMenuData={menu.menu}
-                                key={menu.id}
+                                tags={menu.tags}
                                 isFavourite={false}
                                 isLoggedIn={false}
                                 isOwner={false}
+                                image={menu.image}
+                                key={menu.id}
                                 id={menu.id}
                             />
                         );
