@@ -721,61 +721,73 @@
                 "day2": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "Avocado Toast"
+                        "recipe": "Avocado Toast",
+                        "id": 2
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "Mushroom risotto"
+                        "recipe": "Mushroom risotto",
+                        "id": 6
                     }
                 ],
                 "day3": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "The Creamiest Scrambled Eggs (with Goat Cheese)"
+                        "recipe": "The Creamiest Scrambled Eggs (with Goat Cheese)",
+                        "id": 3
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "Tomato Salad"
+                        "recipe": "Tomato Salad",
+                        "id": 4
                     }
                 ],
                 "day4": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "Easy Pancakes"
+                        "recipe": "Easy Pancakes",
+                        "id": 1
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "Salmon with peach salad"
+                        "recipe": "Salmon with peach salad",
+                        "id": 8
                     }
                 ],
                 "day5": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "Avocado Toast"
+                        "recipe": "Avocado Toast",
+                        "id": 2
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "Salmon with peach salad"
+                        "recipe": "Salmon with peach salad",
+                        "id": 8
                     }
                 ],
                 "day6": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "Avocado Toast"
+                        "recipe": "Avocado Toast",
+                        "id": 2
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "Tomato Salad"
+                        "recipe": "Tomato Salad",
+                        "id": 4
                     }
                 ],
                 "day7": [
                     {
                         "mealType": "BREAKFAST",
-                        "recipe": "Avocado Toast"
+                        "recipe": "Avocado Toast",
+                        "id": 2
                     },
                     {
                         "mealType": "DINNER",
-                        "recipe": "The Creamiest Scrambled Eggs (with Goat Cheese)"
+                        "recipe": "The Creamiest Scrambled Eggs (with Goat Cheese)",
+                        "id": 3
                     }
                 ]
             },
@@ -800,6 +812,150 @@
             "tags": ["vegetarian"],
             "title": "Vegatarian menu",
             "id": 2
+        },
+        {
+            "menu": {
+                "day1": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Easy Pancakes",
+                        "id": 1
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "Crunchy garlic chicken",
+                        "id": 5
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Tomato Salad",
+                        "id": 4
+                    }
+                ],
+                "day2": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Avocado Toast",
+                        "id": 2
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "Crunchy garlic chicken",
+                        "id": 5
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Tomato Salad",
+                        "id": 4
+                    }
+                ],
+                "day3": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Easy Pancakes",
+                        "id": 1
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "Salmon with peach salad",
+                        "id": 8
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Mushroom risotto",
+                        "id": 6
+                    }
+                ],
+                "day4": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Avocado Toast",
+                        "id": 2
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "Salmon with peach salad",
+                        "id": 8
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Mushroom risotto",
+                        "id": 6
+                    }
+                ],
+                "day5": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Easy Pancakes",
+                        "id": 1
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "The World's Greatest Ham Sandwich",
+                        "id": 9
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Buttermilk-Brined Roast Chicken",
+                        "id": 7
+                    }
+                ],
+                "day6": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Avocado Toast",
+                        "id": 2
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "The World's Greatest Ham Sandwich",
+                        "id": 9
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "Buttermilk-Brined Roast Chicken",
+                        "id": 7
+                    }
+                ],
+                "day7": [
+                    {
+                        "mealType": "BREAKFAST",
+                        "recipe": "Easy Pancakes",
+                        "id": 1
+                    },
+                    {
+                        "mealType": "LUNCH",
+                        "recipe": "Mushroom risotto",
+                        "id": 6
+                    },
+                    {
+                        "mealType": "DINNER",
+                        "recipe": "The Creamiest Scrambled Eggs (with Goat Cheese)",
+                        "id": 3
+                    }
+                ]
+            },
+            "shopList": [
+                {
+                    "id": 1,
+                    "title": "Chicken",
+                    "quantity": {
+                        "number": 2,
+                        "unit": "PCS"
+                    }
+                },
+                {
+                    "id": 17,
+                    "title": "Eggs",
+                    "quantity": {
+                        "number": 12,
+                        "unit": "PCS"
+                    }
+                }
+            ],
+            "tags": ["kids", "easy"],
+            "title": "Meal Plan kids",
+            "id": 3
         }
     ]
 }

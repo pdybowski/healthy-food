@@ -9,7 +9,6 @@ import { ROUTES_PATHS } from '../../routes';
 import { useNavigate } from 'react-router-dom';
 
 import './upsertMenu.css';
-import { CustomModal } from '../../components/shared/modal/Modal';
 
 function UpsertMenu({
     menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
@@ -21,7 +20,6 @@ function UpsertMenu({
     const [chosenRecipeId, setChosenRecipeId] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
     const [dayMenuError, setDayMenuError] = useState('');
-    const [isFormFilled, setIsFormFilled] = useState(false);
 
     const [errors, setErrors] = useState({});
 
@@ -38,6 +36,7 @@ function UpsertMenu({
             ...menu,
         },
         tags: [],
+        shopList: [],
     });
 
     const setField = ({ target: { name, value } }) => {
@@ -62,12 +61,6 @@ function UpsertMenu({
             newErrors.title = 'Title is too long!';
         }
 
-        Object.entries(form.menu).map(([, value]) => {
-            if (value.length < 3) {
-                setIsFormFilled(true);
-            }
-        });
-
         return newErrors;
     };
 
@@ -89,13 +82,6 @@ function UpsertMenu({
         }
     };
 
-    const handleSubmitWithoutValidation = (e) => {
-        e.preventDefault();
-
-        postForm(form);
-        navigate(ROUTES_PATHS.USER_MENUS);
-    };
-
     const previewFile = (e) => {
         let files = e.target.files;
         let reader = new FileReader();
@@ -105,6 +91,16 @@ function UpsertMenu({
             setForm(formState);
         };
         reader.readAsDataURL(files[0]);
+    };
+
+    const handleSetChosenRecipeId = (value) => {
+        {
+            recipes.map((recipe) => {
+                if (value === recipe.title) {
+                    setChosenRecipeId(recipe.id);
+                }
+            });
+        }
     };
 
     function handleAdditionRecipe(day) {
@@ -153,7 +149,7 @@ function UpsertMenu({
 
     return (
         <Container className='my-4'>
-            <h1>Create new menu</h1>
+            <h2>Menu</h2>
             <Form>
                 <Form.Group className='mb-3'>
                     <Form.Label>Title</Form.Label>
@@ -242,6 +238,7 @@ function UpsertMenu({
                                             className='me-3'
                                             onChange={(e) => {
                                                 setChosenRecipe(e.target.value);
+                                                handleSetChosenRecipeId(e.target.value);
                                             }}
                                         >
                                             <option value=''>-- Select one --</option>
@@ -279,6 +276,7 @@ function UpsertMenu({
                                             handleAdditionRecipe(currentDay);
                                             setTypeOfMeal('');
                                             setChosenRecipe('');
+                                            setChosenRecipeId('');
                                         }}
                                     >
                                         Add meal to my menu
@@ -297,18 +295,6 @@ function UpsertMenu({
                     Submit
                 </Button>
             </Form>
-            {isFormFilled ? (
-                <CustomModal
-                    title={'Warning!'}
-                    isCentered={true}
-                    buttonDismissText={'Edit'}
-                    buttonActionCopy={'Save'}
-                    onClick={() => setIsFormFilled(false)}
-                    onSave={(e) => handleSubmitWithoutValidation(e)}
-                >
-                    {`Not all days on your menu have a minimum of 3 meals. Are you sure you want to add the menu to your list ?`}
-                </CustomModal>
-            ) : null}
         </Container>
     );
 }
