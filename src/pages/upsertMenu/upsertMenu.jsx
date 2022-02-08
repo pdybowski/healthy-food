@@ -18,6 +18,7 @@ function UpsertMenu({
     const [tagList, setTagList] = useState({ tags: [] });
 
     const [chosenRecipe, setChosenRecipe] = useState('');
+    const [chosenRecipeId, setChosenRecipeId] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
     const [dayMenuError, setDayMenuError] = useState('');
     const [isFormFilled, setIsFormFilled] = useState(false);
@@ -106,31 +107,27 @@ function UpsertMenu({
         reader.readAsDataURL(files[0]);
     };
 
-    function addMealToForm(day) {
+    function handleAdditionRecipe(day) {
         const formState = { ...form };
 
-        formState.menu[day].push({
+        const addedRecipe = {
             mealType: typeOfMeal,
             recipe: chosenRecipe,
-        });
-        setForm(formState);
-    }
+            id: chosenRecipeId,
+        };
 
-    function handleAdditionRecipe(day) {
-        if (form.menu[day].length > 0) {
-            form.menu[day].map((recipe) => {
-                if (typeOfMeal === recipe.mealType) {
-                    setDayMenuError(true);
-                    setTimeout(() => {
-                        setDayMenuError(false);
-                    }, 3200);
-                } else {
-                    addMealToForm(day);
-                    setDayMenuError(false);
-                }
-            });
+        if (
+            formState.menu[day].filter(
+                (r) => r.mealType.toLowerCase() === addedRecipe.mealType.toLowerCase()
+            ).length > 0
+        ) {
+            setDayMenuError(`You have already added this type of meal for this day.`);
+            setTimeout(() => {
+                setDayMenuError('');
+            }, 3200);
         } else {
-            addMealToForm(day);
+            formState.menu[day].push(addedRecipe);
+            setDayMenuError('');
         }
     }
 
@@ -243,7 +240,9 @@ function UpsertMenu({
                                         <Form.Select
                                             aria-label='meal'
                                             className='me-3'
-                                            onChange={(e) => setChosenRecipe(e.target.value)}
+                                            onChange={(e) => {
+                                                setChosenRecipe(e.target.value);
+                                            }}
                                         >
                                             <option value=''>-- Select one --</option>
                                             {recipes.map((recipe) => {
@@ -264,6 +263,11 @@ function UpsertMenu({
                                             })}
                                         </Form.Select>
                                     </div>
+                                    {dayMenuError && (
+                                        <Form.Control.Feedback className='d-block' type='invalid'>
+                                            {dayMenuError}
+                                        </Form.Control.Feedback>
+                                    )}
                                     <Button
                                         variant='primary'
                                         type='button'
@@ -279,13 +283,6 @@ function UpsertMenu({
                                     >
                                         Add meal to my menu
                                     </Button>
-                                    {dayMenuError ? (
-                                        <span className='text-danger my-3 font-weight-bold text-center d-block'>
-                                            {`You have already added this type of food for Day ${
-                                                id + 1
-                                            }`}
-                                        </span>
-                                    ) : null}
                                 </Form.Group>
                             </Carousel.Item>
                         );
