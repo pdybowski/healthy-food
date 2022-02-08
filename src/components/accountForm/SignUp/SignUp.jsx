@@ -117,7 +117,7 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
             </Form>
             <div className='d-flex flex-column my-4'>
                 <Button type='button' className='btn button-action' onClick={newUserHandler}>
-                    {`You have already created an account`}
+                    {`Already have an account? Sign in`}
                 </Button>
             </div>
         </div>

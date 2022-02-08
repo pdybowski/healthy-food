@@ -128,10 +128,10 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
             </Form>
             <div className='d-flex flex-column my-4'>
                 <Button type='button' className='btn button-action'>
-                    Forget your password?
+                    Forgot your password?
                 </Button>
                 <Button type='button' className='btn button-action' onClick={newUserHandler}>
-                    {`You don't have an account?`}
+                    {`Don't have an account yet? Register`}
                 </Button>
             </div>
         </div>

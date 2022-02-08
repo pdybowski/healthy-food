@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/footer/Footer';
@@ -52,7 +52,6 @@ function App() {
                     handleSave={onSignInHandler}
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
-                    modalFooterClass={'d-none'}
                 />
                 <Views />
             </BrowserRouter>
