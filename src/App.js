@@ -52,7 +52,6 @@ function App() {
                     handleSave={onSignInHandler}
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
-                    modalFooterClass={'d-none'}
                 />
                 <Views />
             </BrowserRouter>

@@ -2,18 +2,17 @@
 
 **[Healthy Food App](https://pdybowski.github.io/healthy-food/) is a single page application created with** **React**.
 
-Main functionality of the app is searching for recipes, adding recipes, planning meals as well as generating shopping
-lists based on the recipe or meal plan.
+Main functionality of the app is searching for recipes, adding recipes, planning meals as well as generating shopping lists based on the recipe or menu.
 
 > Note: due to the issuess realted to the limited number of characters available in db.json file, app version published on github page does not display images. To see full version of the app, please [install](#1-installation) and display it locally.
 
 ## Table of contents
 
-1. [Installation](#1-installation)
-2. [Stack](#2-stack)
-3. [Features](#3-features)
-4. [Authors](#4-authors)
-5. [Additonal informations](#5-additional-informations)
+1.  [Installation](#1-installation)
+2.  [Stack](#2-stack)
+3.  [Features](#3-features)
+4.  [Authors](#4-authors)
+5.  [Additonal informations](#5-additional-informations)
 
 ## 1. Installation
 
@@ -33,71 +32,70 @@ lists based on the recipe or meal plan.
 
 Project is created with:
 
-- [React 17.0.2](https://reactjs.org/) and React [packages](link)
+-   [React 17.0.2](https://reactjs.org/) and React [packages](https://github.com/pdybowski/healthy-food/blob/master/package.json)
 
-- [Babel 7.16.7](https://babeljs.io/)
+-   [Babel 7.16.7](https://babeljs.io/)
 
-- [Webpack 5.66.0](https://webpack.js.org/)
+-   [Webpack 5.66.0](https://webpack.js.org/)
 
-- [Prettier 2.5.1](https://prettier.io/)
+-   [Prettier 2.5.1](https://prettier.io/)
 
-- [EsLint 8.6.0](https://eslint.org/)
+-   [EsLint 8.6.0](https://eslint.org/)
 
-- [JSON Server 0.17.0](https://www.npmjs.com/package/json-server)
+-   [JSON Server 0.17.0](https://www.npmjs.com/package/json-server)
 
-- [gh-pages](https://pages.github.com/) - to deploy app on github pages
+-   [gh-pages](https://pages.github.com/) - to deploy app on github pages
 
 ## 3. Features
 
 <details><summary>Main page</summary>
 
-- Navigation and sign-in/sign-up panel
+-   Navigation and sign-in/sign-up panel
 
-- General information about the app
+-   General information about the app
 
-- Contact form
+-   Contact form
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/main_page_2.PNG?raw=true)
 
 </details>
 
 <details><summary>Public User Features</summary>
 
-- searching for recipes and meal plans
+-   searching for recipes and menus
 
-- checking recommended recipes and meal plans
+-   checking recommended recipes and menus
 
-- downloading shopping list for recipes and meal plans
+-   downloading shopping list for recipes and menus
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/non_logged_view.PNG?raw=true)
 
 </details>
 
 <details><summary>Signed-up User Features</summary>
 
-- editing users settings
+-   editing users settings
 
-- creating, editing and deleting recipes and meal plans
+-   creating, editing and deleting recipes and menus
 
-- checking favorite recipes and meal plans
+-   checking favorite recipes and menus
 
-![image](link)
+![image](https://github.com/pdybowski/healthy-food/blob/master/src/assets/images/logged_view.PNG?raw=true)
 
 </details>
 
 ## 4. Authors
 
-- **Mentor:** [Piotr Dybowski](https://github.com/pdybowski)
+-   **Mentor:** [Piotr Dybowski](https://github.com/pdybowski)
 
-- [Justyna Gładysz](https://github.com/jusgladysz)
+-   [Justyna Gładysz](https://github.com/jusgladysz)
 
-- [Patrycja Starzec](https://github.com/patrycjastarzec)
+-   [Patrycja Starzec](https://github.com/patrycjastarzec)
 
-- [Tomasz Prządka](https://github.com/altNameForStudying)
+-   [Tomasz Prządka](https://github.com/altNameForStudying)
 
-- [Filip Kaczmarek](https://github.com/FilipKaczmarek)
+-   [Filip Kaczmarek](https://github.com/FilipKaczmarek)
 
 ## 5. Additional Informations
 
-This project was created during the CodersCamp, 2021/2022 edition. To read more, please
-check: [CodersCamp](https://www.coderscamp.edu.pl/), [CodersCamp Github](https://github.com/CodersCamp2021).
+This project was created during the CodersCamp, 2021/2022 edition. To read more, please check: [CodersCamp](https://www.coderscamp.edu.pl/), [CodersCamp Github](https://github.com/CodersCamp2021).
