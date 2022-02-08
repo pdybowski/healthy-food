@@ -69,7 +69,7 @@ export const routes = [
     },
     {
         path: ROUTES_PATHS.REGISTER,
-        element: <AccountForm.jsx />,
+        element: <AccountForm />,
         key: 'register',
     },
 ];

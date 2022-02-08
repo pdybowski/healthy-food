@@ -9,6 +9,8 @@ import { ROUTES_PATHS } from '../../routes';
 import { useNavigate } from 'react-router-dom';
 
 import './upsertMenu.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 function UpsertMenu({
     menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
@@ -103,7 +105,7 @@ function UpsertMenu({
         }
     };
 
-    function handleAdditionRecipe(day) {
+    function handleRecipeAddition(day) {
         const formState = { ...form };
 
         const addedRecipe = {
@@ -114,7 +116,7 @@ function UpsertMenu({
 
         if (
             formState.menu[day].filter(
-                (r) => r.mealType.toLowerCase() === addedRecipe.mealType.toLowerCase()
+                (recipe) => recipe.mealType.toLowerCase() === addedRecipe.mealType.toLowerCase()
             ).length > 0
         ) {
             setDayMenuError(`You have already added this type of meal for this day.`);
@@ -123,6 +125,20 @@ function UpsertMenu({
             }, 3200);
         } else {
             formState.menu[day].push(addedRecipe);
+            setDayMenuError('');
+        }
+    }
+
+    function handleRecipeDelete(e, day) {
+        const formState = { ...form };
+
+        formState.menu[day] = formState.menu[day].filter(
+            (recipe) => recipe.recipe !== e.currentTarget.value
+        );
+
+        setForm(formState);
+
+        if (formState.menu[day].length === 0) {
             setDayMenuError('');
         }
     }
@@ -207,6 +223,15 @@ function UpsertMenu({
                                                 return (
                                                     <li key={index}>
                                                         {`${menuElement.mealType}: ${menuElement.recipe}`}
+                                                        <button
+                                                            className='ms-4 py-1 border-0 bg-transparent'
+                                                            value={menuElement.recipe}
+                                                            onClick={(e) =>
+                                                                handleRecipeDelete(e, currentDay)
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon icon={faTimes} />
+                                                        </button>
                                                     </li>
                                                 );
                                             })}
@@ -273,7 +298,7 @@ function UpsertMenu({
                                             if (typeOfMeal === '') return false;
                                             if (chosenRecipe === '') return false;
 
-                                            handleAdditionRecipe(currentDay);
+                                            handleRecipeAddition(currentDay);
                                             setTypeOfMeal('');
                                             setChosenRecipe('');
                                             setChosenRecipeId('');
