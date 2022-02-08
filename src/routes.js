@@ -15,7 +15,7 @@ export const ROUTES_PATHS = {
     MEAL_PLANS: '/meal-plans',
     CONTACT: '/contact',
     ABOUT: '/about',
-    LOGOUT: '/',
+    LOGOUT: '/healthy-food',
     USER_PROFILE: '/user-profile',
     USER_RECIPES: '/user-profile/recipes',
     USER_RECIPES_ADD: '/user-profile/recipes/new',
