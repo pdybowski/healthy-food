@@ -1,12 +1,19 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../components/shared/tiles/recipeTile/RecipeTile';
 import Search from '../../components/shared/search/Search';
 
 function Recommended() {
+    {
+        /* Will be updated by the input from database - temporary hard-coded values (recipes) with inactive searchbar*/
+    }
+    const [input, setInput] = useState('');
+    const updateInput = async (input) => {
+        setInput(input);
+    };
     return (
         <Container className='my-4'>
-            <Search />
+            <Search input={input} onChange={updateInput} />
             <Row xs={1} md={2} xxl={4} className='g-4'>
                 <RecipeTile
                     isFavourite={true}
