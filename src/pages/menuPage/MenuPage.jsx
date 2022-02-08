@@ -1,13 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import ApiQuery from '../../components/shared/api/ApiQuery';
-import { Carousel, Container } from 'react-bootstrap';
+import { Carousel, Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import TimeFormatted from '../../components/shared/timeFormatted/TimeFormatted';
 import { EditControls } from '../../components/shared/editControls/EditControls';
 import { ROUTES_PATHS } from '../../routes';
 import './menuPage.css';
+import RecipeTile from '../../components/shared/tiles/recipeTile/RecipeTile';
 
 function MenuPage(props) {
     const { isLoggedIn, isOwner } = props;
@@ -15,10 +16,12 @@ function MenuPage(props) {
     const location = useLocation();
 
     const [menuData, setMenuData] = useState('');
+    const [recipes, setRecipes] = useState();
 
     const fetchData = async () => {
         try {
             setMenuData((await ApiQuery.get(`menus/${location.state.id}`)).data);
+            setRecipes((await ApiQuery.get('recipes')).data);
         } catch (err) {
             if (err.response) {
                 console.error(err.response.data);
@@ -30,10 +33,7 @@ function MenuPage(props) {
         }
     };
 
-    const {
-        title,
-        image, // menu
-    } = menuData;
+    const { title, image, menu } = menuData;
 
     useEffect(() => {
         fetchData();
@@ -63,18 +63,45 @@ function MenuPage(props) {
                     </div>
                 </div>
             </div>
-            <Carousel variant='dark'>
-                {/*{Object.keys(menu).map((day, id) => {*/}
-                {/*    const currentDay = `day${id + 1}`;*/}
-
-                {/*    return (*/}
-                {/*        <Carousel.Item key={id} indicators='false'>*/}
-                {/*            <h2 className={'text-center'}>{`Day ${id + 1}`}</h2>*/}
-                {/*            <div>Menu for day {currentDay}:</div>*/}
-                {/*        </Carousel.Item>*/}
-                {/*    );*/}
-                {/*})}*/}
-            </Carousel>
+            {menu && recipes && (
+                <Carousel variant='dark' className='mt-4'>
+                    {Object.keys(menu).map((day, id) => {
+                        return (
+                            <Carousel.Item key={id} indicators='false'>
+                                <h2 className={'text-center'}>{`Day ${id + 1}`}</h2>
+                                <Row xs={1} md={2} xxl={3} className='g-4'>
+                                    {menu[`day${id + 1}`].map((meal, id) => {
+                                        return (
+                                            <div key={id} className='pt-3'>
+                                                <h4 className='text-center'>{meal.mealType}</h4>
+                                                {recipes.map((recipe) => {
+                                                    if (meal.id === recipe.id) {
+                                                        return (
+                                                            <RecipeTile
+                                                                data={recipe}
+                                                                title={recipe.title}
+                                                                itemTags={recipe.tags}
+                                                                time={recipe.timeToPrepare}
+                                                                mealType={recipe.mealType}
+                                                                key={recipe.id}
+                                                                isFavourite={false}
+                                                                isLoggedIn={false}
+                                                                isOwner={false}
+                                                                image={recipe.image}
+                                                                id={recipe.id}
+                                                            />
+                                                        );
+                                                    }
+                                                })}
+                                            </div>
+                                        );
+                                    })}
+                                </Row>
+                            </Carousel.Item>
+                        );
+                    })}
+                </Carousel>
+            )}
         </Container>
     );
 }
