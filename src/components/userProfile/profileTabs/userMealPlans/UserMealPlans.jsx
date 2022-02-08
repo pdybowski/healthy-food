@@ -5,26 +5,29 @@ import ApiQuery from '../../../shared/api/ApiQuery';
 import { ROUTES_PATHS } from '../../../../routes';
 import MenuTile from '../../../shared/tiles/menuTile/MenuTile';
 
-function UserMenus() {
-    const [menus, setMenus] = useState([]);
+function UserMealPlans() {
+    const [mealPlans, setMealPlans] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-            setMenus((await ApiQuery.get('menus')).data);
+            setMealPlans((await ApiQuery.get('mealPlans')).data);
         }
 
         fetchData();
     }, []);
 
     function removeMenu(menuId) {
-        setMenus((menus) => menus.filter((menu) => menu.id !== menuId));
+        setMealPlans((mealPlans) => mealPlans.filter((menu) => menu.id !== menuId));
     }
 
     return (
         <Container className='my-4'>
             <Row xs={1} md={2} xxl={4} className='g-4'>
-                <NewItemTile buttonLabel={'Add new menu'} route={ROUTES_PATHS.USER_MENUS_ADD} />
-                {menus.map((menu) => {
+                <NewItemTile
+                    buttonLabel={'Add new menu'}
+                    route={ROUTES_PATHS.USER_MEAL_PLANS_ADD}
+                />
+                {mealPlans.map((menu) => {
                     return (
                         <MenuTile
                             data={menu}
@@ -45,4 +48,4 @@ function UserMenus() {
     );
 }
 
-export default UserMenus;
+export default UserMealPlans;

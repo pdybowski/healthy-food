@@ -67,7 +67,7 @@ function UpsertMenu({
     };
 
     async function postForm(form) {
-        await ApiQuery.post('menus', form);
+        await ApiQuery.post('mealPlans', form);
     }
 
     const navigate = useNavigate();
@@ -80,7 +80,7 @@ function UpsertMenu({
             setErrors(newErrors);
         } else {
             postForm(form);
-            navigate(ROUTES_PATHS.USER_MENUS);
+            navigate(ROUTES_PATHS.USER_MEAL_PLANS);
         }
     };
 

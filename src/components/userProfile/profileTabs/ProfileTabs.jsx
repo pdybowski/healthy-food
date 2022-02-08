@@ -3,7 +3,7 @@ import { Container, Tab, Tabs } from 'react-bootstrap';
 import UserRecipes from './userRecipes/UserRecipes.jsx';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_TABS, protectedRoutes } from '../../../routes';
-import UserMenus from './userMenus/UserMenus.jsx';
+import UserMealPlans from './userMealPlans/UserMealPlans.jsx';
 import Favourites from './favorites/Favourites.jsx';
 
 function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
@@ -25,8 +25,8 @@ function ProfileTabs({ tab = PROFILE_TABS.PROFILE_RECIPES }) {
                     <UserRecipes />
                 </Tab>
 
-                <Tab eventKey={PROFILE_TABS.PROFILE_MENUS} title='Your menus'>
-                    <UserMenus />
+                <Tab eventKey={PROFILE_TABS.PROFILE_MEAL_PLANS} title='Your meal plans'>
+                    <UserMealPlans />
                 </Tab>
                 <Tab eventKey={PROFILE_TABS.PROFILE_FAVOURITES} title='Favourites'>
                     <Favourites />

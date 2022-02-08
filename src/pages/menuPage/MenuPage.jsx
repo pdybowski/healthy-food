@@ -20,7 +20,7 @@ function MenuPage(props) {
 
     const fetchData = async () => {
         try {
-            setMenuData((await ApiQuery.get(`menus/${location.state.id}`)).data);
+            setMenuData((await ApiQuery.get(`mealPlans/${location.state.id}`)).data);
             setRecipes((await ApiQuery.get('recipes')).data);
         } catch (err) {
             if (err.response) {
@@ -56,8 +56,8 @@ function MenuPage(props) {
                         <EditControls
                             isLoggedIn={isLoggedIn}
                             isOwner={isOwner}
-                            url={ROUTES_PATHS.USER_MENUS_ADD}
-                            endpoint={'menus'}
+                            url={ROUTES_PATHS.USER_MEAL_PLANS_ADD}
+                            endpoint={'mealPlans'}
                             id={location.state.id}
                         />
                     </div>

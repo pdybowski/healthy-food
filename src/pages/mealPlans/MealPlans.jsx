@@ -4,13 +4,13 @@ import MenuTile from '../../components/shared/tiles/menuTile/MenuTile';
 import Search from '../../components/shared/search/Search';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 
-function Menus() {
-    const [menus, setMenus] = useState([]);
+function MealPlans() {
+    const [mealPlans, setMealPlans] = useState([]);
     const [input, setInput] = useState('');
 
     const fetchData = async () => {
         try {
-            setMenus((await ApiQuery.get('menus')).data);
+            setMealPlans((await ApiQuery.get('mealPlans')).data);
         } catch (err) {
             if (err.response) {
                 console.log(err.response.data);
@@ -34,7 +34,7 @@ function Menus() {
         <Container className='my-4'>
             <Search input={input} onChange={updateInput} />
             <Row xs={1} md={2} xxl={4} className='g-4'>
-                {menus
+                {mealPlans
                     .filter((menu) => {
                         if (input === '') {
                             return menu;
@@ -62,4 +62,4 @@ function Menus() {
     );
 }
 
-export default Menus;
+export default MealPlans;

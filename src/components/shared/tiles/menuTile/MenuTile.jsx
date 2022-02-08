@@ -44,7 +44,7 @@ function MenuTile(props) {
                 <EditControls
                     isLoggedIn={isLoggedIn}
                     isOwner={isOwner}
-                    endpoint={'menus'}
+                    endpoint={'mealPlans'}
                     id={id}
                     handleSave={handleSave}
                 />

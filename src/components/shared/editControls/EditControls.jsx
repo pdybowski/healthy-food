@@ -21,7 +21,7 @@ export function EditControls(props) {
 
     const fetchData = async (endpoint, id) => {
         try {
-            endpoint === 'menus'
+            endpoint === 'mealPlans'
                 ? setItems((await ApiQuery.get(`${endpoint}/${id}`)).data.shopList)
                 : setItems((await ApiQuery.get(`${endpoint}/${id}`)).data.ingredients);
         } catch (err) {

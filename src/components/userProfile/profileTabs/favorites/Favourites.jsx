@@ -9,12 +9,12 @@ function Favourites() {
     const [isFavMenu, setIsFavMenu] = useState(false);
 
     const [recipes, setRecipes] = useState([]);
-    const [menus, setMenus] = useState([]);
+    const [mealPlans, setMealPlans] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             setRecipes((await ApiQuery.get('recipes')).data);
-            setMenus((await ApiQuery.get('menus')).data);
+            setMealPlans((await ApiQuery.get('mealPlans')).data);
         }
 
         fetchData();
@@ -31,7 +31,7 @@ function Favourites() {
     const menuHandlerButton = () => {
         setIsFavRecipes(false);
         setIsFavMenu(true);
-        setActiveButton('menus');
+        setActiveButton('mealPlans');
     };
 
     return (
@@ -45,10 +45,10 @@ function Favourites() {
             </Button>
             <Button
                 variant='outline-info'
-                className={activeButton === 'menus' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                className={activeButton === 'mealPlans' ? 'active me-3 mb-3' : 'me-3 mb-3'}
                 onClick={menuHandlerButton}
             >
-                Menus
+                Meal plans
             </Button>
             {isFavRecipes === true && isFavMenu === false ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
@@ -72,7 +72,7 @@ function Favourites() {
                 </Row>
             ) : isFavRecipes === false && isFavMenu === true ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {menus.map((menu) => {
+                    {mealPlans.map((menu) => {
                         return (
                             <MenuTile
                                 title={menu.title}
