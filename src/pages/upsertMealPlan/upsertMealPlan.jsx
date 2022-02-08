@@ -8,12 +8,12 @@ import ApiQuery from '../../components/shared/api/ApiQuery';
 import { ROUTES_PATHS } from '../../routes';
 import { useNavigate } from 'react-router-dom';
 
-import './upsertMenu.css';
+import './upsertMealPlan.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-function UpsertMenu({
-    menu = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
+function UpsertMealPlan({
+    mealPlan = { day1: [], day2: [], day3: [], day4: [], day5: [], day6: [], day7: [] },
 }) {
     const [recipes, setRecipes] = useState([]);
     const [tagList, setTagList] = useState({ tags: [] });
@@ -21,7 +21,7 @@ function UpsertMenu({
     const [chosenRecipe, setChosenRecipe] = useState('');
     const [chosenRecipeId, setChosenRecipeId] = useState('');
     const [typeOfMeal, setTypeOfMeal] = useState('');
-    const [dayMenuError, setDayMenuError] = useState('');
+    const [dayMealPlanError, setDayMealPlanError] = useState('');
 
     const [errors, setErrors] = useState({});
 
@@ -34,8 +34,8 @@ function UpsertMenu({
     }, []);
 
     const [form, setForm] = useState({
-        menu: {
-            ...menu,
+        mealPlan: {
+            ...mealPlan,
         },
         tags: [],
         shopList: [],
@@ -115,31 +115,31 @@ function UpsertMenu({
         };
 
         if (
-            formState.menu[day].filter(
+            formState.mealPlan[day].filter(
                 (recipe) => recipe.mealType.toLowerCase() === addedRecipe.mealType.toLowerCase()
             ).length > 0
         ) {
-            setDayMenuError(`You have already added this type of meal for this day.`);
+            setDayMealPlanError(`You have already added this type of meal for this day.`);
             setTimeout(() => {
-                setDayMenuError('');
+                setDayMealPlanError('');
             }, 3200);
         } else {
-            formState.menu[day].push(addedRecipe);
-            setDayMenuError('');
+            formState.mealPlan[day].push(addedRecipe);
+            setDayMealPlanError('');
         }
     }
 
     function handleRecipeDelete(e, day) {
         const formState = { ...form };
 
-        formState.menu[day] = formState.menu[day].filter(
+        formState.mealPlan[day] = formState.mealPlan[day].filter(
             (recipe) => recipe.recipe !== e.currentTarget.value
         );
 
         setForm(formState);
 
-        if (formState.menu[day].length === 0) {
-            setDayMenuError('');
+        if (formState.mealPlan[day].length === 0) {
+            setDayMealPlanError('');
         }
     }
 
@@ -165,12 +165,12 @@ function UpsertMenu({
 
     return (
         <Container className='my-4'>
-            <h2>Menu</h2>
+            <h2>Meal Plan</h2>
             <Form>
                 <Form.Group className='mb-3'>
                     <Form.Label>Title</Form.Label>
                     <Form.Control
-                        placeholder='Enter menu title'
+                        placeholder='Enter meal plan title'
                         name='title'
                         type='text'
                         onChange={setField}
@@ -209,32 +209,37 @@ function UpsertMenu({
                     )}
                 </Form.Group>
                 <Carousel variant='dark' interval={null}>
-                    {Object.keys(form.menu).map((day, id) => {
+                    {Object.keys(form.mealPlan).map((day, id) => {
                         const currentDay = `day${id + 1}`;
 
                         return (
                             <Carousel.Item key={id} indicators='false' interval={null}>
                                 <h2 className={'text-center'}>{`Day ${id + 1}`}</h2>
-                                {form.menu[currentDay].length > 0 && (
+                                {form.mealPlan[currentDay].length > 0 && (
                                     <div>
-                                        Menu for day {id + 1}:
+                                        MealPlan for day {id + 1}:
                                         <ul>
-                                            {form.menu[currentDay].map((menuElement, index) => {
-                                                return (
-                                                    <li key={index}>
-                                                        {`${menuElement.mealType}: ${menuElement.recipe}`}
-                                                        <button
-                                                            className='ms-4 py-1 border-0 bg-transparent'
-                                                            value={menuElement.recipe}
-                                                            onClick={(e) =>
-                                                                handleRecipeDelete(e, currentDay)
-                                                            }
-                                                        >
-                                                            <FontAwesomeIcon icon={faTimes} />
-                                                        </button>
-                                                    </li>
-                                                );
-                                            })}
+                                            {form.mealPlan[currentDay].map(
+                                                (mealPlanElement, index) => {
+                                                    return (
+                                                        <li key={index}>
+                                                            {`${mealPlanElement.mealType}: ${mealPlanElement.recipe}`}
+                                                            <button
+                                                                className='ms-4 py-1 border-0 bg-transparent'
+                                                                value={mealPlanElement.recipe}
+                                                                onClick={(e) =>
+                                                                    handleRecipeDelete(
+                                                                        e,
+                                                                        currentDay
+                                                                    )
+                                                                }
+                                                            >
+                                                                <FontAwesomeIcon icon={faTimes} />
+                                                            </button>
+                                                        </li>
+                                                    );
+                                                }
+                                            )}
                                         </ul>
                                     </div>
                                 )}
@@ -285,9 +290,9 @@ function UpsertMenu({
                                             })}
                                         </Form.Select>
                                     </div>
-                                    {dayMenuError && (
+                                    {dayMealPlanError && (
                                         <Form.Control.Feedback className='d-block' type='invalid'>
-                                            {dayMenuError}
+                                            {dayMealPlanError}
                                         </Form.Control.Feedback>
                                     )}
                                     <Button
@@ -304,7 +309,7 @@ function UpsertMenu({
                                             setChosenRecipeId('');
                                         }}
                                     >
-                                        Add meal to my menu
+                                        Add meal to my meal plan
                                     </Button>
                                 </Form.Group>
                             </Carousel.Item>
@@ -324,4 +329,4 @@ function UpsertMenu({
     );
 }
 
-export default UpsertMenu;
+export default UpsertMealPlan;

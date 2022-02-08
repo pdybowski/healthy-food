@@ -3,7 +3,7 @@
 **[Healthy Food App](https://pdybowski.github.io/healthy-food/) is a single page application created with** **React**.
 
 Main functionality of the app is searching for recipes, adding recipes, planning meals as well as generating shopping
-lists based on the recipe or menu.
+lists based on the recipe or meal plan.
 
 > Note: due to the issuess realted to the limited number of characters available in db.json file, app version published on github page does not display images. To see full version of the app, please [install](#1-installation) and display it locally.
 

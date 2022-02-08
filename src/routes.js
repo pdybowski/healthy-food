@@ -2,11 +2,11 @@ import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
 import MealPlans from './pages/mealPlans/MealPlans';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
-import UpsertMenu from './pages/upsertMenu/upsertMenu';
+import UpsertMealPlan from './pages/upsertMealPlan/upsertMealPlan';
 import RecipePage from './pages/recipePage/RecipePage';
 import Recommended from './pages/recommended/Recommended';
 import AccountForm from './components/accountForm/accountForm';
-import MenuPage from './pages/menuPage/MenuPage';
+import MealPlanPage from './pages/mealPlanPage/MealPlanPage';
 
 export const ROUTES_PATHS = {
     MAIN_PAGE: '/healthy-food',
@@ -25,7 +25,7 @@ export const ROUTES_PATHS = {
     USER_FAVORITES: '/user-profile/favourites',
     USER_SETTINGS: '/user-profile/settings',
     RECIPE: '/recipes/:id',
-    MENU: '/meal-plans/:id',
+    MEAL_PLAN: '/meal-plans/:id',
     REGISTER: '/register',
 };
 
@@ -63,9 +63,9 @@ export const routes = [
         key: 'recipe',
     },
     {
-        path: ROUTES_PATHS.MENU,
-        element: <MenuPage />,
-        key: 'menu',
+        path: ROUTES_PATHS.MEAL_PLAN,
+        element: <MealPlanPage />,
+        key: 'mealPlan',
     },
     {
         path: ROUTES_PATHS.REGISTER,
@@ -102,8 +102,8 @@ export const protectedRoutes = [
     },
     {
         path: ROUTES_PATHS.USER_MEAL_PLANS_ADD,
-        element: <UpsertMenu />,
-        key: 'upsert-menu',
+        element: <UpsertMealPlan />,
+        key: 'upsert-mealPlan',
     },
     {
         path: ROUTES_PATHS.USER_SETTINGS,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import MenuTile from '../../components/shared/tiles/menuTile/MenuTile';
+import MealPlanTile from '../../components/shared/tiles/mealPlanTile/MealPlanTile';
 import Search from '../../components/shared/search/Search';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 
@@ -35,25 +35,25 @@ function MealPlans() {
             <Search input={input} onChange={updateInput} />
             <Row xs={1} md={2} xxl={4} className='g-4'>
                 {mealPlans
-                    .filter((menu) => {
+                    .filter((mealPlan) => {
                         if (input === '') {
-                            return menu;
-                        } else if (menu.title.toLowerCase().includes(input.toLowerCase())) {
-                            return menu;
+                            return mealPlan;
+                        } else if (mealPlan.title.toLowerCase().includes(input.toLowerCase())) {
+                            return mealPlan;
                         }
                     })
-                    .map((menu) => {
+                    .map((mealPlan) => {
                         return (
-                            <MenuTile
-                                data={menu}
-                                title={menu.title}
-                                tags={menu.tags}
+                            <MealPlanTile
+                                data={mealPlan}
+                                title={mealPlan.title}
+                                tags={mealPlan.tags}
                                 isFavourite={false}
                                 isLoggedIn={false}
                                 isOwner={false}
-                                image={menu.image}
-                                key={menu.id}
-                                id={menu.id}
+                                image={mealPlan.image}
+                                key={mealPlan.id}
+                                id={mealPlan.id}
                             />
                         );
                     })}

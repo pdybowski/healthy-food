@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import NewItemTile from '../../../shared/tiles/newItemTile/NewItemTile';
 import ApiQuery from '../../../shared/api/ApiQuery';
 import { ROUTES_PATHS } from '../../../../routes';
-import MenuTile from '../../../shared/tiles/menuTile/MenuTile';
+import MealPlanTile from '../../../shared/tiles/mealPlanTile/MealPlanTile';
 
 function UserMealPlans() {
     const [mealPlans, setMealPlans] = useState([]);
@@ -16,30 +16,30 @@ function UserMealPlans() {
         fetchData();
     }, []);
 
-    function removeMenu(menuId) {
-        setMealPlans((mealPlans) => mealPlans.filter((menu) => menu.id !== menuId));
+    function removeMealPlan(mealPlanId) {
+        setMealPlans((mealPlans) => mealPlans.filter((mealPlan) => mealPlan.id !== mealPlanId));
     }
 
     return (
         <Container className='my-4'>
             <Row xs={1} md={2} xxl={4} className='g-4'>
                 <NewItemTile
-                    buttonLabel={'Add new menu'}
+                    buttonLabel={'Add new meal plan'}
                     route={ROUTES_PATHS.USER_MEAL_PLANS_ADD}
                 />
-                {mealPlans.map((menu) => {
+                {mealPlans.map((mealPlan) => {
                     return (
-                        <MenuTile
-                            data={menu}
-                            title={menu.title}
-                            tags={menu.tags}
-                            key={menu.id}
+                        <MealPlanTile
+                            data={mealPlan}
+                            title={mealPlan.title}
+                            tags={mealPlan.tags}
+                            key={mealPlan.id}
                             isFavourite={false}
                             isLoggedIn={true}
                             isOwner={true}
-                            image={menu.image}
-                            id={menu.id}
-                            handleSave={removeMenu}
+                            image={mealPlan.image}
+                            id={mealPlan.id}
+                            handleSave={removeMealPlan}
                         />
                     );
                 })}

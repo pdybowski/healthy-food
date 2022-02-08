@@ -127,7 +127,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                                     setActive('');
                                 }}
                             >
-                                <NavDropdown.Item>Add menu</NavDropdown.Item>
+                                <NavDropdown.Item>Add meal plan</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                         <NavDropdown
@@ -204,7 +204,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                                         setActive('');
                                     }}
                                 >
-                                    <NavDropdown.Item>Add menu</NavDropdown.Item>
+                                    <NavDropdown.Item>Add meal plan</NavDropdown.Item>
                                 </LinkContainer>
                             </div>
                             <NavDropdown.Divider />

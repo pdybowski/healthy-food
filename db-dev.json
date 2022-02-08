@@ -700,7 +700,7 @@
     ],
     "mealPlans": [
         {
-            "menu": {
+            "mealPlan": {
                 "day1": [
                     {
                         "mealType": "BREAKFAST",
@@ -810,11 +810,11 @@
                 }
             ],
             "tags": ["vegetarian"],
-            "title": "Vegatarian menu",
+            "title": "Vegatarian meal plan",
             "id": 2
         },
         {
-            "menu": {
+            "mealPlan": {
                 "day1": [
                     {
                         "mealType": "BREAKFAST",

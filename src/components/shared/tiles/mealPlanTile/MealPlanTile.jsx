@@ -8,16 +8,16 @@ import Tile from '../tile/tile';
 import { Tags } from '../../tags/Tags';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATHS } from '../../../../routes';
-import placeholder from '../../../../assets/images/menu-placeholder.png';
-import './menuTile.css';
+import placeholder from '../../../../assets/images/meal-plan-placeholder.png';
+import './mealPlanTile.css';
 
-function MenuTile(props) {
+function MealPlanTile(props) {
     const { isFavourite, isLoggedIn, isOwner, title, tags, id, image, data, handleSave } = props;
 
     const navigate = useNavigate();
 
-    function handleShowMenu() {
-        navigate(`${ROUTES_PATHS.MENU.replace(':id', data.id)}`, { state: data });
+    function handleShowMealPlan() {
+        navigate(`${ROUTES_PATHS.MEAL_PLAN.replace(':id', data.id)}`, { state: data });
     }
 
     return (
@@ -26,12 +26,12 @@ function MenuTile(props) {
                 variant='top'
                 src={image && true ? image : placeholder}
                 style={{ width: '100%', height: '17rem', objectFit: 'cover' }}
-                onClick={handleShowMenu}
+                onClick={handleShowMealPlan}
                 className='pe-auto card-image'
             />
             <FavouriteIcon isFavourite={isFavourite} isLoggedIn={isLoggedIn} />
             <Card.Body>
-                <Card.Title className='text-dark card-title ' onClick={handleShowMenu}>
+                <Card.Title className='text-dark card-title ' onClick={handleShowMealPlan}>
                     {title}
                 </Card.Title>
                 <ListGroup className='list-group-flush'>
@@ -53,4 +53,4 @@ function MenuTile(props) {
     );
 }
 
-export default MenuTile;
+export default MealPlanTile;

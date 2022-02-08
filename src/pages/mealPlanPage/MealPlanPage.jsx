@@ -7,20 +7,20 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 import TimeFormatted from '../../components/shared/timeFormatted/TimeFormatted';
 import { EditControls } from '../../components/shared/editControls/EditControls';
 import { ROUTES_PATHS } from '../../routes';
-import './menuPage.css';
+import './mealPlanPage.css';
 import RecipeTile from '../../components/shared/tiles/recipeTile/RecipeTile';
 
-function MenuPage(props) {
+function MealPlanPage(props) {
     const { isLoggedIn, isOwner } = props;
 
     const location = useLocation();
 
-    const [menuData, setMenuData] = useState('');
+    const [mealPlanData, setMealPlanData] = useState('');
     const [recipes, setRecipes] = useState();
 
     const fetchData = async () => {
         try {
-            setMenuData((await ApiQuery.get(`mealPlans/${location.state.id}`)).data);
+            setMealPlanData((await ApiQuery.get(`mealPlans/${location.state.id}`)).data);
             setRecipes((await ApiQuery.get('recipes')).data);
         } catch (err) {
             if (err.response) {
@@ -33,7 +33,7 @@ function MenuPage(props) {
         }
     };
 
-    const { title, image, menu } = menuData;
+    const { title, image, mealPlan } = mealPlanData;
 
     useEffect(() => {
         fetchData();
@@ -63,14 +63,14 @@ function MenuPage(props) {
                     </div>
                 </div>
             </div>
-            {menu && recipes && (
+            {mealPlan && recipes && (
                 <Carousel variant='dark' className='mt-4'>
-                    {Object.keys(menu).map((day, id) => {
+                    {Object.keys(mealPlan).map((day, id) => {
                         return (
                             <Carousel.Item key={id} indicators='false'>
                                 <h2 className={'text-center'}>{`Day ${id + 1}`}</h2>
                                 <Row xs={1} md={2} xxl={3} className='g-4'>
-                                    {menu[`day${id + 1}`].map((meal, id) => {
+                                    {mealPlan[`day${id + 1}`].map((meal, id) => {
                                         return (
                                             <div key={id} className='pt-3'>
                                                 <h4 className='text-center'>{meal.mealType}</h4>
@@ -106,4 +106,4 @@ function MenuPage(props) {
     );
 }
 
-export default MenuPage;
+export default MealPlanPage;
