@@ -17,7 +17,8 @@ function RecipePage(props) {
 
     const fetchData = async () => {
         try {
-            setRecipeData((await ApiQuery.get(`recipes/${location.state.id}`)).data);
+            const recipesData = (await ApiQuery.get(`recipes/${location.state.id}`)).data;
+            setRecipeData(recipesData);
         } catch (err) {
             if (err.response) {
                 console.error(err.response.data);

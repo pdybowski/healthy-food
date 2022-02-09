@@ -10,7 +10,8 @@ function Recipes() {
 
     const fetchData = async () => {
         try {
-            setRecipes((await ApiQuery.get('recipes')).data);
+            const recipesData = (await ApiQuery.get('recipes')).data;
+            setRecipes(recipesData);
         } catch (err) {
             if (err.response) {
                 console.log(err.response.data);

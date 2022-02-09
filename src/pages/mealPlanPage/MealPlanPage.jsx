@@ -20,8 +20,11 @@ function MealPlanPage(props) {
 
     const fetchData = async () => {
         try {
-            setMealPlanData((await ApiQuery.get(`mealPlans/${location.state.id}`)).data);
-            setRecipes((await ApiQuery.get('recipes')).data);
+            const mealPlansData = (await ApiQuery.get(`mealPlans/${location.state.id}`)).data;
+            const recipesData = (await ApiQuery.get('recipes')).data;
+
+            setMealPlanData(mealPlansData);
+            setRecipes(recipesData);
         } catch (err) {
             if (err.response) {
                 console.error(err.response.data);

@@ -10,7 +10,8 @@ function MealPlans() {
 
     const fetchData = async () => {
         try {
-            setMealPlans((await ApiQuery.get('mealPlans')).data);
+            const mealPlansData = (await ApiQuery.get('mealPlans')).data;
+            setMealPlans(mealPlansData);
         } catch (err) {
             if (err.response) {
                 console.log(err.response.data);

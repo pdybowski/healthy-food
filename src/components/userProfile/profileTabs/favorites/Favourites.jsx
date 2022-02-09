@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
 import ApiQuery from '../../../shared/api/ApiQuery';
+import MealPlanTile from '../../../shared/tiles/mealPlanTile/MealPlanTile';
 
 function Favourites() {
     const [isFavRecipes, setIsFavRecipes] = useState(true);
