@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
 import RecipeTile from '../../../shared/tiles/recipeTile/RecipeTile.jsx';
-import MenuTile from '../../../shared/tiles/menuTile/MenuTile.jsx';
 import ApiQuery from '../../../shared/api/ApiQuery';
+import MealPlanTile from '../../../shared/tiles/mealPlanTile/MealPlanTile';
 
 function Favourites() {
     const [isFavRecipes, setIsFavRecipes] = useState(true);
-    const [isFavMenu, setIsFavMenu] = useState(false);
+    const [isFavMealPlan, setIsFavMealPlan] = useState(false);
 
     const [recipes, setRecipes] = useState([]);
-    const [menus, setMenus] = useState([]);
+    const [mealPlans, setMealPlans] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
             setRecipes((await ApiQuery.get('recipes')).data);
-            setMenus((await ApiQuery.get('menus')).data);
+            setMealPlans((await ApiQuery.get('mealPlans')).data);
         }
 
         fetchData();
@@ -24,14 +24,14 @@ function Favourites() {
 
     const recipesHandlerButton = () => {
         setIsFavRecipes(true);
-        setIsFavMenu(false);
+        setIsFavMealPlan(false);
         setActiveButton('recipes');
     };
 
-    const menuHandlerButton = () => {
+    const mealPlanHandlerButton = () => {
         setIsFavRecipes(false);
-        setIsFavMenu(true);
-        setActiveButton('menus');
+        setIsFavMealPlan(true);
+        setActiveButton('mealPlans');
     };
 
     return (
@@ -45,12 +45,12 @@ function Favourites() {
             </Button>
             <Button
                 variant='outline-info'
-                className={activeButton === 'menus' ? 'active me-3 mb-3' : 'me-3 mb-3'}
-                onClick={menuHandlerButton}
+                className={activeButton === 'mealPlans' ? 'active me-3 mb-3' : 'me-3 mb-3'}
+                onClick={mealPlanHandlerButton}
             >
-                Menus
+                Meal plans
             </Button>
-            {isFavRecipes === true && isFavMenu === false ? (
+            {isFavRecipes === true && isFavMealPlan === false ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
                     {recipes.map((recipe) => {
                         return (
@@ -70,19 +70,19 @@ function Favourites() {
                         );
                     })}
                 </Row>
-            ) : isFavRecipes === false && isFavMenu === true ? (
+            ) : isFavRecipes === false && isFavMealPlan === true ? (
                 <Row xs={1} md={2} xxl={4} className='g-4'>
-                    {menus.map((menu) => {
+                    {mealPlans.map((mealPlan) => {
                         return (
-                            <MenuTile
-                                title={menu.title}
-                                itemTags={menu.tags}
-                                fullMenuData={menu.menu}
-                                key={menu.id}
+                            <MealPlanTile
+                                title={mealPlan.title}
+                                itemTags={mealPlan.tags}
+                                fullMealPlanData={mealPlan.mealPlan}
+                                key={mealPlan.id}
                                 isFavourite={true}
                                 isLoggedIn={true}
                                 isOwner={false}
-                                id={menu.id}
+                                id={mealPlan.id}
                             />
                         );
                     })}

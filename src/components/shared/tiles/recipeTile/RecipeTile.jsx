@@ -51,7 +51,7 @@ function RecipeTile(props) {
                 isRecommended={isRecommended}
             />
             <Card.Body>
-                <Card.Title className='text-dark card-title ' onClick={handleShowRecipe}>
+                <Card.Title className='text-dark card-title' onClick={handleShowRecipe}>
                     {title}
                 </Card.Title>
                 <ListGroup className='list-group-flush'>

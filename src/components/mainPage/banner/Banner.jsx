@@ -67,7 +67,7 @@ function Banner() {
                                 <Accordion.Header>Plan your meals</Accordion.Header>
                                 <Accordion.Body>
                                     Choose your favorite recipes, save them and create your personal
-                                    menu for one day or a whole week
+                                    meal plan for one day or a whole week
                                 </Accordion.Body>
                             </Accordion.Item>
                         </Accordion>

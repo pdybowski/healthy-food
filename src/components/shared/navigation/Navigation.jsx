@@ -13,7 +13,7 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
 
     const NAV_ELEMENTS = {
         RECIPES: 'recipes',
-        MENUS: 'menus',
+        MEAL_PLANS: 'mealPlans',
         RECOMMENDED: 'recommended',
         CONTACT: 'contact',
         ABOUT: 'about',
@@ -54,17 +54,17 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                             <Nav.Link>Recipes</Nav.Link>
                         </LinkContainer>
                         <LinkContainer
-                            to={ROUTES_PATHS.MENUS}
+                            to={ROUTES_PATHS.MEAL_PLANS}
                             onClick={() => {
-                                setActive(NAV_ELEMENTS.MENUS);
+                                setActive(NAV_ELEMENTS.MEAL_PLANS);
                             }}
                             className={
-                                active === NAV_ELEMENTS.MENUS
+                                active === NAV_ELEMENTS.MEAL_PLANS
                                     ? 'navigation__element active'
                                     : 'navigation__element inactive'
                             }
                         >
-                            <Nav.Link>Menus</Nav.Link>
+                            <Nav.Link>Meal plans</Nav.Link>
                         </LinkContainer>
                         <LinkContainer
                             to={ROUTES_PATHS.RECOMMENDED}
@@ -122,12 +122,12 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                                 <NavDropdown.Item>Add recipe</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer
-                                to={ROUTES_PATHS.USER_MENUS_ADD}
+                                to={ROUTES_PATHS.USER_MEAL_PLANS_ADD}
                                 onClick={() => {
                                     setActive('');
                                 }}
                             >
-                                <NavDropdown.Item>Add menu</NavDropdown.Item>
+                                <NavDropdown.Item>Add meal plan</NavDropdown.Item>
                             </LinkContainer>
                         </NavDropdown>
                         <NavDropdown
@@ -171,12 +171,12 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                                 <NavDropdown.Item>Your recipes</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer
-                                to={ROUTES_PATHS.USER_MENUS}
+                                to={ROUTES_PATHS.USER_MEAL_PLANS}
                                 onClick={() => {
                                     setActive('');
                                 }}
                             >
-                                <NavDropdown.Item>Your menus</NavDropdown.Item>
+                                <NavDropdown.Item>Your meal plans</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer
                                 to={ROUTES_PATHS.USER_FAVORITES}
@@ -199,12 +199,12 @@ export function Navigation({ isLoggedIn, onRegister, onSignIn, onLogOut }) {
                             </div>
                             <div className='navigation__element--mobilescreen-show'>
                                 <LinkContainer
-                                    to={ROUTES_PATHS.USER_MENUS_ADD}
+                                    to={ROUTES_PATHS.USER_MEAL_PLANS_ADD}
                                     onClick={() => {
                                         setActive('');
                                     }}
                                 >
-                                    <NavDropdown.Item>Add menu</NavDropdown.Item>
+                                    <NavDropdown.Item>Add meal plan</NavDropdown.Item>
                                 </LinkContainer>
                             </div>
                             <NavDropdown.Divider />

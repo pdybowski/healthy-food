@@ -1,35 +1,37 @@
 import { MainPage, UserProfile } from './pages';
 import Recipes from './pages/recipes/Recipes';
-import Menus from './pages/menus/Menus';
+import MealPlans from './pages/mealPlans/MealPlans';
 import UpsertRecipe from './pages/upsertRecipe/UpsertRecipe';
-import UpsertMenu from './pages/upsertMenu/upsertMenu';
+import UpsertMealPlan from './pages/upsertMealPlan/upsertMealPlan';
 import RecipePage from './pages/recipePage/RecipePage';
 import Recommended from './pages/recommended/Recommended';
 import AccountForm from './components/accountForm/accountForm';
+import MealPlanPage from './pages/mealPlanPage/MealPlanPage';
 
 export const ROUTES_PATHS = {
-    MAIN_PAGE: '/',
+    MAIN_PAGE: '/healthy-food',
     RECIPES: '/recipes',
     RECOMMENDED: '/recommended',
-    MENUS: '/menus',
+    MEAL_PLANS: '/meal-plans',
     CONTACT: '/contact',
     ABOUT: '/about',
-    LOGOUT: '/',
+    LOGOUT: '/healthy-food',
     USER_PROFILE: '/user-profile',
     USER_RECIPES: '/user-profile/recipes',
     USER_RECIPES_ADD: '/user-profile/recipes/new',
     USER_RECIPES_EDIT: '/user-profile/recipes/edit',
-    USER_MENUS: '/user-profile/menus',
-    USER_MENUS_ADD: '/user-profile/menus/new',
+    USER_MEAL_PLANS: '/user-profile/meal-plans',
+    USER_MEAL_PLANS_ADD: '/user-profile/meal-plans/new',
     USER_FAVORITES: '/user-profile/favourites',
     USER_SETTINGS: '/user-profile/settings',
     RECIPE: '/recipes/:id',
+    MEAL_PLAN: '/meal-plans/:id',
     REGISTER: '/register',
 };
 
 export const PROFILE_TABS = {
     PROFILE_RECIPES: 'user-recipes',
-    PROFILE_MENUS: 'user-menus',
+    PROFILE_MEAL_PLANS: 'user-meal-plans',
     PROFILE_FAVOURITES: 'user-favourites',
 };
 
@@ -46,9 +48,9 @@ export const routes = [
         key: 'recipes',
     },
     {
-        path: ROUTES_PATHS.MENUS,
-        element: <Menus />,
-        key: 'menus',
+        path: ROUTES_PATHS.MEAL_PLANS,
+        element: <MealPlans />,
+        key: 'mealPlans',
     },
     {
         path: ROUTES_PATHS.RECOMMENDED,
@@ -61,8 +63,13 @@ export const routes = [
         key: 'recipe',
     },
     {
+        path: ROUTES_PATHS.MEAL_PLAN,
+        element: <MealPlanPage />,
+        key: 'mealPlan',
+    },
+    {
         path: ROUTES_PATHS.REGISTER,
-        element: <AccountForm.jsx />,
+        element: <AccountForm />,
         key: 'register',
     },
 ];
@@ -79,9 +86,9 @@ export const protectedRoutes = [
         key: PROFILE_TABS.PROFILE_RECIPES,
     },
     {
-        path: ROUTES_PATHS.USER_MENUS,
-        element: <UserProfile tab={PROFILE_TABS.PROFILE_MENUS} />,
-        key: PROFILE_TABS.PROFILE_MENUS,
+        path: ROUTES_PATHS.USER_MEAL_PLANS,
+        element: <UserProfile tab={PROFILE_TABS.PROFILE_MEAL_PLANS} />,
+        key: PROFILE_TABS.PROFILE_MEAL_PLANS,
     },
     {
         path: ROUTES_PATHS.USER_FAVORITES,
@@ -94,9 +101,9 @@ export const protectedRoutes = [
         key: 'upsert-recipe',
     },
     {
-        path: ROUTES_PATHS.USER_MENUS_ADD,
-        element: <UpsertMenu />,
-        key: 'upsert-menu',
+        path: ROUTES_PATHS.USER_MEAL_PLANS_ADD,
+        element: <UpsertMealPlan />,
+        key: 'upsert-mealPlan',
     },
     {
         path: ROUTES_PATHS.USER_SETTINGS,

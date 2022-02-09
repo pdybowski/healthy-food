@@ -407,9 +407,11 @@ export const MEAL_TYPE = {
 
 const INGREDIENT_UNIT = {
     KG: 'kg',
+    G: 'g',
     ML: 'ml',
     PCS: 'pcs',
     TABLESPOON: 'tablespoon',
+    TEASPOON: 'teaspoon',
     CUP: 'cup',
     PINCH: 'pinch',
     SLICE: 'slice',
