@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import RecipeTile from '../../components/shared/tiles/recipeTile/RecipeTile';
+import MealPlanTile from '../../components/shared/tiles/mealPlanTile/MealPlanTile';
 import Search from '../../components/shared/search/Search';
 import ApiQuery from '../../components/shared/api/ApiQuery';
 
-function Recipes() {
-    const [recipes, setRecipes] = useState([]);
+function MealPlans() {
+    const [mealPlans, setMealPlans] = useState([]);
     const [input, setInput] = useState('');
 
     const fetchData = async () => {
         try {
-            const recipesData = (await ApiQuery.get('recipes')).data;
-            setRecipes(recipesData);
+            const mealPlansData = (await ApiQuery.get('mealPlans')).data;
+            setMealPlans(mealPlansData);
         } catch (err) {
             if (err.response) {
                 console.log(err.response.data);
@@ -35,28 +35,26 @@ function Recipes() {
         <Container className='my-4'>
             <Search input={input} onChange={updateInput} />
             <Row xs={1} md={2} xxl={4} className='g-4'>
-                {recipes
-                    .filter((recipe) => {
+                {mealPlans
+                    .filter((mealPlan) => {
                         if (input === '') {
-                            return recipe;
-                        } else if (recipe.title.toLowerCase().includes(input.toLowerCase())) {
-                            return recipe;
+                            return mealPlan;
+                        } else if (mealPlan.title.toLowerCase().includes(input.toLowerCase())) {
+                            return mealPlan;
                         }
                     })
-                    .map((recipe) => {
+                    .map((mealPlan) => {
                         return (
-                            <RecipeTile
-                                data={recipe}
-                                title={recipe.title}
-                                itemTags={recipe.tags}
-                                time={recipe.timeToPrepare}
-                                mealType={recipe.mealType}
-                                key={recipe.id}
+                            <MealPlanTile
+                                data={mealPlan}
+                                title={mealPlan.title}
+                                tags={mealPlan.tags}
                                 isFavourite={false}
                                 isLoggedIn={false}
                                 isOwner={false}
-                                image={recipe.image}
-                                id={recipe.id}
+                                image={mealPlan.image}
+                                key={mealPlan.id}
+                                id={mealPlan.id}
                             />
                         );
                     })}
@@ -65,4 +63,4 @@ function Recipes() {
     );
 }
 
-export default Recipes;
+export default MealPlans;

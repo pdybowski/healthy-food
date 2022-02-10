@@ -6,7 +6,7 @@ import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
 
 function App() {
-    const [isLoggedIn, setIsLoggin] = React.useState(false);
+    const [isLoggedIn, setIsLoggedIn] = React.useState(true);
     const [modalShow, setModalShow] = React.useState(false);
     const [isNewUser, setIsNewUser] = React.useState(false);
 
@@ -27,12 +27,12 @@ function App() {
     };
 
     const onPositiveLogIn = () => {
-        setIsLoggin(true);
+        setIsLoggedIn(true);
         setModalShow(!modalShow);
     };
 
     const onLogOut = () => {
-        setIsLoggin(false);
+        setIsLoggedIn(false);
     };
 
     return (

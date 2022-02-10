@@ -15,7 +15,6 @@ function ProfileInformation({ handleSettingsClick }) {
                 </div>
                 <div className='d-flex flex-column'>
                     <h3>Jakub Nowak</h3>
-                    <div>Information about you:</div>
                 </div>
                 <div className='ms-auto'>
                     <LinkContainer to={ROUTES_PATHS.USER_SETTINGS}>
