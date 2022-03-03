@@ -52,7 +52,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
         }
 
         if (dataUsers.filter((user) => user.email === email).length === 0) {
-            newErrors.email = 'E-mail is not in a database';
+            newErrors.email = 'E-mail is invalid';
         }
 
         if (!password || password === '') {
