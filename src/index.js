@@ -4,10 +4,13 @@ import './assets/scss/bootstrap-custom.scss';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppProvider } from './contexts/appContext';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <AppProvider value={{}}>
+            <App />
+        </AppProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );
