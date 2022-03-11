@@ -49,21 +49,12 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
 
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
-        }
-
-        if (!/\S+@\S+\.\S+/.test(form.email)) {
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
             newErrors.email = 'E-mail is invalid';
         }
 
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
-        }
-
-        if (
-            dataUsers.filter((user) => user.email === email && user.password === password)
-                .length === 0
-        ) {
-            newErrors.password = 'Password is invalid';
         }
 
         return newErrors;
