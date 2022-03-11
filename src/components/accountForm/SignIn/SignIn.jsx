@@ -51,7 +51,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
             newErrors.email = 'E-mail is required!';
         }
 
-        if (dataUsers.filter((user) => user.email === email).length === 0) {
+        if (!/\S+@\S+\.\S+/.test(form.email)) {
             newErrors.email = 'E-mail is invalid';
         }
 
