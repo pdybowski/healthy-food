@@ -63,7 +63,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
             dataUsers.filter((user) => user.email === email && user.password === password)
                 .length === 0
         ) {
-            newErrors.password = 'Password is wrong';
+            newErrors.password = 'Password is invalid';
         }
 
         return newErrors;
