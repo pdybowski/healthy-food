@@ -26,20 +26,12 @@ export const CustomModal = (props) => {
                 <Modal.Body>{children}</Modal.Body>
 
                 <Modal.Footer>
-                    {buttonDismissText ? (
-                        <Button variant={styleBottomCloseButton} onClick={closeModal}>
-                            {buttonDismissText}
-                        </Button>
-                    ) : (
-                        <Button variant={styleBottomCloseButton} onClick={closeModal}>
-                            Close
-                        </Button>
-                    )}
-                    {buttonActionCopy ? (
-                        <Button variant={styleActionButton} onClick={() => handleSave(id)} id={id}>
-                            {buttonActionCopy}
-                        </Button>
-                    ) : null}
+                    <Button variant={styleBottomCloseButton} onClick={closeModal}>
+                        {buttonDismissText}
+                    </Button>
+                    <Button variant={styleActionButton} onClick={() => handleSave(id)} id={id}>
+                        {buttonActionCopy}
+                    </Button>
                 </Modal.Footer>
             </Modal>
         </>

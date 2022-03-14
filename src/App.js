@@ -4,6 +4,7 @@ import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/footer/Footer';
 import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
+import { AppProvider } from './appContext';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(true);
@@ -53,7 +54,9 @@ function App() {
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
                 />
-                <Views />
+                <AppProvider value={{}}>
+                    <Views />
+                </AppProvider>
             </BrowserRouter>
             <Footer />
         </>
