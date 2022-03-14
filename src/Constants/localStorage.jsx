@@ -1,7 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
 
-export default function Constants(props) {
-    localStorage.setItem(props.set);
-    localStorage.getItem(props.get);
-}
+export const getLocalStorage = (data) => {
+    localStorage.getItem(data);
+};
+
+export const setLocalStorage = (name) => {
+    localStorage.setItem(name);
+};
