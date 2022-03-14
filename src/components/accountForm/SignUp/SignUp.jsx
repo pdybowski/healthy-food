@@ -40,7 +40,8 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
         }
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
-        }
+        }else if (!/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = 'E-mail has incorrect format';
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
         }
