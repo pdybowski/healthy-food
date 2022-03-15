@@ -4,6 +4,6 @@ export const getLocalStorage = (data) => {
     localStorage.getItem(data);
 };
 
-export const setLocalStorage = (name) => {
-    localStorage.setItem(name);
+export const setLocalStorage = (id) => {
+    localStorage.setItem(id);
 };
