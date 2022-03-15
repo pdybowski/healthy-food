@@ -37,9 +37,10 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
             newErrors.name = 'Name is required!';
         } else if (name.length > 40) {
             newErrors.name = 'Name is too long!';
-        }
-        if (!email || email === '') {
+        } if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
+        }else if (!/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = 'E-mail has incorrect format';
         }
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
