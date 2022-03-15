@@ -1,21 +1,40 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiQuery from '../../../components/shared/api/ApiQuery';
+import { setLocalStorage } from '../../../utils/localeStorage';
+import { LS_TOKEN, LS_USER_NAME, LS_USER_ID } from '../../../constants/localStorage';
+import LoadingSpinner from '../../shared/loadingSpinner/LoadingSpinner';
 
 import '../accountForm.css';
 
-const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
-    const [dataUsers, setDataUsers] = useState([]);
+const SignIn = ({
+    header,
+    newUserHandler,
+    onFormSubmit,
+    onLogIn,
+    endpoint,
+    email = '',
+    password = '',
+}) => {
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({
-        email: '',
-        password: '',
+        email: email,
+        password: password,
     });
+    const [loginErrorStatus, setloginErrorStatus] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
-    const fetchData = async () => {
+    async function signIn(form) {
+        setSpinner(true);
         try {
-            setDataUsers((await ApiQuery.get('users')).data);
+            const request = await ApiQuery.post(endpoint, form);
+            request ? setSpinner(false) : setSpinner(true);
+            setLocalStorage(LS_TOKEN, request.data.token);
+            setLocalStorage(LS_USER_NAME, request.data.user.name);
+            setLocalStorage(LS_USER_ID, request.data.user._id);
+            request.status === 200 ? onLogIn() : null;
         } catch (err) {
+            setloginErrorStatus(true);
             if (err.response) {
                 console.log(err.response.data);
                 console.log(err.response.status);
@@ -24,11 +43,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
                 console.log(`Error: ${err.message}`);
             }
         }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
+    }
 
     const setField = ({ target: { name, value } }) => {
         const convertedValue = isNaN(value) ? value : parseInt(value, 10);
@@ -63,19 +78,26 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = findErrors();
-
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-        } else {
-            onLogIn();
-        }
+        Object.keys(newErrors).length > 0 ? setErrors(newErrors) : signIn(form);
     };
 
-    return (
+    return loginErrorStatus ? (
+        <div className='d-flex flex-column my-4'>
+            <h2 className='text-center my-4'>Invalid email or password</h2>
+            <Button type='button' className='btn button-action'>
+                Forgot your password?
+            </Button>
+            <Button type='button' className='btn button-action' onClick={newUserHandler}>
+                {`Don't have an account yet? Register`}
+            </Button>
+        </div>
+    ) : spinner ? (
+        <LoadingSpinner />
+    ) : (
         <div className='d-flex flex-column justify-content-around align-items-center'>
             <h2 className='text-center my-4'>{header}</h2>
             <Form
-                onSubmit={(evt) => onFormSubmit(evt)}
+                onSubmit={onFormSubmit}
                 className='d-flex flex-column justify-content-around align-items-center'
             >
                 <Form.Group className='form-group py-2'>
@@ -109,11 +131,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn }) => {
                         <span className='d-block text-danger'>{errors.password}</span>
                     ) : null}
                 </Form.Group>
-                <Button
-                    type='submit'
-                    className='btn btn-primary my-1'
-                    onClick={(e) => handleSubmit(e)}
-                >
+                <Button type='submit' className='btn btn-primary my-1' onClick={handleSubmit}>
                     Sign In
                 </Button>
             </Form>
