@@ -1,9 +1,7 @@
-import React from 'react';
-
-export const getLocalStorage = (data) => {
-    localStorage.getItem(data);
+export const getLocalStorage = (name) => {
+    return localStorage.getItem(name);
 };
 
-export const setLocalStorage = (id) => {
-    localStorage.setItem(id);
+export const setLocalStorage = (name, data) => {
+    localStorage.setItem(name, data);
 };
