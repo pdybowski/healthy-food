@@ -26,13 +26,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
             request.status === 200 ? onLogIn() : null;
         } catch (err) {
             setloginErrorStatus(true);
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else {
-                console.log(`Error: ${err.message}`);
-            }
+            console.error(err);
         }
     }
 
