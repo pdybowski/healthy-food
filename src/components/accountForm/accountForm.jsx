@@ -21,7 +21,6 @@ const AccountForm = (props) => {
                                 newUserHandler={props.newUserHandler}
                                 onSignInHandler={props.onSignInHandler}
                                 onLogIn={props.onLogIn}
-                                endpoint={'auth/register'}
                             />
                         ) : (
                             <SignIn
@@ -29,7 +28,6 @@ const AccountForm = (props) => {
                                 newUserHandler={props.newUserHandler}
                                 onFormSubmit={props.onFormSubmit}
                                 onLogIn={props.onLogIn}
-                                endpoint={'auth/login'}
                             />
                         )}
                     </div>

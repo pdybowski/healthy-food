@@ -2,20 +2,12 @@ import { React, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiQuery from '../../../components/shared/api/ApiQuery';
 import { setLocalStorage } from '../../../utils/localeStorage';
-import { LS_TOKEN, LS_USER_NAME, LS_USER_ID } from '../../../constants/localStorage';
+import { LS_TOKEN, LS_USER_DATA } from '../../../constants/localStorage';
 import LoadingSpinner from '../../shared/loadingSpinner/LoadingSpinner';
 
 import '../accountForm.css';
 
-const SignIn = ({
-    header,
-    newUserHandler,
-    onFormSubmit,
-    onLogIn,
-    endpoint,
-    email = '',
-    password = '',
-}) => {
+const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', password = '' }) => {
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({
         email: email,
@@ -27,11 +19,10 @@ const SignIn = ({
     async function signIn(form) {
         setSpinner(true);
         try {
-            const request = await ApiQuery.post(endpoint, form);
-            request ? setSpinner(false) : setSpinner(true);
+            const request = await ApiQuery.post('auth/login', form);
             setLocalStorage(LS_TOKEN, request.data.token);
-            setLocalStorage(LS_USER_NAME, request.data.user.name);
-            setLocalStorage(LS_USER_ID, request.data.user._id);
+            setLocalStorage(LS_USER_DATA, JSON.stringify(request.data.user));
+            request ? setSpinner(false) : setSpinner(true);
             request.status === 200 ? onLogIn() : null;
         } catch (err) {
             setloginErrorStatus(true);

@@ -5,8 +5,8 @@ import { Footer } from './components/mainPage/footer/Footer';
 import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
 import { AppProvider } from './appContext';
-import { clearLocalStorage, getLocalStorage } from '../src/utils/localeStorage';
-import { LS_TOKEN } from './constants/localStorage';
+import { clearLocalStorage } from '../src/utils/localeStorage';
+import { checkIfLoggedIn } from './utils/checkLoggedIn';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -39,12 +39,7 @@ function App() {
         clearLocalStorage();
     };
 
-    window.onload = () => {
-        const token = getLocalStorage(LS_TOKEN);
-        if (token) {
-            setIsLoggedIn(true);
-        }
-    };
+    checkIfLoggedIn(setIsLoggedIn);
 
     return (
         <>

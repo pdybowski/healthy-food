@@ -15,7 +15,6 @@ const SignUp = ({
     email = '',
     phoneNumber = '',
     password = '',
-    endpoint,
 }) => {
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({
@@ -32,17 +31,11 @@ const SignUp = ({
     async function signUp(form) {
         setSpinner(true);
         try {
-            const request = await ApiQuery.post(endpoint, form);
+            const request = await ApiQuery.post('auth/register', form);
             request ? setSpinner(false) : setSpinner(true);
             request.status === 200 ? setRegisterStatus(true) : setRegisterStatus(false);
         } catch (err) {
-            if (err.response) {
-                console.log(err.response.data);
-                console.log(err.response.status);
-                console.log(err.response.headers);
-            } else {
-                console.log(`Error: ${err.message}`);
-            }
+            console.error(err);
         }
     }
 
@@ -59,7 +52,7 @@ const SignUp = ({
     };
 
     const findErrors = () => {
-        const { name, surname, username, email, password } = form;
+        const { name, surname, username, email, phoneNumber, password } = form;
         const newErrors = {};
 
         if (!name || name === '') {
