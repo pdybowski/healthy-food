@@ -1,18 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
 
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const [pageResource, setPageResource] = useState({
-        mealPlans: [],
-        recipes: [],
-    });
-
-    return (
-        <AppContext.Provider value={{ pageResource, setPageResource }}>
-            {children}
-        </AppContext.Provider>
-    );
+    return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
 };
 
-export { AppContext, AppProvider };
+// eslint-disable-next-line react/display-name
+const withApp = (Child) => (props) =>
+    <AppContext.Consumer>{(context) => <Child {...props} {...context} />}</AppContext.Consumer>;
+
+export { AppContext, AppProvider, withApp };
