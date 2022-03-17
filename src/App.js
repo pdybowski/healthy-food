@@ -4,9 +4,10 @@ import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/footer/Footer';
 import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
-import { AppProvider } from './appContext';
+import { ApiProvider } from './contexts/apiContext';
 import ApiQuery from './components/shared/api/ApiQuery';
 import LoadingSpinner from './components/shared/loadingSpinner/LoadingSpinner';
+import { UserProvider } from './contexts/userContext';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -60,28 +61,30 @@ function App() {
     return (
         <>
             <BrowserRouter>
-                <Navigation
-                    isLoggedIn={isLoggedIn}
-                    onRegister={onRegisterClick}
-                    onSignIn={onSignInClick}
-                    onLogOut={onLogOut}
-                />
-                <AccountForm
-                    isCentered={true}
-                    isModalShown={modalShow}
-                    closeModal={() => setModalShow(false)}
-                    newUserHandler={() => setIsNewUser(!isNewUser)}
-                    handleSave={onSignInHandler}
-                    isNewUser={isNewUser}
-                    onLogIn={onPositiveLogIn}
-                />
-                {isLoading ? (
-                    <LoadingSpinner />
-                ) : (
-                    <AppProvider value={{ pageResource }}>
-                        <Views />
-                    </AppProvider>
-                )}
+                <UserProvider>
+                    <Navigation
+                        isLoggedIn={isLoggedIn}
+                        onRegister={onRegisterClick}
+                        onSignIn={onSignInClick}
+                        onLogOut={onLogOut}
+                    />
+                    <AccountForm
+                        isCentered={true}
+                        isModalShown={modalShow}
+                        closeModal={() => setModalShow(false)}
+                        newUserHandler={() => setIsNewUser(!isNewUser)}
+                        handleSave={onSignInHandler}
+                        isNewUser={isNewUser}
+                        onLogIn={onPositiveLogIn}
+                    />
+                    {isLoading ? (
+                        <LoadingSpinner />
+                    ) : (
+                        <ApiProvider value={{ pageResource }}>
+                            <Views />
+                        </ApiProvider>
+                    )}
+                </UserProvider>
             </BrowserRouter>
             <Footer />
         </>
