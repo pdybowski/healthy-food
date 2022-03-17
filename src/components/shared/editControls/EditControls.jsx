@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { CustomModal } from '../modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ApiQuery from '../api/ApiQuery';
 import { ConfirmRemovalModal } from '../../ConfirmRemovalModal/ConfirmRemovalModal';
 import './edit.css';
+import { CustomModal } from '../Modal/Modal';
 
 export function EditControls(props) {
     const { isLoggedIn, isOwner, url, endpoint, id, handleSave } = props;

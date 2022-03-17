@@ -8,4 +8,3 @@ const LoadingSpinner = (props) => {
 export default LoadingSpinner;
 
 // <LoadingSpinner style={loadingStyles} />   // in this way you can use this component with any styles
-

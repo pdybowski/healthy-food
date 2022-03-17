@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Navigation } from './components/shared';
 import { Footer } from './components/mainPage/footer/Footer';
 import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
 import { AppProvider } from './appContext';
+import ApiQuery from './components/shared/api/ApiQuery';
+import LoadingSpinner from './components/shared/loadingSpinner/LoadingSpinner';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-    const [modalShow, setModalShow] = React.useState(false);
-    const [isNewUser, setIsNewUser] = React.useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [modalShow, setModalShow] = useState(false);
+    const [isNewUser, setIsNewUser] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [pageResource, setPageResource] = useState({
+        mealPlans: [],
+        recipes: [],
+    });
+
+    const fetchData = async () => {
+        try {
+            const { data } = await ApiQuery.get('api/pageResource');
+            setPageResource(data);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const onSignInHandler = (e) => {
         e.preventDefault();
@@ -54,9 +75,13 @@ function App() {
                     isNewUser={isNewUser}
                     onLogIn={onPositiveLogIn}
                 />
-                <AppProvider value={{}}>
-                    <Views />
-                </AppProvider>
+                {isLoading ? (
+                    <LoadingSpinner />
+                ) : (
+                    <AppProvider value={{ pageResource }}>
+                        <Views />
+                    </AppProvider>
+                )}
             </BrowserRouter>
             <Footer />
         </>
