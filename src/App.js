@@ -5,13 +5,14 @@ import { Footer } from './components/mainPage/footer/Footer';
 import AccountForm from './components/accountForm/accountForm.jsx';
 import Views from './Views';
 import { AppProvider } from './appContext';
-import { clearLocalStorage } from '../src/utils/localeStorage';
 import { checkIfLoggedIn } from './utils/checkLoggedIn';
+import { LS_TOKEN, LS_USER_DATA } from './constants/localStorage';
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = React.useState(false);
     const [modalShow, setModalShow] = React.useState(false);
     const [isNewUser, setIsNewUser] = React.useState(false);
+    const keysToRemove = [LS_TOKEN, LS_USER_DATA];
 
     const onSignInHandler = (e) => {
         e.preventDefault();
@@ -36,7 +37,7 @@ function App() {
 
     const onLogOut = () => {
         setIsLoggedIn(false);
-        clearLocalStorage();
+        keysToRemove.forEach((key) => localStorage.removeItem(key));
     };
 
     checkIfLoggedIn(setIsLoggedIn);

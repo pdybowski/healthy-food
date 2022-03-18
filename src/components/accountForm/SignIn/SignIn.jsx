@@ -22,11 +22,12 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
             const request = await ApiQuery.post('auth/login', form);
             setLocalStorage(LS_TOKEN, request.data.token);
             setLocalStorage(LS_USER_DATA, JSON.stringify(request.data.user));
-            request ? setSpinner(false) : setSpinner(true);
             request.status === 200 ? onLogIn() : null;
         } catch (err) {
             setloginErrorStatus(true);
             console.error(err);
+        } finally {
+            setSpinner(false);
         }
     }
 
@@ -46,17 +47,14 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
     const findErrors = () => {
         const { email, password } = form;
         const newErrors = {};
-
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            newErrors.email = 'E-mail is invalid';
+            newErrors.email = 'E-mail is invalid!';
         }
-
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
         }
-
         return newErrors;
     };
 
@@ -93,7 +91,7 @@ const SignIn = ({ header, newUserHandler, onFormSubmit, onLogIn, email = '', pas
                             className='form-control'
                             id='email'
                             aria-describedby='emailHelp'
-                            placeholder='Enter email'
+                            placeholder='Email'
                             onChange={setField}
                         />
                     </Form.Label>

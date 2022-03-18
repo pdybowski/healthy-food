@@ -13,7 +13,7 @@ const SignUp = ({
     surname = '',
     username = '',
     email = '',
-    phoneNumber = '',
+    phoneNumber = null,
     password = '',
 }) => {
     const [errors, setErrors] = useState({});
@@ -21,7 +21,7 @@ const SignUp = ({
         name: name,
         surname: surname,
         username: username,
-        phoneNumber: phoneNumber.toString(),
+        phoneNumber: phoneNumber ? phoneNumber.toString() : null,
         email: email,
         password: password.toString(),
     });
@@ -32,10 +32,11 @@ const SignUp = ({
         setSpinner(true);
         try {
             const request = await ApiQuery.post('auth/register', form);
-            request ? setSpinner(false) : setSpinner(true);
             request.status === 200 ? setRegisterStatus(true) : setRegisterStatus(false);
         } catch (err) {
             console.error(err);
+        } finally {
+            setSpinner(false);
         }
     }
 
@@ -70,15 +71,15 @@ const SignUp = ({
         } else if (username.length > 40) {
             newErrors.username = 'Username is too long!';
         }
-        if (phoneNumber !== '') {
+        if (phoneNumber) {
             if (!/^[0-9]{9,12}$/.test(phoneNumber)) {
-                newErrors.phoneNumber = 'Phonenumber is invalid';
+                newErrors.phoneNumber = 'Phonenumber is invalid!';
             }
         }
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            newErrors.email = 'E-mail is invalid';
+            newErrors.email = 'E-mail is invalid!';
         }
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
