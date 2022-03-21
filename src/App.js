@@ -8,11 +8,14 @@ import { ApiProvider } from './contexts/apiContext';
 import ApiQuery from './components/shared/api/ApiQuery';
 import LoadingSpinner from './components/shared/loadingSpinner/LoadingSpinner';
 import { UserProvider } from './contexts/userContext';
+import { checkIfLoggedIn } from './utils/checkLoggedIn';
+import { LS_TOKEN, LS_USER_DATA } from './constants/localStorage';
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     const [isNewUser, setIsNewUser] = useState(false);
+    const keysToRemove = [LS_TOKEN, LS_USER_DATA];
 
     const [isLoading, setIsLoading] = useState(true);
     const [pageResource, setPageResource] = useState({
@@ -56,7 +59,10 @@ function App() {
 
     const onLogOut = () => {
         setIsLoggedIn(false);
+        keysToRemove.forEach((key) => localStorage.removeItem(key));
     };
+
+    checkIfLoggedIn(setIsLoggedIn);
 
     return (
         <>

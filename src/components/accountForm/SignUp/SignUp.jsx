@@ -1,26 +1,49 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiQuery from '../../../components/shared/api/ApiQuery';
+import LoadingSpinner from '../../shared/loadingSpinner/LoadingSpinner';
 
 import '../accountForm.css';
 
-const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', password = '' }) => {
+const SignUp = ({
+    header,
+    onSubmit,
+    newUserHandler,
+    name = '',
+    surname = '',
+    username = '',
+    email = '',
+    phoneNumber = null,
+    password = '',
+}) => {
     const [errors, setErrors] = useState({});
     const [form, setForm] = useState({
         name: name,
+        surname: surname,
+        username: username,
+        phoneNumber: phoneNumber ? phoneNumber.toString() : null,
         email: email,
-        password: password,
+        password: password.toString(),
     });
+    const [registerStatus, setRegisterStatus] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
-    async function postForm(form) {
-        await ApiQuery.post('users', form);
+    async function signUp(form) {
+        setSpinner(true);
+        try {
+            const request = await ApiQuery.post('auth/register', form);
+            request.status === 200 ? setRegisterStatus(true) : setRegisterStatus(false);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setSpinner(false);
+        }
     }
 
     const setField = ({ target: { name, value } }) => {
-        const convertedValue = isNaN(value) ? value : parseInt(value, 10);
         setForm({
             ...form,
-            [name]: convertedValue,
+            [name]: value,
         });
         if (errors[name])
             setErrors({
@@ -30,7 +53,7 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
     };
 
     const findErrors = () => {
-        const { name, email, password } = form;
+        const { name, surname, username, email, phoneNumber, password } = form;
         const newErrors = {};
 
         if (!name || name === '') {
@@ -38,15 +61,29 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
         } else if (name.length > 40) {
             newErrors.name = 'Name is too long!';
         }
+      if (!surname || surname === '') {
+            newErrors.surname = 'Surname is required!';
+        } else if (surname.length > 40) {
+            newErrors.surname = 'Surname is too long!';
+        }
+        if (!username || username === '') {
+            newErrors.username = 'Username is required!';
+        } else if (username.length > 40) {
+            newErrors.username = 'Username is too long!';
+        }
+        if (phoneNumber) {
+            if (!/^[0-9]{9,12}$/.test(phoneNumber)) {
+                newErrors.phoneNumber = 'Phonenumber is invalid!';
+            }
+        }
         if (!email || email === '') {
             newErrors.email = 'E-mail is required!';
         } else if (!/\S+@\S+\.\S+/.test(email)) {
-            newErrors.email = 'E-mail has incorrect format';
+            newErrors.email = 'E-mail is invalid!';
         }
         if (!password || password === '') {
             newErrors.password = 'Password is required!';
         }
-
         return newErrors;
     };
 
@@ -56,11 +93,24 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
         } else {
-            postForm(form);
+            signUp(form);
         }
     };
 
-    return (
+    return registerStatus ? (
+        spinner ? (
+            <LoadingSpinner />
+        ) : (
+            <div>
+                <h2 className='text-center my-4'>User successfully registered!</h2>
+                <div className='d-flex flex-column my-4'>
+                    <Button type='button' className='btn button-action' onClick={newUserHandler}>
+                        {`Pleas sign in`}
+                    </Button>
+                </div>
+            </div>
+        )
+    ) : (
         <div className='d-flex flex-column justify-content-around align-items-center'>
             <h2 className='text-center my-4'>{header}</h2>
             <Form
@@ -74,12 +124,42 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
                             type='text'
                             className='form-control'
                             id='name'
-                            placeholder='Your Name'
+                            placeholder='Name'
                             onChange={setField}
                         />
                     </Form.Label>
                     {errors.name && errors.name !== '' ? (
                         <span className='d-block text-danger'>{errors.name}</span>
+                    ) : null}
+                </Form.Group>
+                <Form.Group className='form-group py-2'>
+                    <Form.Label htmlFor='surname'>
+                        <Form.Control
+                            name='surname'
+                            type='text'
+                            className='form-control'
+                            id='surname'
+                            placeholder='Surname'
+                            onChange={setField}
+                        />
+                    </Form.Label>
+                    {errors.surname && errors.surname !== '' ? (
+                        <span className='d-block text-danger'>{errors.surname}</span>
+                    ) : null}
+                </Form.Group>
+                <Form.Group className='form-group py-2'>
+                    <Form.Label htmlFor='username'>
+                        <Form.Control
+                            name='username'
+                            type='text'
+                            className='form-control'
+                            id='username'
+                            placeholder='Username'
+                            onChange={setField}
+                        />
+                    </Form.Label>
+                    {errors.username && errors.username !== '' ? (
+                        <span className='d-block text-danger'>{errors.username}</span>
                     ) : null}
                 </Form.Group>
                 <Form.Group className='form-group py-2'>
@@ -90,12 +170,27 @@ const SignUp = ({ header, onSubmit, newUserHandler, name = '', email = '', passw
                             className='form-control'
                             id='email'
                             aria-describedby='emailHelp'
-                            placeholder='Enter email'
+                            placeholder='Email'
                             onChange={setField}
                         />
                     </Form.Label>
                     {errors.email && errors.email !== '' ? (
                         <span className='d-block text-danger'>{errors.email}</span>
+                    ) : null}
+                </Form.Group>
+                <Form.Group className='form-group py-2'>
+                    <Form.Label htmlFor='phoneNumber'>
+                        <Form.Control
+                            type='text'
+                            name='phoneNumber'
+                            className='form-control'
+                            id='phoneNumber'
+                            placeholder='Phonenumber'
+                            onChange={setField}
+                        />
+                    </Form.Label>
+                    {errors.phoneNumber && errors.phoneNumber !== '' ? (
+                        <span className='d-block text-danger'>{errors.phoneNumber}</span>
                     ) : null}
                 </Form.Group>
                 <Form.Group className='form-group py-2'>
