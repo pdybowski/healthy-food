@@ -1,8 +1,8 @@
 import React from 'react';
-import { CustomModal } from '../shared/modal/Modal';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 import './accountForm.css';
+import { CustomModal } from '../shared/Modal/Modal';
 
 const AccountForm = (props) => {
     return (

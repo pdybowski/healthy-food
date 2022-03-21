@@ -1,5 +1,6 @@
-import { CustomModal } from '../shared/modal/Modal';
 // import { useState } from 'react';
+
+import { CustomModal } from '../shared/Modal/Modal';
 
 export const ConfirmRemovalModal = (props) => {
     const { closeModal, handleSave, id } = props;

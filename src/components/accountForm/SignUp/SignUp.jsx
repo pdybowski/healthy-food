@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiQuery from '../../../components/shared/api/ApiQuery';
 import LoadingSpinner from '../../shared/loadingSpinner/LoadingSpinner';
@@ -61,7 +61,7 @@ const SignUp = ({
         } else if (name.length > 40) {
             newErrors.name = 'Name is too long!';
         }
-        if (!surname || surname === '') {
+      if (!surname || surname === '') {
             newErrors.surname = 'Surname is required!';
         } else if (surname.length > 40) {
             newErrors.surname = 'Surname is too long!';

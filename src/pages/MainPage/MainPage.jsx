@@ -1,4 +1,4 @@
-import Banner from '../../components/mainPage/banner/Banner.jsx';
+import Banner from '../../components/mainPage/Banner/Banner';
 import Contact from '../../components/mainPage/contact/Contact.jsx';
 import './style.css';
 
